@@ -1,3 +1,2 @@
 # CMPS160
-Introduction to Computer Graphics
-Professor James David
+Introduction to Computer Graphics < /br> Professor James David
