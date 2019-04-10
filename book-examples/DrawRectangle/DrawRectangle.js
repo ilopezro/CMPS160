@@ -9,6 +9,6 @@ function main() {
     console.log('Retreived canvas succesfully')
 
     var ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'rgb(0,0,255,1.0)'
-    ctx.fillRect(120,10,150,150);
+    ctx.fillStyle = 'rgb(150,200,255,1.0)'
+    ctx.fillRect(120,100,150,150);
 }
