@@ -29,8 +29,19 @@ class InputHandler {
         // Print x,y coordinates.
         console.log(ev.clientX, ev.clientY);
 
-        var shape = new Triangle(shader);
-        this.scene.addGeometry(shape);
+        var g_points = []
+        var x = ev.clientX; 
+        var y= ev.clientY; 
+        var rect = ev.target.getBoundingClientRect(); 
+
+        x = ((x - rect.left) - canvas.height/2)/(canvas.height/2);
+        y = (canvas.width/2 - (y-rect.top))/(canvas.width/2)
+
+        g_points.push(x); 
+        g_points.push(y); 
+
+        var triangle = new Triangle(shader, g_points);
+        this.scene.addGeometry(triangle);
     }
 
     clear(scene){
