@@ -4,6 +4,9 @@ function main() {
   // Retrieve the canvas from the HTML document
   canvas = document.getElementById("webgl");
 
+  //retrieve buttons from HTML doc
+  clearButton = document.getElementById("clearCanvas")
+
   // Retrieve WebGL rendering context
   var gl = getWebGLContext(canvas);
   if (!gl) {
@@ -13,7 +16,7 @@ function main() {
 
   // Initialize the scene
   var scene = new Scene();
-  var inputHandler = new InputHandler(canvas, scene);
+  var inputHandler = new InputHandler(canvas, scene, clearButton);
 
   // Initialize shader
   shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
