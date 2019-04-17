@@ -2,7 +2,7 @@
  * Specifies a square. A subclass of geometry.
  *
  * @author Lucas N. Ferreira
- * @this {Triangle}
+ * @this {Square}
  */
 class Square extends Geometry {
     /**
