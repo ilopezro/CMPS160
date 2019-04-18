@@ -52,6 +52,7 @@ class InputHandler {
       this.greenSlider.onchange = function() { _inputHandler.updateGreenColor()}
       this.blueSlider.onchange = function() { _inputHandler.updateBlueColor()}
       this.sizeSlider.onchange = function() { size = document.getElementById("sizeSlider").value}
+      this.circleSegmentSlider.onchange = function() {circleSegmentValue = document.getElementById("circleSegmentCount").value}
     }
 
     /**
