@@ -17,10 +17,12 @@ class InputHandler {
       this.canvas = canvas;
       this.scene = scene;
       this.clearButton = clearButton
+
       //actual color value
       redColor = redColors
       greenColor = greenColors
       blueColor = blueColors
+      
       //sliders
       this.redSlider = redColorSlider
       this.greenSlider = greenColorSlider
@@ -53,7 +55,7 @@ class InputHandler {
 
         g_points.push(x); 
         g_points.push(y); 
-        console.log("red color in click function: " + rColor)
+        
 
         var triangle = new Triangle(shader, g_points, rColor, gColor, bColor);
         this.scene.addGeometry(triangle);
