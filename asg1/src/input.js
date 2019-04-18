@@ -1,4 +1,7 @@
 var _inputHandler = null;
+var redColor = null; 
+var greenColor = null; 
+var blueColor = null; 
 
 /**
  * Specifies a Input Handler. Used to parse input events from a HTML page.
@@ -10,25 +13,33 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, clearButton, redColor, greenColor, blueColor) {
+    constructor(canvas, scene, clearButton, redColors, greenColors, blueColors, redColorSlider, greenColorSlider, blueColorSlider) {
       this.canvas = canvas;
       this.scene = scene;
       this.clearButton = clearButton
-      this.redColor = redColor
-      this.greenColor = greenColor
-      this.blueColor = blueColor
+      //actual color value
+      redColor = redColors
+      greenColor = greenColors
+      blueColor = blueColors
+      //sliders
+      this.redSlider = redColorSlider
+      this.greenSlider = greenColorSlider
+      this.blueSlider = blueColorSlider
 
       _inputHandler = this;
 
       // Mouse Events
-      this.canvas.onmousedown = function(ev) { _inputHandler.click(ev) };
+      this.canvas.onmousedown = function(ev) { _inputHandler.click(ev, redColor, greenColor, blueColor) };
       this.clearButton.onclick = function() { _inputHandler.clear(scene)}
+      this.redSlider.onchange = function() { _inputHandler.updateRedColor()}
+      this.greenSlider.onchange = function() { _inputHandler.updateGreenColor()}
+      this.blueSlider.onchange = function() { _inputHandler.updateBlueColor()}
     }
 
     /**
      * Function called upon mouse click.
      */
-    click(ev) {
+    click(ev, rColor, gColor, bColor) {
         // Print x,y coordinates.
         console.log(ev.clientX, ev.clientY);
 
@@ -42,13 +53,26 @@ class InputHandler {
 
         g_points.push(x); 
         g_points.push(y); 
+        console.log("red color in click function: " + rColor)
 
-        var triangle = new Triangle(shader, g_points, redColor, greenColor, blueColor);
+        var triangle = new Triangle(shader, g_points, rColor, gColor, bColor);
         this.scene.addGeometry(triangle);
     }
 
     clear(scene){
       console.log("clicked 'clear canvas' button")
       this.scene.clearGeometries()
+    }
+
+    updateRedColor(){
+      redColor = document.getElementById("redColor").value; 
+    }
+
+    updateGreenColor(){
+      greenColor = document.getElementById("greenColor").value; 
+    }
+
+    updateBlueColor(){
+      blueColor = document.getElementById("blueColor").value; 
     }
 }

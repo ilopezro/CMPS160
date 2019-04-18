@@ -7,12 +7,15 @@ function main() {
   //retrieve buttons from HTML doc
   clearButton = document.getElementById("clearCanvas")
 
-  //retrieve colors for the shapes
+  //retrieve sliders for colors
+  redColorSlider = document.getElementById("redColor")
+  greenColorSlider = document.getElementById("greenColor")
+  blueColorSlider = document.getElementById("blueColor")
+
+  //retrieve color value for the shapes
   redColor = document.getElementById("redColor").value
   greenColor = document.getElementById("greenColor").value
   blueColor = document.getElementById("blueColor").value
-  console.log("in main")
-  console.log(redColor)
 
   // Retrieve WebGL rendering context
   var gl = getWebGLContext(canvas);
@@ -23,7 +26,7 @@ function main() {
 
   // Initialize the scene
   var scene = new Scene();
-  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor);
+  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider);
 
   // Initialize shader
   shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
