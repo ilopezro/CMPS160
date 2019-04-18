@@ -41,6 +41,8 @@ class InputHandler {
       this.canvas.onmousedown = function(ev) { _inputHandler.click(ev, redColor, greenColor, blueColor) };
       this.clearButton.onclick = function() { _inputHandler.clear(scene)}
       this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false; console.log("square button pressed")}
+      this.triangleButton.onclick = function() {isSquare = false; isTriangle = true; isCircle = false; console.log("triangle button pressed")}
+      this.circleButton.onclick = function() {isSquare = false; isTriangle = false; isCircle = true; console.log("circle button is pressed")}
       this.redSlider.onchange = function() { _inputHandler.updateRedColor()}
       this.greenSlider.onchange = function() { _inputHandler.updateGreenColor()}
       this.blueSlider.onchange = function() { _inputHandler.updateBlueColor()}

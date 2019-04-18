@@ -8,7 +8,7 @@ function main() {
   clearButton = document.getElementById("clearCanvas")
   triangle = document.getElementById("createTriangle")
   square = document.getElementById("createSquare")
-  circle = document.getElementById("createCircle")
+  circle = document.getElementById("createCircles")
 
   //retrieve sliders for colors
   redColorSlider = document.getElementById("redColor")
