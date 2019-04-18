@@ -20,6 +20,12 @@ function main() {
   greenColor = document.getElementById("greenColor").value
   blueColor = document.getElementById("blueColor").value
 
+  //slider for size
+  sizeSlider = document.getElementById("sizeSlider")
+
+  //slider value
+  size = document.getElementById("sizeSlider").value
+
   // Retrieve WebGL rendering context
   var gl = getWebGLContext(canvas);
   if (!gl) {
@@ -29,7 +35,7 @@ function main() {
 
   // Initialize the scene
   var scene = new Scene();
-  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle);
+  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle, sizeSlider, size);
 
   // Initialize shader
   shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
