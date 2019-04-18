@@ -24,7 +24,7 @@ class Triangle extends Geometry {
 
   generateTriangleVertices(g_points, rColor, gColor, bColor, size) {
       var vertices = []
-      console.log(g_points[1]+Number(size)); 
+      
       var vertex1 = new Vertex(g_points[0], g_points[1]+Number(size), 0.0, rColor, gColor, bColor);
       var vertex2 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
       var vertex3 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
