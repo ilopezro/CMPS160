@@ -26,7 +26,7 @@ class InputHandler {
       this.triangleButton = triangleButton
       this.circleButton = circleButton
       this.size = shapeSize
-      this.circleSegmentValue = circleSegmentValues
+      circleSegmentValue = circleSegmentValues
 
       //actual color value
       redColor = redColors
@@ -41,9 +41,8 @@ class InputHandler {
       this.circleSegmentSlider = circleSegmentSlider
 
       _inputHandler = this;
-
       // Mouse Events
-      this.canvas.onmousedown = function(ev) { _inputHandler.click(ev, redColor, greenColor, blueColor, size) };
+      this.canvas.onmousedown = function(ev) { _inputHandler.click(ev, redColor, greenColor, blueColor, size, circleSegmentValue) };
       this.clearButton.onclick = function() { _inputHandler.clear(scene)}
       this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false}
       this.triangleButton.onclick = function() {isSquare = false; isTriangle = true; isCircle = false}
@@ -58,7 +57,7 @@ class InputHandler {
     /**
      * Function called upon mouse click.
      */
-    click(ev, rColor, gColor, bColor, size) {
+    click(ev, rColor, gColor, bColor, size, circleSegmentValue) {
         // Print x,y coordinates.
         console.log(ev.clientX, ev.clientY);
 
@@ -74,7 +73,9 @@ class InputHandler {
         g_points.push(y); 
         
         if(!isTriangle && isCircle && !isSquare){
+          var circle = new Circle(shader, g_points, rColor, gColor, bColor, size, circleSegmentValue)
           console.log("circle should be drawn here")
+          this.scene.addGeometry(circle)
         }else if(!isTriangle && !isCircle && isSquare){
           var square = new Square(shader, g_points, rColor, gColor, bColor, size)
           this.scene.addGeometry(square)
