@@ -41,8 +41,12 @@ class InputHandler {
       this.circleSegmentSlider = circleSegmentSlider
 
       _inputHandler = this;
+
+      var isMoving = false; 
       // Mouse Events
-      this.canvas.onmousedown = function(ev) { _inputHandler.click(ev, redColor, greenColor, blueColor, size, circleSegmentValue) };
+      this.canvas.onmousedown = function(ev) { isMoving = true; _inputHandler.click(ev, redColor, greenColor, blueColor, size, circleSegmentValue) };
+      this.canvas.onmousemove = function(ev) {if(isMoving == true) _inputHandler.click(ev, redColor, greenColor, blueColor, size, circleSegmentValue)} 
+      this.canvas.onmouseup = function() {isMoving = false; }
       this.clearButton.onclick = function() { _inputHandler.clear(scene)}
       this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false}
       this.triangleButton.onclick = function() {isSquare = false; isTriangle = true; isCircle = false}

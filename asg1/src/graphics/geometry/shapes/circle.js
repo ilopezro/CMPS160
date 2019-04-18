@@ -10,7 +10,7 @@ class Circle extends Geometry {
      *
      * @constructor
      * @param {Shader} shader Shading object used to shade geometry
-     * @returns {Circle} Triangle created
+     * @returns {Circle} Circle created
      */
     constructor(shader, g_points, rColor, gColor, bColor, size, circleSegments) {
         super(shader);
