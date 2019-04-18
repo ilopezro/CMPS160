@@ -5,26 +5,36 @@
   </head>
 
   <body onload = "main()">
-    <canvas id="webgl" width="400" height="400">
-      Please use a browser that supports "canvas"
-    </canvas>
+    <div id="canvasDiv">
+      <canvas id="webgl" width="400" height="400">
+        Please use a browser that supports "canvas"
+      </canvas>
+    </div>
     </br>
+    <div id="clearingCanvas">
       <button id="clearCanvas">Clear Canvas</button>
+    </div>
     </br>
-    Drawing Mode:
+    <div id="buttons">
+      Drawing Mode:
     </br>
       <button id="createSquare">Squares</button>
       <button id="createTriangle">Triangles</button>
       <button id="createCircles">Circles</button>
     </br>
-    Shape Color:
+    </div>
+    <div id="shapeColors">
+      Shape Color:
     </br>
     Red  <input type="range" min="0" max="255" class="slider" id="redColor">
     Green  <input type="range" min="0" max="255" class="slider" id="greenColor">
     Blue  <input type="range" min="0" max="255" class="slider" id="blueColor">
     </br>
-    Shape size:<input type="range" min="0" max="200" class="slider">
-    (Circles) Segment Count:<input type="range" min="1" value="50" class="slider">
+    </div>
+    <div id="shapeSizes">
+      Shape size:<input type="range" min="0" max="200" class="slider">
+      (Circles) Segment Count:<input type="range" min="1" value="50" class="slider">
+    </div>
 
     <!-- Include Base code libs -->
     <script src = "src/main.js"></script>
