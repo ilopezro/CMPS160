@@ -10,10 +10,13 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, clearButton) {
+    constructor(canvas, scene, clearButton, redColor, greenColor, blueColor) {
       this.canvas = canvas;
       this.scene = scene;
       this.clearButton = clearButton
+      this.redColor = redColor
+      this.greenColor = greenColor
+      this.blueColor = blueColor
 
       _inputHandler = this;
 
@@ -40,7 +43,7 @@ class InputHandler {
         g_points.push(x); 
         g_points.push(y); 
 
-        var triangle = new Triangle(shader, g_points);
+        var triangle = new Triangle(shader, g_points, redColor, greenColor, blueColor);
         this.scene.addGeometry(triangle);
     }
 
