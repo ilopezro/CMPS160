@@ -2,6 +2,9 @@ var _inputHandler = null;
 var redColor = null; 
 var greenColor = null; 
 var blueColor = null; 
+var isTriangle = true; 
+var isSquare = false; 
+var isCircle = false; 
 
 /**
  * Specifies a Input Handler. Used to parse input events from a HTML page.
@@ -13,10 +16,14 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, clearButton, redColors, greenColors, blueColors, redColorSlider, greenColorSlider, blueColorSlider) {
+    constructor(canvas, scene, clearButton, redColors, greenColors, blueColors, redColorSlider, greenColorSlider, blueColorSlider, squareButton, triangleButton, circleButton) {
       this.canvas = canvas;
       this.scene = scene;
       this.clearButton = clearButton
+      this.squareButton = squareButton
+      this.triangleButton = triangleButton
+      this.circleButton = circleButton
+
 
       //actual color value
       redColor = redColors
@@ -33,6 +40,7 @@ class InputHandler {
       // Mouse Events
       this.canvas.onmousedown = function(ev) { _inputHandler.click(ev, redColor, greenColor, blueColor) };
       this.clearButton.onclick = function() { _inputHandler.clear(scene)}
+      this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false; console.log("square button pressed")}
       this.redSlider.onchange = function() { _inputHandler.updateRedColor()}
       this.greenSlider.onchange = function() { _inputHandler.updateGreenColor()}
       this.blueSlider.onchange = function() { _inputHandler.updateBlueColor()}

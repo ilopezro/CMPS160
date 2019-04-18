@@ -6,6 +6,9 @@ function main() {
 
   //retrieve buttons from HTML doc
   clearButton = document.getElementById("clearCanvas")
+  triangle = document.getElementById("createTriangle")
+  square = document.getElementById("createSquare")
+  circle = document.getElementById("createCircle")
 
   //retrieve sliders for colors
   redColorSlider = document.getElementById("redColor")
@@ -26,7 +29,7 @@ function main() {
 
   // Initialize the scene
   var scene = new Scene();
-  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider);
+  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle);
 
   // Initialize shader
   shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
