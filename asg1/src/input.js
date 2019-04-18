@@ -66,9 +66,15 @@ class InputHandler {
         g_points.push(x); 
         g_points.push(y); 
         
-
-        var triangle = new Triangle(shader, g_points, rColor, gColor, bColor);
-        this.scene.addGeometry(triangle);
+        if(!isTriangle && isCircle && !isSquare){
+          console.log("circle should be drawn here")
+        }else if(!isTriangle && !isCircle && isSquare){
+          var square = new Square(shader, g_points, rColor, gColor, bColor)
+          this.scene.addGeometry(square)
+        }else{
+          var triangle = new Triangle(shader, g_points, rColor, gColor, bColor);
+          this.scene.addGeometry(triangle);
+        }
     }
 
     clear(scene){
