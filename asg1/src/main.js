@@ -26,6 +26,11 @@ function main() {
   //slider value
   size = document.getElementById("sizeSlider").value
 
+  //circleSegmentSlider
+  circleSegmentSlider = document.getElementById("circleSegmentCount")
+  //circleSegmentValue
+  circSegVal = document.getElementById("circleSegmentCount").value
+
   // Retrieve WebGL rendering context
   var gl = getWebGLContext(canvas);
   if (!gl) {
@@ -35,7 +40,7 @@ function main() {
 
   // Initialize the scene
   var scene = new Scene();
-  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle, sizeSlider, size);
+  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle, sizeSlider, size, circleSegmentSlider, circSegVal);
 
   // Initialize shader
   shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);

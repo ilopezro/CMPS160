@@ -6,6 +6,7 @@ var isTriangle = true;
 var isSquare = false; 
 var isCircle = false; 
 var size = null; 
+var circleSegmentValue = null; 
 
 /**
  * Specifies a Input Handler. Used to parse input events from a HTML page.
@@ -17,7 +18,7 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, clearButton, redColors, greenColors, blueColors, redColorSlider, greenColorSlider, blueColorSlider, squareButton, triangleButton, circleButton, sizeSlider, shapeSize) {
+    constructor(canvas, scene, clearButton, redColors, greenColors, blueColors, redColorSlider, greenColorSlider, blueColorSlider, squareButton, triangleButton, circleButton, sizeSlider, shapeSize, circleSegmentSlider, circleSegmentValues) {
       this.canvas = canvas;
       this.scene = scene;
       this.clearButton = clearButton
@@ -25,7 +26,7 @@ class InputHandler {
       this.triangleButton = triangleButton
       this.circleButton = circleButton
       this.size = shapeSize
-
+      this.circleSegmentValue = circleSegmentValues
 
       //actual color value
       redColor = redColors
@@ -37,6 +38,7 @@ class InputHandler {
       this.greenSlider = greenColorSlider
       this.blueSlider = blueColorSlider
       this.sizeSlider = sizeSlider
+      this.circleSegmentSlider = circleSegmentSlider
 
       _inputHandler = this;
 
