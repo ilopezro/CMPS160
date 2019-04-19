@@ -24,16 +24,29 @@ class Circle extends Geometry {
   
     generateTriangleVertices(g_points, rColor, gColor, bColor, size, circleSegments) {
         var vertices = []
-        
-        var vertex1 = new Vertex(g_points[0], g_points[1]+Number(size), 0.0, rColor, gColor, bColor);
-        var vertex2 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
-        var vertex3 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
+        var x = 0
+        var y = 0
+        var counter = 360 / circleSegments
   
-        vertices.push(vertex1);
-        vertices.push(vertex2);
-        vertices.push(vertex3);
+        var centerVertex = new Vertex(g_points[0], g_points[1], 0.0, rColor, gColor, bColor);
+        
+        for (var count = 0; count < 360; count = count + counter ) {
+
+            vertices.push(centerVertex);
+    
+            x = Math.cos(count * (Math.PI/180)) * size
+            y = Math.sin(count * (Math.PI/180)) * size
+            var vertex = new Vertex(g_points[0] + x, g_points[1] + y, 0.0, rColor, gColor, bColor);
+            vertices.push(vertex);
+    
+            x = Math.cos((count + counter) * (Math.PI/180) ) * size
+            y = Math.sin((count + counter) * (Math.PI/180) ) * size
+            vertex = new Vertex(g_points[0] + x, g_points[1] + y, 0.0, rColor, gColor, bColor);
+            vertices.push(vertex);
+        }
   
         return vertices;
     }
   }
+
   
