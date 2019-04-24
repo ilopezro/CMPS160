@@ -101,8 +101,8 @@ class Renderer {
       var currentDataStart = 0;
 
       // Send attributes
-      for (var i = 0; i < shader.attributeLocations.length; i++) {
-          var attribute = shader.attributeLocations[i]["location"];
+      for (const attributeName in shader.attributes) {
+          var attribute = shader.attributes[attributeName].location;
 
           this.gl.vertexAttribPointer(attribute, dataCounts[i], this.gl.FLOAT, false, dataEnd, currentDataStart);
           this.gl.enableVertexAttribArray(attribute);
@@ -111,8 +111,8 @@ class Renderer {
        }
 
        // Send uniforms
-       for (var i = 0; i < shader.uniformLocations.length; i++) {
-           this.sendUniformToGLSL(shader.uniformLocations[i]);
+       for (const uniformName in shader.uniforms) {
+           this.sendUniformToGLSL(shader.uniforms[uniformName]);
         }
     }
 
@@ -122,27 +122,27 @@ class Renderer {
      * @param uniform An associative array with the location and value of a uniform
      */
     sendUniformToGLSL(uniform) {
-        switch (uniform["type"]) {
+        switch (uniform.type) {
             case "float":
-              this.gl.uniform1f(uniform["location"], uniform["value"]);
+              this.gl.uniform1f(uniform.location, uniform.value);
               break;
             case "vec2":
-              this.gl.uniform2fv(uniform["location"], uniform["value"]);
+              this.gl.uniform2fv(uniform.location, uniform.value);
               break;
             case "vec3":
-              this.gl.uniform3fv(uniform["location"], uniform["value"]);
+              this.gl.uniform3fv(uniform.location, uniform.value);
               break;
             case "vec4":
-              this.gl.uniform4fv(uniform["location"], uniform["value"]);
+              this.gl.uniform4fv(uniform.location, uniform.value);
               break;
             case "mat2":
-              this.gl.uniformMatrix2fv(uniform["location"], false, uniform["value"]);
+              this.gl.uniformMatrix2fv(uniform.location, false, uniform.value);
               break;
             case "mat3":
-              this.gl.uniformMatrix3fv(uniform["location"], false, uniform["value"]);
+              this.gl.uniformMatrix3fv(uniform.location, false, uniform.value);
               break;
             case "mat4":
-              this.gl.uniformMatrix4fv(uniform["location"], false, uniform["value"]);
+              this.gl.uniformMatrix4fv(uniform.location, false, uniform.value);
               break;
         }
     }
@@ -163,6 +163,6 @@ class Renderer {
      * @param {Integer} pointCount The amount of vertices being drawn from the buffer.
      */
     drawBuffer(indicesLength) {
-        this.gl.drawElements(this.gl.TRIANGLE_FAN, indicesLength, this.gl.UNSIGNED_SHORT, 0);
+        this.gl.drawElements(this.gl.TRIANGLES, indicesLength, this.gl.UNSIGNED_SHORT, 0);
     }
 }

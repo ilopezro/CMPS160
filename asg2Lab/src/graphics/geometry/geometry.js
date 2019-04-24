@@ -13,6 +13,7 @@ class Geometry {
    * @returns {Geometry} Geomtric object created
    */
   constructor(shader) {
+      this.vertices = [];
       this.shader = shader;
   }
 
@@ -20,7 +21,7 @@ class Geometry {
    * A callback used to modify a geometry every frame (60 typically).
    */
   render() {
-    return
+      return
   }
 
   /**
