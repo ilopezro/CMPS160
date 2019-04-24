@@ -16,7 +16,7 @@ function main() {
   var inputHandler = new InputHandler(canvas, scene);
 
   // Initialize shader
-  shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
+  shader = new Shader(gl, ASG2_VSHADER, ASG2_FSHADER);
 
   // Add attibutes
   shader.addAttribute("a_Position");
