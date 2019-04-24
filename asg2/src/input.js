@@ -52,7 +52,10 @@ class InputHandler {
 
         fileReader.readAsText(objFile);
         fileReader.onloadend = function() {
+            //files is ready to use
             alert(fileReader.result);
+            var customObj = new CustomOBJ(shader, fileReader.result)
+            _inputHandler.scene.addGeometry(customObj)
         }
     }
 }
