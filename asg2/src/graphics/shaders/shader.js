@@ -18,8 +18,8 @@ class Shader {
         this.gl = gl;
 
         this.program = createShaderProgram(this.gl, vShader, fShader)
-        this.uniformLocations = [];
-        this.attributeLocations = [];
+        this.uniforms = {};
+        this.attributes = {};
     }
 
     /**
@@ -31,7 +31,7 @@ class Shader {
      */
     addAttribute(attributeName) {
         var location = this.gl.getAttribLocation(this.program, attributeName);
-        this.attributeLocations.push({"name": attributeName, "location": location});
+        this.attributes[attributeName] = {"location": location};
     }
 
     /**
@@ -44,6 +44,18 @@ class Shader {
      */
     addUniform(uniformName, type, value) {
         var location = this.gl.getUniformLocation(this.program, uniformName);
-        this.uniformLocations.push({"name": uniformName, "type": type, "location": location, "value": value});
+        this.uniforms[uniformName] = {"type": type, "location": location, "value": value};
+    }
+    
+    /**
+     * Sets an uniform value specificed by name.
+     *
+     * @param {String} uniformName Name of the uniform variable
+     * @param value Value assigned to uniform variable
+     */
+    setUniform(uniformName, value) {
+        if(uniformName in this.uniforms) {
+            this.uniforms[uniformName].value = value;
+        }
     }
 }
