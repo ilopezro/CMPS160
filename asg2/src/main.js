@@ -43,11 +43,15 @@ function main() {
   var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle, sizeSlider, size, circleSegmentSlider, circSegVal);
 
   // Initialize shader
-  shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
+  shader = new Shader(gl, ASG2_VSHADER, ASG2_FSHADER);
 
   // Add attibutes
   shader.addAttribute("a_Position");
   shader.addAttribute("a_Color");
+
+  // Add uniforms
+  var idMatrix = new Matrix4();
+  shader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements);
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, null);
