@@ -56,7 +56,9 @@ class InputHandler {
       this.blueSlider.onchange = function() { _inputHandler.updateBlueColor()}
       this.sizeSlider.onchange = function() { size = document.getElementById("sizeSlider").value}
       this.circleSegmentSlider.onchange = function() {circleSegmentValue = document.getElementById("circleSegmentCount").value}
-      
+
+      //handles file input
+      document.getElementById('fileLoad').onclick = function() { _inputHandler.readSelectedFile() };
     }
 
     /**
@@ -106,4 +108,25 @@ class InputHandler {
     updateBlueColor(){
       blueColor = document.getElementById("blueColor").value; 
     }
+
+    /**
+     * Function called to read a selected file.
+     */
+    readSelectedFile() {
+      console.log("add obj button pressed")
+      var fileReader = new FileReader();
+      var objFile = document.getElementById("fileInput").files[0];
+
+      if (!objFile) {
+          alert("OBJ file not set!");
+          return;
+      }
+
+      fileReader.readAsText(objFile);
+      fileReader.onloadend = function() {
+          alert(fileReader.result);
+          var customObj = new CustomOBJ(shader, fileReader.result);
+          _inputHandler.scene.addGeometry(customObj);
+      }
+  }
 }
