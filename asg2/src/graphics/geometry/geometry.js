@@ -13,7 +13,10 @@ class Geometry {
    * @returns {Geometry} Geomtric object created
    */
   constructor(shader) {
+      this.vertices = [];
       this.shader = shader;
+      
+      this.modelMatrix = new Matrix4();
   }
 
   /**
