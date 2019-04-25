@@ -30,12 +30,14 @@ class Square extends Geometry {
         var vertex3 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), 0.0, rColor, gColor, bColor);
         var vertex4 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), 0.0, rColor, gColor, bColor);
         var vertex5 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
+        var vertex6 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), 0.0, rColor, gColor, bColor);
   
         vertices.push(vertex1);
         vertices.push(vertex2);
         vertices.push(vertex3);
         vertices.push(vertex4)
         vertices.push(vertex5)
+        vertices.push(vertex6)
   
         return vertices;
     }
