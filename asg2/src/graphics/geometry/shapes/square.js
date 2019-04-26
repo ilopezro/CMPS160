@@ -22,16 +22,12 @@ class Square extends Geometry {
   
         this.vertices = this.generateTriangleVertices(g_points, size)
         this.faces = {0: this.vertices};
-        this.rot = 0;
 
         this.rotationMatrix = new Matrix4();
         this.rotationMatrix.setRotate(5,0,0,1);
 
         this.translationMatrix = new Matrix4();
         this.translationMatrix.setTranslate(-this.x,-this.y,0);
-
-        this.scalingMatrix = new Matrix4();
-        this.scalingMatrix.setScale(1.25,1.25,1.25);
   
         // CALL THIS AT THE END OF ANY SHAPE CONSTRUCTOR
         this.interleaveVertices();

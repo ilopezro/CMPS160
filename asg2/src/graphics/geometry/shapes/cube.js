@@ -18,6 +18,10 @@ class Cube extends Geometry {
         super(shader);
         this.rot = 0
         this.rotationMatrix = new Matrix4();
+
+        this.translationMatrix = new Matrix4();
+        this.translationMatrix.setTranslate(-this.x,-this.y,0);
+
   
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
@@ -132,12 +136,12 @@ class Cube extends Geometry {
         this.rot = (this.rot + 2) % 360;
         
         this.rotationMatrix.setRotate(this.rot,1,0,0);
-        var rotMatrix = new Matrix4();
-        rotMatrix.setRotate(90, 1, 1, 1);
+        var permRotMatrix = new Matrix4();
+        permRotMatrix.setRotate(90, 1, 1, 1);
 
         var tMatrix = new Matrix4();
         tMatrix.set(this.modelMatrix);
-        tMatrix.multiply(rotMatrix);
+        tMatrix.multiply(permRotMatrix);
         tMatrix.multiply(this.rotationMatrix);
 
         this.shader.setUniform("u_ModelMatrix", tMatrix.elements);

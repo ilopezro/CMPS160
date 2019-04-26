@@ -27,9 +27,6 @@ class Triangle extends Geometry {
       this.vertices = this.generateTriangleVertices(g_points, size);
       this.faces = {0: this.vertices};
 
-      this.rotationMatrix = new Matrix4();
-      this.rotationMatrix.setRotate(5,0,0,1);
-
       this.translationMatrix = new Matrix4();
       this.translationMatrix.setTranslate(-this.x,-this.y,0);
 
@@ -55,22 +52,21 @@ class Triangle extends Geometry {
   }
 
   render(){
-
     if(this.isExpanding){
       this.scale +=.1
       if(this.scale>=2){
           this.isExpanding = false; 
       }
-  }else{
+    }else{
        this.scale -= .1
        if(this.scale <= .5){
            this.isExpanding = true; 
        }
-  }
-   this.scalingMatrix.setScale(this.scale, this.scale, 1);
+    }
+    this.scalingMatrix.setScale(this.scale, this.scale, 1);
    
-   var tMatrix = new Matrix4();
-   tMatrix.set(this.modelMatrix);
+    var tMatrix = new Matrix4();
+    tMatrix.set(this.modelMatrix);
 
     this.translationMatrix.setTranslate(this.x,this.y,0);
     tMatrix.multiply(this.translationMatrix);
