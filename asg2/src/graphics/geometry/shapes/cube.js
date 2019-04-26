@@ -45,52 +45,52 @@ class Cube extends Geometry {
         var vertices = []
 
         //Front
-        var vertex1 = new Vertex(g_points[0]-0.25, g_points[1]-0.25, 0.25);
-        var vertex2 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, 0.25);
-        var vertex3 = new Vertex(g_points[0]-0.25, g_points[1]+0.25, 0.25);
-        var vertex4 = new Vertex(g_points[0]-0.25, g_points[1]-0.25, 0.25);
-        var vertex5 = new Vertex(g_points[0]+0.25, g_points[1]-0.25, 0.25);
-        var vertex6 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, 0.25);
+        var vertex1 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
+        var vertex2 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
+        var vertex3 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
+        var vertex4 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
+        var vertex5 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), Number(size));
+        var vertex6 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
 
         //Top
-        var vertex7  = new Vertex(g_points[0]-0.25, g_points[1]+0.25, 0.25);
-        var vertex8  = new Vertex(g_points[0]+0.25, g_points[1]+0.25, -0.25);
-        var vertex9  = new Vertex(g_points[0]-0.25, g_points[1]+0.25, -0.25);
-        var vertex10 = new Vertex(g_points[0]-0.25, g_points[1]+0.25, 0.25);
-        var vertex11 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, 0.25);
-        var vertex12 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, -0.25);
+        var vertex7  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
+        var vertex8  = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex9  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex10 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
+        var vertex11 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
+        var vertex12 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
 
         //Back
-        var vertex13 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, -0.25);
-        var vertex14 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, -0.25);
-        var vertex15 = new Vertex(g_points[0]-0.25, g_points[1]+0.25, -0.25);
-        var vertex16 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, -0.25);
-        var vertex17 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, -0.25);
-        var vertex18 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, -0.25);
+        var vertex13 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex14 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex15 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex16 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex17 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex18 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
 
         //Bottom
-        var vertex19 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, 0.25);
-        var vertex20 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, -0.25);
-        var vertex21 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, -0.25);
-        var vertex22 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, 0.25);
-        var vertex23 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, 0.25);
-        var vertex24 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, -0.25);
+        var vertex19 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex20 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex21 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex22 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex23 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex24 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
 
         //Left
-        var vertex25 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, 0.25);
-        var vertex26 = new Vertex(g_points[0]-0.25, g_points[1]+0.25, -0.25);
-        var vertex27 = new Vertex(g_points[0]-0.25, g_points[1]+0.25, 0.25);
-        var vertex28 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, 0.25);
-        var vertex29 = new Vertex(g_points[0]-0.25, g_points[1]+-0.25, -0.25);
-        var vertex30 = new Vertex(g_points[0]-0.25, g_points[1]+0.25, -0.25);
+        var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex26 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex27 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
+        var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex30 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
 
         //Right
-        var vertex31 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, 0.25);
-        var vertex32 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, -0.25);
-        var vertex33 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, 0.25);
-        var vertex34 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, 0.25);
-        var vertex35 = new Vertex(g_points[0]+0.25, g_points[1]+-0.25, -0.25);
-        var vertex36 = new Vertex(g_points[0]+0.25, g_points[1]+0.25, -0.25);
+        var vertex31 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex32 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex33 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
+        var vertex34 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex35 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex36 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
 
         vertices.push(vertex1);
         vertices.push(vertex2);
