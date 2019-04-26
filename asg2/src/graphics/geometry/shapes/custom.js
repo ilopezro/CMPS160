@@ -53,7 +53,7 @@ class CustomOBJ extends Geometry {
 
     render() {
       this.rot = (this.rot + 2) % 360;
-      this.rotationMatrix.setRotate(this.rot, 0, 1, 2);
+      this.rotationMatrix.setRotate(this.rot, 1, 1, 1);
 
       var transformedMatrix = new Matrix4();
       var constantRotateMatrix = new Matrix4();
