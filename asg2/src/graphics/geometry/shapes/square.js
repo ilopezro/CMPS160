@@ -20,7 +20,7 @@ class Square extends Geometry {
 
         this.modelMatrix = new Matrix4(); 
   
-        this.vertices = this.generateTriangleVertices(g_points, size)
+        this.vertices = this.generateSquareVertices(g_points, size)
         this.faces = {0: this.vertices};
 
         this.rotationMatrix = new Matrix4();
@@ -33,7 +33,7 @@ class Square extends Geometry {
         this.interleaveVertices();
     }
   
-    generateTriangleVertices(g_points, size) {
+    generateSquareVertices(g_points, size) {
         var vertices = []
   
         var vertex1 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0.0);

@@ -14,9 +14,14 @@ class Circle extends Geometry {
      */
     constructor(shader, g_points, size, circleSegments) {
         super(shader);
+
+        this.modelMatrix = new Matrix4()
   
         this.vertices = this.generateCircleVertices(g_points, size, circleSegments);
         this.faces = {0: this.vertices};
+
+        this.translationMatrix = new Matrix4()
+        this.translationMatrix.setTranslate(g_points[0], g_points[1], 0)
   
         // CALL THIS AT THE END OF ANY SHAPE CONSTRUCTOR
         this.interleaveVertices();

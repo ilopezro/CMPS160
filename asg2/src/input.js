@@ -74,7 +74,6 @@ class InputHandler {
         
         if(!isTriangle && isCircle && !isSquare && !isCube){
           var circle = new Circle(shader, g_points, size, circleSegmentValue)
-          console.log("circle should be drawn here")
           this.scene.addGeometry(circle)
         }else if(!isTriangle && !isCircle && isSquare){
           var square = new Square(shader, g_points, size)
