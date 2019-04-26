@@ -5,14 +5,22 @@
  * @this {Vertex}
  */
 class Vertex {
-  constructor(x, y, z, rCol, gCol, bCol) {
+  constructor(x, y, z) {
       this.point  = new Vector3([x, y, z]);
-      var r = rCol/255; 
-      var g = gCol/255; 
-      var b = bCol/255; 
-      this.color  = [.5, .5, .5, 1.0];
+
+      var redCol = (document.getElementById("redColor").value); 
+      var red = redCol/255;
+
+      var greenCol = (document.getElementById("greenColor").value); 
+      var green = greenCol/255;
+
+      var blueCol = (document.getElementById("blueColor").value); 
+      var blue = blueCol/255;
+
+      this.color  = [red, green, blue, 1.0];
 
       // This class can be extended to support other attributes such as
       // normals and UV coordinates.
   }
+
 }

@@ -12,7 +12,7 @@ class Triangle extends Geometry {
    * @param {Shader} shader Shading object used to shade geometry
    * @returns {Triangle} Triangle created
    */
-  constructor(shader, g_points, rColor, gColor, bColor, size) {
+  constructor(shader, g_points, size) {
       super(shader);
 
       this.x = g_points[0]
@@ -20,7 +20,7 @@ class Triangle extends Geometry {
 
       this.modelMatrix = new Matrix4(); 
 
-      this.vertices = this.generateTriangleVertices(g_points, rColor, gColor, bColor, size);
+      this.vertices = this.generateTriangleVertices(g_points, size);
       this.faces = {0: this.vertices};
 
       this.rotationMatrix = new Matrix4();
@@ -36,12 +36,12 @@ class Triangle extends Geometry {
       this.interleaveVertices();
   }
 
-  generateTriangleVertices(g_points, rColor, gColor, bColor, size) {
+  generateTriangleVertices(g_points, size) {
       var vertices = []
       
-      var vertex1 = new Vertex(g_points[0], g_points[1]+Number(size), 0.0, rColor, gColor, bColor);
-      var vertex2 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
-      var vertex3 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0.0, rColor, gColor, bColor);
+      var vertex1 = new Vertex(g_points[0], g_points[1]+Number(size), 0.0);
+      var vertex2 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0.0);
+      var vertex3 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0.0);
 
       vertices.push(vertex1);
       vertices.push(vertex2);

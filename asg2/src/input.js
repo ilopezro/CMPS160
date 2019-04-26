@@ -18,7 +18,7 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, clearButton, redColors, greenColors, blueColors, redColorSlider, greenColorSlider, blueColorSlider, squareButton, triangleButton, circleButton, sizeSlider, shapeSize, circleSegmentSlider, circleSegmentValues) {
+    constructor(canvas, scene, clearButton, squareButton, triangleButton, circleButton, sizeSlider, shapeSize, circleSegmentSlider, circleSegmentValues) {
       this.canvas = canvas;
       this.scene = scene;
       this.clearButton = clearButton
@@ -28,15 +28,7 @@ class InputHandler {
       this.size = shapeSize
       circleSegmentValue = circleSegmentValues
 
-      //actual color value
-      redColor = redColors
-      greenColor = greenColors
-      blueColor = blueColors
-      
-      //sliders
-      this.redSlider = redColorSlider
-      this.greenSlider = greenColorSlider
-      this.blueSlider = blueColorSlider
+      //slider
       this.sizeSlider = sizeSlider
       this.circleSegmentSlider = circleSegmentSlider
 
@@ -51,9 +43,6 @@ class InputHandler {
       this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false}
       this.triangleButton.onclick = function() {isSquare = false; isTriangle = true; isCircle = false}
       this.circleButton.onclick = function() {isSquare = false; isTriangle = false; isCircle = true}
-      this.redSlider.onchange = function() { _inputHandler.updateRedColor()}
-      this.greenSlider.onchange = function() { _inputHandler.updateGreenColor()}
-      this.blueSlider.onchange = function() { _inputHandler.updateBlueColor()}
       this.sizeSlider.onchange = function() { size = document.getElementById("sizeSlider").value}
       this.circleSegmentSlider.onchange = function() {circleSegmentValue = document.getElementById("circleSegmentCount").value}
 
@@ -80,14 +69,14 @@ class InputHandler {
         g_points.push(y); 
         
         if(!isTriangle && isCircle && !isSquare){
-          var circle = new Circle(shader, g_points, rColor, gColor, bColor, size, circleSegmentValue)
+          var circle = new Circle(shader, g_points, size, circleSegmentValue)
           console.log("circle should be drawn here")
           this.scene.addGeometry(circle)
         }else if(!isTriangle && !isCircle && isSquare){
-          var square = new Square(shader, g_points, rColor, gColor, bColor, size)
+          var square = new Square(shader, g_points, size)
           this.scene.addGeometry(square)
         }else{
-          var triangle = new Triangle(shader, g_points, rColor, gColor, bColor, size);
+          var triangle = new Triangle(shader, g_points, size);
           this.scene.addGeometry(triangle);
         }
     }
@@ -95,18 +84,6 @@ class InputHandler {
     clear(scene){
       console.log("clicked 'clear canvas' button")
       this.scene.clearGeometries()
-    }
-
-    updateRedColor(){
-      redColor = document.getElementById("redColor").value; 
-    }
-
-    updateGreenColor(){
-      greenColor = document.getElementById("greenColor").value; 
-    }
-
-    updateBlueColor(){
-      blueColor = document.getElementById("blueColor").value; 
     }
 
     /**

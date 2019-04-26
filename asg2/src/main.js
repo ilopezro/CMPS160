@@ -10,16 +10,6 @@ function main() {
   square = document.getElementById("createSquare")
   circle = document.getElementById("createCircles")
 
-  //retrieve sliders for colors
-  redColorSlider = document.getElementById("redColor")
-  greenColorSlider = document.getElementById("greenColor")
-  blueColorSlider = document.getElementById("blueColor")
-
-  //retrieve color value for the shapes
-  redColor = document.getElementById("redColor").value
-  greenColor = document.getElementById("greenColor").value
-  blueColor = document.getElementById("blueColor").value
-
   //slider for size
   sizeSlider = document.getElementById("sizeSlider")
 
@@ -40,7 +30,7 @@ function main() {
 
   // Initialize the scene
   var scene = new Scene();
-  var inputHandler = new InputHandler(canvas, scene, clearButton, redColor, greenColor, blueColor, redColorSlider, greenColorSlider, blueColorSlider, square, triangle, circle, sizeSlider, size, circleSegmentSlider, circSegVal);
+  var inputHandler = new InputHandler(canvas, scene, clearButton, square, triangle, circle, sizeSlider, size, circleSegmentSlider, circSegVal);
 
   // Initialize shader
   shader = new Shader(gl, ASG2_VSHADER, ASG2_FSHADER);
