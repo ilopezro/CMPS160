@@ -12,11 +12,11 @@ class Geometry {
    * @param {Shader} shader Shading object used to shade geometry
    * @returns {Geometry} Geomtric object created
    */
-  constructor(shader) {
+  constructor(shader, x, y) {
       this.vertices = [];
       this.shader = shader;
-      
       this.modelMatrix = new Matrix4();
+      this.modelMatrix.translate(x,y,0);
   }
 
   /**

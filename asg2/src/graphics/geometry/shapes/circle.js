@@ -13,7 +13,7 @@ class Circle extends Geometry {
      * @returns {Circle} Circle created
      */
     constructor(shader, g_points, size, circleSegments) {
-        super(shader);
+        super(shader, g_points[0], g_points[1]);
 
         this.modelMatrix = new Matrix4()
   

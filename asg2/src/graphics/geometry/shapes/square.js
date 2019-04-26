@@ -13,7 +13,7 @@ class Square extends Geometry {
      * @returns {Square} Square created
      */
     constructor(shader, g_points, size) {
-        super(shader);
+        super(shader, g_points[0], g_points[1]);
 
         this.x = g_points[0]
         this.y = g_points[1]
