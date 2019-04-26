@@ -21,7 +21,15 @@ class Circle extends Geometry {
         this.faces = {0: this.vertices};
 
         this.translationMatrix = new Matrix4()
-        this.translationMatrix.setTranslate(g_points[0], g_points[1], 0)
+
+        this.numFrames = 50; 
+        this.randomFrames = parseInt(Math.random()*this.numFrames);
+        this.xCord = 0
+        this.yCord = 0
+        this.randomSpeed = .01
+        
+        this.xSpeed = (Math.random() - .5) * this.randomSpeed
+        this.ySpeed = (Math.random() - .5) * this.randomSpeed
   
         // CALL THIS AT THE END OF ANY SHAPE CONSTRUCTOR
         this.interleaveVertices();
@@ -51,6 +59,27 @@ class Circle extends Geometry {
         }
   
         return vertices;
+    }
+
+    render(){
+       
+        if(this.randomFrames <= 0){
+            console.log("New random direction");
+            this.randomFrames = parseInt(Math.random()*this.numFrames)
+            this.xSpeed = (Math.random() - 0.5) * this.randomSpeed;
+            this.ySpeed = (Math.random() - 0.5) * this.randomSpeed;
+        }
+
+        this.randomFrames--; 
+        this.xCord +=this.xSpeed
+        this.yCord +=this.ySpeed
+        this.translationMatrix.setTranslate(this.xCord,this.yCord,0)
+
+        var tMatrix = new Matrix4();
+        tMatrix.set(this.modelMatrix);
+        tMatrix.multiply(this.translationMatrix);
+
+        this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
     }
   }
 
