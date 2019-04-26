@@ -19,12 +19,11 @@ class Cube extends Geometry {
         this.rot = 0
         this.rotationMatrix = new Matrix4();
 
-        this.translationMatrix = new Matrix4();
-        this.translationMatrix.setTranslate(-this.x,-this.y,0);
-
-  
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
+
+        this.translationMatrix = new Matrix4();
+        this.translationMatrix.setTranslate(-this.x,-this.y,0);
   
         // CALL THIS AT THE END OF ANY SHAPE CONSTRUCTOR
         this.interleaveVertices();
@@ -133,17 +132,18 @@ class Cube extends Geometry {
     }
 
     render() {
+        var tMatrix = new Matrix4();
+        
         this.rot = (this.rot + 2) % 360;
         
         this.rotationMatrix.setRotate(this.rot,1,0,0);
         var permRotMatrix = new Matrix4();
         permRotMatrix.setRotate(90, 1, 1, 1);
 
-        var tMatrix = new Matrix4();
         tMatrix.set(this.modelMatrix);
         tMatrix.multiply(permRotMatrix);
         tMatrix.multiply(this.rotationMatrix);
-
+        
         this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
     }
 
