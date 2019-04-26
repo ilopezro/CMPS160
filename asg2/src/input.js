@@ -5,6 +5,7 @@ var blueColor = null;
 var isTriangle = true; 
 var isSquare = false; 
 var isCircle = false; 
+var isCube = false; 
 var size = null; 
 var circleSegmentValue = null; 
 
@@ -28,6 +29,8 @@ class InputHandler {
       this.size = shapeSize
       circleSegmentValue = circleSegmentValues
 
+      this.cubeButton = document.getElementById("rotatingCube");
+
       //slider
       this.sizeSlider = sizeSlider
       this.circleSegmentSlider = circleSegmentSlider
@@ -40,9 +43,10 @@ class InputHandler {
       this.canvas.onmousemove = function(ev) {if(isMoving == true) _inputHandler.click(ev, redColor, greenColor, blueColor, size, circleSegmentValue)} 
       this.canvas.onmouseup = function() {isMoving = false; }
       this.clearButton.onclick = function() { _inputHandler.clear(scene)}
-      this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false}
-      this.triangleButton.onclick = function() {isSquare = false; isTriangle = true; isCircle = false}
-      this.circleButton.onclick = function() {isSquare = false; isTriangle = false; isCircle = true}
+      this.squareButton.onclick = function() { isSquare = true; isTriangle = false; isCircle = false; isCube = false; }
+      this.triangleButton.onclick = function() {isSquare = false; isTriangle = true; isCircle = false; isCube = false; }
+      this.circleButton.onclick = function() {isSquare = false; isTriangle = false; isCircle = true; isCube = false; }
+      this.cubeButton.onclick = function() {isSquare = false; isTriangle = false; isCircle = false; isCube = true;}
       this.sizeSlider.onchange = function() { size = document.getElementById("sizeSlider").value}
       this.circleSegmentSlider.onchange = function() {circleSegmentValue = document.getElementById("circleSegmentCount").value}
 
@@ -68,13 +72,16 @@ class InputHandler {
         g_points.push(x); 
         g_points.push(y); 
         
-        if(!isTriangle && isCircle && !isSquare){
+        if(!isTriangle && isCircle && !isSquare && !isCube){
           var circle = new Circle(shader, g_points, size, circleSegmentValue)
           console.log("circle should be drawn here")
           this.scene.addGeometry(circle)
         }else if(!isTriangle && !isCircle && isSquare){
           var square = new Square(shader, g_points, size)
           this.scene.addGeometry(square)
+        }else if(!isTriangle && !isCircle && !isSquare && isCube){
+          var cube = new Cube(shader, g_points, size)
+          this.scene.addGeometry(cube)
         }else{
           var triangle = new Triangle(shader, g_points, size);
           this.scene.addGeometry(triangle);

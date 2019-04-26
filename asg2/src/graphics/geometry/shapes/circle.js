@@ -15,14 +15,14 @@ class Circle extends Geometry {
     constructor(shader, g_points, size, circleSegments) {
         super(shader);
   
-        this.vertices = this.generateTriangleVertices(g_points, size, circleSegments);
+        this.vertices = this.generateCircleVertices(g_points, size, circleSegments);
         this.faces = {0: this.vertices};
   
         // CALL THIS AT THE END OF ANY SHAPE CONSTRUCTOR
         this.interleaveVertices();
     }
   
-    generateTriangleVertices(g_points, size, circleSegments) {
+    generateCircleVertices(g_points, size, circleSegments) {
         var vertices = []
         var x = 0
         var y = 0

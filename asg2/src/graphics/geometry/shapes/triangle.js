@@ -19,6 +19,10 @@ class Triangle extends Geometry {
       this.y = g_points[1]
 
       this.modelMatrix = new Matrix4(); 
+      this.isExpanding = true; 
+      this.scale = 1; 
+      this.scalingMatrix = new Matrix4()
+
 
       this.vertices = this.generateTriangleVertices(g_points, size);
       this.faces = {0: this.vertices};
@@ -51,13 +55,28 @@ class Triangle extends Geometry {
   }
 
   render(){
-    var tMatrix = new Matrix4(); 
-    tMatrix.set(this.modelMatrix)
+
+    if(this.isExpanding){
+      this.scale +=.1
+      if(this.scale>=2){
+          this.isExpanding = false; 
+      }
+  }else{
+       this.scale -= .1
+       if(this.scale <= .5){
+           this.isExpanding = true; 
+       }
+  }
+   this.scalingMatrix.setScale(this.scale, this.scale, 1);
+   
+   var tMatrix = new Matrix4();
+   tMatrix.set(this.modelMatrix);
+
     this.translationMatrix.setTranslate(this.x,this.y,0);
     tMatrix.multiply(this.translationMatrix);
-    tMatrix.multiply(this.rotationMatrix);
+    tMatrix.multiply(this.scalingMatrix);
     this.translationMatrix.setTranslate(-this.x, -this.y, 0)
     tMatrix.multiply(this.translationMatrix);
     this.shader.setUniform("u_ModelMatrix", tMatrix.elements);   
-}
+  }
 }
