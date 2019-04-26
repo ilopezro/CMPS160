@@ -10,7 +10,7 @@ class Vertex {
       var r = rCol/255; 
       var g = gCol/255; 
       var b = bCol/255; 
-      this.color  = [r, g, b, 1.0];
+      this.color  = [.5, .5, .5, 1.0];
 
       // This class can be extended to support other attributes such as
       // normals and UV coordinates.

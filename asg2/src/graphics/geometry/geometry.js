@@ -23,6 +23,7 @@ class Geometry {
    * A callback used to modify a geometry every frame (60 typically).
    */
   render() {
+    this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);   
     return
   }
 

@@ -123,6 +123,7 @@ class InputHandler {
       }
 
       fileReader.readAsText(objFile);
+      
       fileReader.onloadend = function() {
           alert(fileReader.result);
           var customObj = new CustomOBJ(shader, fileReader.result);
