@@ -63,14 +63,13 @@ class Circle extends Geometry {
 
     render(){
        
-        if(this.randomFrames <= 0){
-            console.log("New random direction");
+        if(this.randomFrames < 0|| this.yCord > .3 || this.yCord < -.6 || this.xCord < -.8 || this.xCord > .25){
             this.randomFrames = parseInt(Math.random()*this.numFrames)
             this.xSpeed = (Math.random() - 0.5) * this.randomSpeed;
             this.ySpeed = (Math.random() - 0.5) * this.randomSpeed;
         }
 
-        this.randomFrames--; 
+        this.randomFrames--;
         this.xCord +=this.xSpeed
         this.yCord +=this.ySpeed
         this.translationMatrix.setTranslate(this.xCord,this.yCord,0)
