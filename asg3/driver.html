@@ -1,0 +1,70 @@
+<html lang="en">
+  <head>
+      <meta charset="utf-8"/>
+      <title> CMPS160 Asg3 </title>
+  </head>
+
+  <body onload = "main()">
+    <div id="canvasDiv">
+      <canvas id="webgl" width="400" height="400">
+        Please use a browser that supports "canvas"
+      </canvas>
+    </div>
+    </br>
+    <div id="clearAndAddOBJ">
+      <button id="clearCanvas">Clear Canvas</button>
+      Set OBJ <input type="file" id="fileInput"/>
+      <button type="button" id="fileLoad">Add OBJ to Scene</button>
+    </div>
+    </br>
+    <div id="buttons">
+      Drawing Mode:
+    </br>
+      <button id="createSquare">Spinning Squares</button>
+      <button id="createTriangle">Fluctuating Triangles</button>
+      <button id="createCircles">Randomly Moving Circles</button>
+      <button id="rotatingCube"> Rotating Cube</button>
+    </br>
+    </div>
+    <div id="shapeColors">
+      Shape Color:
+    </br>
+    Red  <input type="range" min="0" max="255" class="slider" id="redColor">
+    Green  <input type="range" min="0" max="255" class="slider" id="greenColor">
+    Blue  <input type="range" min="0" max="255" class="slider" id="blueColor">
+    </br>
+    </div>
+    <div id="shapeSizes">
+      Shape size:<input type="range" min=".125" max="1.0" step=".01" value=".125" class="slider" id="sizeSlider">
+      (Circles) Segment Count:<input type="range" min="3" value="50" class="slider" id="circleSegmentCount">
+    </div>
+
+    <!-- Include Base code libs -->
+    <script src = "src/main.js"></script>
+    <script src = "src/input.js"></script>
+    <script src = "src/graphics/renderer.js"></script>
+    <script src = "src/graphics/scene.js"></script>
+    <script src = "src/graphics/geometry/geometry.js"></script>
+    <script src = "src/graphics/geometry/vertex.js"></script>
+    <script src = "src/graphics/geometry/shapes/triangle.js"></script>
+    <script src = "src/graphics/geometry/shapes/square.js"></script>
+    <script src = "src/graphics/geometry/shapes/circle.js"></script>
+    <script src = "src/graphics/geometry/shapes/custom.js"></script>
+    <script src = "src/graphics/geometry/shapes/cube.js"></script>
+
+
+    <!-- Include external libs -->
+    <script src = "lib/webgl-utils.js"></script>
+    <script src = "lib/webgl-render.js"></script>
+    <script src = "lib/webgl-debug.js"></script>
+    <script src = "lib/webgl-loader.js"></script>
+    <script src = "lib/cuon-utils.js"></script>
+    <script src = "lib/cuon-matrix.js"></script>
+    <script src = "lib/load-file.js"></script>
+
+    <!-- Include shaders -->
+    <script src = "src/graphics/shaders/shader.js"></script>
+    <script src = "src/graphics/shaders/asg1.js"></script>
+    <script src = "src/graphics/shaders/asg2.js"></script>
+  </body>
+</html>
