@@ -56,6 +56,9 @@ class InputHandler {
 
       //reads textures
       document.getElementById('textureInput').onchange = function() { _inputHandler.readTexture() };
+
+      //changes color button 
+      document.getElementById('changeColors').onclick = function() {_inputHandler.changeColor()}
     }
 
     /**
@@ -143,5 +146,14 @@ class InputHandler {
     // Tell the browser to load an image
     image.src = 'objs/' + imgPathSplit[imgPathSplit.length - 1];
     return true;
+  }
+
+  changeColor() {
+    var name = document.getElementById('changeColors').value
+    if(name === "Solid Color"){
+      document.getElementById('changeColors').value = "Rainbow"
+    }else{
+      document.getElementById('changeColors').value = "Solid Color"
+    }
   }
 }
