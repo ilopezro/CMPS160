@@ -19,6 +19,8 @@ class Renderer {
         this.scene = scene;
         this.camera = camera;
 
+        this.textures = {};
+
         this.initGLSLBuffers();
 
         // Setting canvas' clear color
@@ -46,18 +48,28 @@ class Renderer {
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 
         for (var i = 0; i < this.scene.geometries.length; i++) {
+            var geometry = this.scene.geometries[i];
+
             // Switch to shader attached to geometry
-            this.gl.useProgram(this.scene.geometries[i].shader.program)
-            this.gl.program = this.scene.geometries[i].shader.program
+            this.gl.useProgram(geometry.shader.program)
+            this.gl.program = geometry.shader.program
 
             // Callback function in the case user wants to change the
             // geometry before the draw call
-            this.scene.geometries[i].render();
+            geometry.render();
+
+            if(geometry.image != null) {
+                if(!(geometry.image.src in this.textures)) {
+                    // Create a texture object and store id using its path as key
+                    this.textures[geometry.image.src] = this.gl.createTexture();
+                    this.loadTexture(this.textures[geometry.image.src], geometry.image);
+                }
+            }
 
             // Draw geometry
-            var geometry = this.scene.geometries[i];
             this.sendVertexDataToGLSL(geometry.data, geometry.dataCounts, geometry.shader);
             this.sendIndicesToGLSL(geometry.indices);
+
             this.drawBuffer(geometry.indices.length)
         }
     }
@@ -102,17 +114,18 @@ class Renderer {
 
       // Send attributes
       for (const attributeName in shader.attributes) {
-        var attribute = shader.attributes[attributeName].location;
+          var attribute = shader.attributes[attributeName].location;
 
           this.gl.vertexAttribPointer(attribute, dataCounts[i], this.gl.FLOAT, false, dataEnd, currentDataStart);
           this.gl.enableVertexAttribArray(attribute);
 
           currentDataStart += FSIZE * dataCounts[i];
+          i += 1;
        }
 
        // Send uniforms
        for (const uniformName in shader.uniforms) {
-        this.sendUniformToGLSL(shader.uniforms[uniformName]);
+           this.sendUniformToGLSL(shader.uniforms[uniformName]);
         }
     }
 
@@ -122,28 +135,31 @@ class Renderer {
      * @param uniform An associative array with the location and value of a uniform
      */
     sendUniformToGLSL(uniform) {
-      switch (uniform.type) {
-        case "float":
-          this.gl.uniform1f(uniform.location, uniform.value);
-          break;
-        case "vec2":
-          this.gl.uniform2fv(uniform.location, uniform.value);
-          break;
-        case "vec3":
-          this.gl.uniform3fv(uniform.location, uniform.value);
-          break;
-        case "vec4":
-          this.gl.uniform4fv(uniform.location, uniform.value);
-          break;
-        case "mat2":
-          this.gl.uniformMatrix2fv(uniform.location, false, uniform.value);
-          break;
-        case "mat3":
-          this.gl.uniformMatrix3fv(uniform.location, false, uniform.value);
-          break;
-        case "mat4":
-          this.gl.uniformMatrix4fv(uniform.location, false, uniform.value);
-          break;
+        switch (uniform.type) {
+            case "float":
+              this.gl.uniform1f(uniform.location, uniform.value);
+              break;
+            case "vec2":
+              this.gl.uniform2fv(uniform.location, uniform.value);
+              break;
+            case "vec3":
+              this.gl.uniform3fv(uniform.location, uniform.value);
+              break;
+            case "vec4":
+              this.gl.uniform4fv(uniform.location, uniform.value);
+              break;
+            case "mat2":
+              this.gl.uniformMatrix2fv(uniform.location, false, uniform.value);
+              break;
+            case "mat3":
+              this.gl.uniformMatrix3fv(uniform.location, false, uniform.value);
+              break;
+            case "mat4":
+              this.gl.uniformMatrix4fv(uniform.location, false, uniform.value);
+              break;
+            case "sampler2D":
+              this.gl.uniform1i(uniform.location, uniform.value);
+              break;
         }
     }
 
@@ -163,6 +179,24 @@ class Renderer {
      * @param {Integer} pointCount The amount of vertices being drawn from the buffer.
      */
     drawBuffer(indicesLength) {
-      this.gl.drawElements(this.gl.TRIANGLES, indicesLength, this.gl.UNSIGNED_SHORT, 0);
+        this.gl.drawElements(this.gl.TRIANGLES, indicesLength, this.gl.UNSIGNED_SHORT, 0);
+    }
+
+    loadTexture(texture, image) {
+        // Flip the image's y axis
+        this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, 1);
+
+        // Enable texture unit0
+        this.gl.activeTexture(this.gl.TEXTURE0);
+
+        // Bind the texture object to the target
+        this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+
+        // Set the texture parameters
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+
+        // Set the texture image
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image);
     }
 }
