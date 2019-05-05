@@ -117,10 +117,8 @@ class InputHandler {
       fileReader.onloadend = function() {  
         var customObj = null  
         if(_inputHandler.image == null){
-          console.log("no image loaded")
           customObj = new CustomOBJ(shader, fileReader.result);
         }else{
-          console.log("image loaded")
           customObj = new CustomOBJ(shader2, fileReader.result, _inputHandler.image.src);
         }
         _inputHandler.scene.addGeometry(customObj);
