@@ -54,6 +54,9 @@ function main() {
   shader2.addUniform("u_Sampler", "sampler2D", 0);
   shader2.addUniform("u_ModelMatrix", "mat4", idMatrix.elements)
 
+  const middle = [0, 0]
+  var initCube = new Cube(shader, middle, size)
+  scene.addGeometry(initCube)
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, null);
