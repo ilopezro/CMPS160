@@ -57,7 +57,7 @@ class CustomOBJ extends Geometry {
 
       var transformedMatrix = new Matrix4();
       var constantRotateMatrix = new Matrix4();
-      constantRotateMatrix.setRotate(45, 0, 1, 1);
+      constantRotateMatrix.setRotate(45, 0, 0, 1);
       transformedMatrix.set(this.modelMatrix);
       transformedMatrix.multiply(constantRotateMatrix);
       transformedMatrix.multiply(this.rotationMatrix);
@@ -151,7 +151,7 @@ class CustomOBJ extends Geometry {
       // If textures information is invalid, set vertex.uv to null for all vertices.
       if (this.isInvalidParameter(textures)) {
         for (var i = 0; i < indices.length; i++) {
-          this.vertices[i].uv = null;
+          this.vertices[i].texCoord = null;
         }
       }
       else {
@@ -159,7 +159,7 @@ class CustomOBJ extends Geometry {
           var index = indices[i];
           var uv = [textures[index * 2], textures[index * 2 + 1]];
   
-          this.vertices[i].uv = uv;
+          this.vertices[i].texCoord = uv;
         }
       }
     }
