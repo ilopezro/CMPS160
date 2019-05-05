@@ -136,5 +136,5 @@ class InputHandler {
     // Tell the browser to load an image
     image.src = 'objs/' + imgPathSplit[imgPathSplit.length - 1];
     return true;
-}
+  }
 }

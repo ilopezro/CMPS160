@@ -19,6 +19,8 @@ class Vertex {
 
       this.color  = [red, green, blue, 1.0];
 
+      this.texCoord = [0.0, 0.0];
+
       // This class can be extended to support other attributes such as
       // normals and UV coordinates.
   }
