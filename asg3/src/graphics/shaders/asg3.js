@@ -6,11 +6,12 @@ var ASG3_VSHADER =
   attribute vec2 a_TexCoord;
   varying vec2 v_TexCoord;
   varying vec4 v_Color;
+  uniform mat4 u_ModelMatrix;
 
   void main() {
     v_Color = a_Color;
     v_TexCoord = a_TexCoord;
-    gl_Position = a_Position;
+    gl_Position = u_ModelMatrix * a_Position;
   }`;
 
 // Fragment Shader

@@ -52,6 +52,7 @@ function main() {
 
   // Add uniforms
   shader2.addUniform("u_Sampler", "sampler2D", 0);
+  shader2.addUniform("u_ModelMatrix", "mat4", idMatrix.elements)
 
 
   // Initialize renderer with scene and camera
