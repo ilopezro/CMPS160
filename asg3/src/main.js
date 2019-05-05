@@ -31,7 +31,7 @@ function main() {
   // Initialize the scene
   var scene = new Scene();
   var inputHandler = new InputHandler(canvas, scene, clearButton, square, triangle, circle, sizeSlider, size, circleSegmentSlider, circSegVal);
-
+   
   // Initialize shader
   shader = new Shader(gl, ASG2_VSHADER, ASG2_FSHADER);
 
@@ -41,7 +41,18 @@ function main() {
 
   // Add uniforms
   var idMatrix = new Matrix4();
-  shader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements);
+  shader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements)
+
+  shader2 = new Shader(gl, ASG3_VSHADER, ASG3_FSHADER)
+
+  // Add attibutes
+  shader2.addAttribute("a_Position");
+  shader2.addAttribute("a_Color");
+  shader2.addAttribute("a_TexCoord");
+
+  // Add uniforms
+  shader2.addUniform("u_Sampler", "sampler2D", 0);
+
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, null);
