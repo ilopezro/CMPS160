@@ -11,7 +11,7 @@ class Vertex {
       var green = null
       var blue = null
       var name = document.getElementById('changeColors').value
-      if(name === "Solid Color"){
+      if(name === "🔴Solid Color🔴"){
         var redCol = (document.getElementById("redColor").value); 
         red = redCol/255;
 

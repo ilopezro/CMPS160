@@ -150,10 +150,10 @@ class InputHandler {
 
   changeColor() {
     var name = document.getElementById('changeColors').value
-    if(name === "Solid Color"){
-      document.getElementById('changeColors').value = "Rainbow"
+    if(name === "🔴Solid Color🔴"){
+      document.getElementById('changeColors').value = "🌈Rainbow🌈"
     }else{
-      document.getElementById('changeColors').value = "Solid Color"
+      document.getElementById('changeColors').value = "🔴Solid Color🔴"
     }
   }
 }
