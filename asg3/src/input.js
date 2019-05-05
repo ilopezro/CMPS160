@@ -28,6 +28,7 @@ class InputHandler {
       this.circleButton = circleButton
       this.size = shapeSize
       circleSegmentValue = circleSegmentValues
+      this.image = null;
 
       this.cubeButton = document.getElementById("rotatingCube");
 
@@ -52,6 +53,9 @@ class InputHandler {
 
       //handles file input
       document.getElementById('fileLoad').onclick = function() { _inputHandler.readSelectedFile() };
+
+      //reads textures
+      document.getElementById('textureInput').onchange = function() { _inputHandler.readTexture() };
     }
 
     /**
@@ -108,9 +112,29 @@ class InputHandler {
       fileReader.readAsText(objFile);
       
       fileReader.onloadend = function() {
-          // alert(fileReader.result);
           var customObj = new CustomOBJ(shader, fileReader.result);
           _inputHandler.scene.addGeometry(customObj);
       }
   }
+
+  readTexture() {
+    // Create the image object
+    var image = new Image();
+    if (!image) {
+      console.log('Failed to create the image object');
+      return false;
+    }
+
+    // Register the event handler to be called on loading an image
+    image.onload = function() {
+        _inputHandler.image = image;
+    };
+
+    var imgPath = document.getElementById("textureInput").value;
+    var imgPathSplit = imgPath.split("\\");
+
+    // Tell the browser to load an image
+    image.src = 'objs/' + imgPathSplit[imgPathSplit.length - 1];
+    return true;
+}
 }
