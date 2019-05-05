@@ -16,6 +16,9 @@ class Cube extends Geometry {
      */
     constructor(shader, g_points, size) {
         super(shader, g_points[0], g_points[1]);
+
+        this.image = _inputHandler.image
+        
         this.rot = 0
         this.rotationMatrix = new Matrix4();
 
