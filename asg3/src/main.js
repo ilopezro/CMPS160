@@ -55,7 +55,11 @@ function main() {
   shader2.addUniform("u_ModelMatrix", "mat4", idMatrix.elements)
 
   const middle = [0, 0]
-  var initCube = new Cube(shader, middle, size)
+  var img = new Image()
+  
+  img.src = "file:///Users/isailopez/Documents/CMPS160/asg3/objs/cat_.jpg"
+  
+  var initCube = new Cube(shader2, middle, size, img)
   scene.addGeometry(initCube)
 
   // Initialize renderer with scene and camera
