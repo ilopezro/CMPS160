@@ -17,11 +17,18 @@ class Cube extends Geometry {
     constructor(shader, g_points, size, image) {
         super(shader, g_points[0], g_points[1]);
 
-        this.modelMatrix = new Matrix4()
         this.image = image
-        
         this.rot = 0
-        this.rotationMatrix = new Matrix4();
+
+        this.x = g_points[0]
+        this.y = g_points[1]
+
+        this.modelMatrix = new Matrix4()
+        this.rotationMatrix = new Matrix4()
+        this.translationMatrix = new Matrix4()
+        this.translationMatrix.setTranslate(this.x, this.y, 0)
+        this.rotationMatrix.setRotate(1, 1, 0, 0)
+        this.count = 0
     
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
@@ -170,17 +177,29 @@ class Cube extends Geometry {
     }
 
     render() {
-        this.rot = (this.rot + 2) % 360;
-        
-        this.rotationMatrix.setRotate(this.rot,1,1,1);
-        var permRotMatrix = new Matrix4();
-        permRotMatrix.setRotate(45, 1, 1, 1);
+        if (this.count == 0) {
 
-        var tMatrix = new Matrix4();
-        tMatrix.set(this.modelMatrix);
-        tMatrix.multiply(permRotMatrix);
-        tMatrix.multiply(this.rotationMatrix);
-        
-        this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
+            this.translationMatrix.setTranslate(this.x,this.y,0);
+            this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
+      
+            this.rotationMatrix.setRotate(30,1,0,0);
+            this.modelMatrix = this.modelMatrix.multiply(this.rotationMatrix);
+      
+            this.translationMatrix.setTranslate(-this.x, -this.y, 0)
+            this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
+      
+            this.count++
+          }
+      
+          this.translationMatrix.setTranslate(this.x,this.y,0);
+          this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
+      
+          this.rotationMatrix.setRotate(1,1,1,1);
+          this.modelMatrix = this.modelMatrix.multiply(this.rotationMatrix);
+      
+          this.translationMatrix.setTranslate(-this.x, -this.y, 0)
+          this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
+      
+          this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);
     }
 }
