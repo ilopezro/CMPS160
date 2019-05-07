@@ -17,10 +17,15 @@ class Cube extends Geometry {
     constructor(shader, g_points, size, image) {
         super(shader, g_points[0], g_points[1]);
 
+        this.modelMatrix = new Matrix4()
         this.image = image
         
         this.rot = 0
         this.rotationMatrix = new Matrix4();
+        this.rotationMatrix.setRotate(300, 1,1,0)
+        this.modelMatrix.multiply(this.rotationMatrix)
+        // this.rotationMatrix.setRotate(45, 0, 0, 1)
+        // this.modelMatrix.multiply(this.rotationMatrix)
 
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
@@ -57,17 +62,17 @@ class Cube extends Geometry {
 
         //top face of cube
         var vertex7  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        vertex7.texCoord = [0.0, 1.0]
+        vertex7.texCoord = [0.0, 0.5]
         var vertex8  = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
         vertex8.texCoord = [1.0, 1.0]
         var vertex9  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        vertex9.texCoord = [0.0, 0.0]
+        vertex9.texCoord = [0.0, 1.0]
         var vertex10 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        vertex10.texCoord = [0.0, 0.0]
+        vertex10.texCoord = [0.0, 0.5]
         var vertex11 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
-        vertex11.texCoord = [0.0, 0.0]
+        vertex11.texCoord = [1.0, 0.5]
         var vertex12 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex12.texCoord = [0.0, 0.0]
+        vertex12.texCoord = [1.0, 1.0]
 
         //adding top face of cube vertices
         vertices.push(vertex7);
@@ -78,18 +83,18 @@ class Cube extends Geometry {
         vertices.push(vertex12);
 
         //back face of cube
-        var vertex13 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex13 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
         vertex13.texCoord = [0.0, 0.0]
         var vertex14 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex14.texCoord = [0.0, 0.0]
+        vertex14.texCoord = [2.0, 1.0]
         var vertex15 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        vertex15.texCoord = [0.0, 0.0]
-        var vertex16 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        vertex15.texCoord = [0.0, 1.0]
+        var vertex16 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
         vertex16.texCoord = [0.0, 0.0]
-        var vertex17 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
-        vertex17.texCoord = [0.0, 0.0]
+        var vertex17 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size));
+        vertex17.texCoord = [2.0, 0.0]
         var vertex18 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex18.texCoord = [0.0, 0.0]
+        vertex18.texCoord = [2.0, 1.0]
 
         //adding back face of cube vertices
         vertices.push(vertex13);
@@ -103,15 +108,15 @@ class Cube extends Geometry {
         var vertex19 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
         vertex19.texCoord = [0.0, 0.0]
         var vertex20 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size));
-        vertex20.texCoord = [1.0, 1.0]
+        vertex20.texCoord = [1.0, 0.5]
         var vertex21 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
-        vertex21.texCoord = [1.0, 1.0]
+        vertex21.texCoord = [0.0, 0.5]
         var vertex22 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
-        vertex22.texCoord = [1.0, 1.0]
+        vertex22.texCoord = [0.0, 0.0]
         var vertex23 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), Number(size));
-        vertex23.texCoord = [1.0, 1.0]
+        vertex23.texCoord = [1.0, 0.0]
         var vertex24 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size));
-        vertex24.texCoord = [1.0, 1.0]
+        vertex24.texCoord = [1.0, 0.5]
 
         //bottom face of cube vertices being added
         vertices.push(vertex19);
@@ -123,17 +128,17 @@ class Cube extends Geometry {
 
         //left facing cube 
         var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
-        vertex25.texCoord = [1.0, 1.0]
+        // vertex25.texCoord = [1.0, 1.0]
         var vertex26 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        vertex26.texCoord = [1.0, 1.0]
+        // vertex26.texCoord = [1.0, 1.0]
         var vertex27 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        vertex27.texCoord = [1.0, 1.0]
+        // vertex27.texCoord = [1.0, 1.0]
         var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
-        vertex28.texCoord = [1.0, 1.0]
+        // vertex28.texCoord = [1.0, 1.0]
         var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
-        vertex29.texCoord = [1.0, 1.0]
+        // vertex29.texCoord = [1.0, 1.0]
         var vertex30 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        vertex30.texCoord = [1.0, 1.0]
+        // vertex30.texCoord = [1.0, 1.0]
 
         //adding left face of cube vertices 
         vertices.push(vertex25);
@@ -145,17 +150,17 @@ class Cube extends Geometry {
 
         //Right
         var vertex31 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
-        vertex31.texCoord = [1.0, 1.0]
+        // vertex31.texCoord = [0.0,0.0]
         var vertex32 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex32.texCoord = [1.0, 1.0]
+        // vertex32.texCoord = [1.0, 1.0] 
         var vertex33 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
-        vertex33.texCoord = [1.0, 1.0]
+        // vertex33.texCoord = [0.0, 1.0]
         var vertex34 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
-        vertex34.texCoord = [1.0, 1.0]
+        // vertex34.texCoord = [0.0,0.0]
         var vertex35 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
-        vertex35.texCoord = [1.0, 1.0]
+        // vertex35.texCoord = [1.0, 0.0]
         var vertex36 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex36.texCoord = [1.0, 1.0]
+        // vertex36.texCoord = [1.0, 1.0]
 
         //adding right face of vertices
         vertices.push(vertex31);
@@ -168,18 +173,18 @@ class Cube extends Geometry {
         return vertices;
     }
 
-    render() {
-        this.rot = (this.rot + 2) % 360;
+    // render() {
+    //     this.rot = (this.rot + 2) % 360;
         
-        this.rotationMatrix.setRotate(this.rot,1,0,0);
-        var permRotMatrix = new Matrix4();
-        permRotMatrix.setRotate(45, 1, 1, 0);
+    //     this.rotationMatrix.setRotate(this.rot,1,0,0);
+    //     var permRotMatrix = new Matrix4();
+    //     permRotMatrix.setRotate(45, 1, 1, 0);
 
-        var tMatrix = new Matrix4();
-        tMatrix.set(this.modelMatrix);
-        tMatrix.multiply(permRotMatrix);
-        tMatrix.multiply(this.rotationMatrix);
+    //     var tMatrix = new Matrix4();
+    //     tMatrix.set(this.modelMatrix);
+    //     tMatrix.multiply(permRotMatrix);
+    //     tMatrix.multiply(this.rotationMatrix);
         
-        this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
-    }
+    //     this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
+    // }
 }
