@@ -55,11 +55,13 @@ function main() {
   shader2.addUniform("u_ModelMatrix", "mat4", idMatrix.elements)
 
   const middle = [0, 0]
-    
+  var image = new Image()
+  image.src = 'objs/'
   var initCube = new Cube(shader, middle, size)
-  scene.addGeometry(initCube)
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, null);
   renderer.start();
+
+  scene.addGeometry(initCube)
 }
