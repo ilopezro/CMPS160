@@ -54,14 +54,12 @@ function main() {
   shader2.addUniform("u_Sampler", "sampler2D", 0);
   shader2.addUniform("u_ModelMatrix", "mat4", idMatrix.elements)
 
-  const middle = [0, 0]
-  var image = new Image()
-  image.src = 'objs/minion.jpg'
-  var initCube = new Cube(shader2, middle, .2, image)
-
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, null);
   renderer.start();
 
-  scene.addGeometry(initCube)
+  const middle = [0, 0]
+  var image = document.getElementById('startingImage')
+  var initCube = new Cube(shader2, middle, .2, image)
+  inputHandler.scene.addGeometry(initCube)
 }
