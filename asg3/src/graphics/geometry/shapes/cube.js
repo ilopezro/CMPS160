@@ -18,7 +18,6 @@ class Cube extends Geometry {
         super(shader, g_points[0], g_points[1]);
 
         this.image = image
-        this.rot = 0
 
         this.x = g_points[0]
         this.y = g_points[1]
@@ -182,7 +181,7 @@ class Cube extends Geometry {
             this.translationMatrix.setTranslate(this.x,this.y,0);
             this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
       
-            this.rotationMatrix.setRotate(30,1,0,0);
+            this.rotationMatrix.setRotate(45,1,0,0);
             this.modelMatrix = this.modelMatrix.multiply(this.rotationMatrix);
       
             this.translationMatrix.setTranslate(-this.x, -this.y, 0)
