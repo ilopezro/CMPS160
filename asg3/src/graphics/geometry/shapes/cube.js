@@ -22,11 +22,7 @@ class Cube extends Geometry {
         
         this.rot = 0
         this.rotationMatrix = new Matrix4();
-        this.rotationMatrix.setRotate(300, 1,1,0)
-        this.modelMatrix.multiply(this.rotationMatrix)
-        // this.rotationMatrix.setRotate(45, 0, 0, 1)
-        // this.modelMatrix.multiply(this.rotationMatrix)
-
+    
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
   
@@ -128,17 +124,17 @@ class Cube extends Geometry {
 
         //left facing cube 
         var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
-        // vertex25.texCoord = [1.0, 1.0]
+        vertex25.texCoord = [0.0, 0.0]
         var vertex26 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        // vertex26.texCoord = [1.0, 1.0]
+        vertex26.texCoord = [3.0, 3.0]
         var vertex27 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        // vertex27.texCoord = [1.0, 1.0]
+        vertex27.texCoord = [0.0, 3.0]
         var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
-        // vertex28.texCoord = [1.0, 1.0]
+        vertex28.texCoord = [0.0, 0.0]
         var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
-        // vertex29.texCoord = [1.0, 1.0]
+        vertex29.texCoord = [3.0, 0.0]
         var vertex30 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        // vertex30.texCoord = [1.0, 1.0]
+        vertex30.texCoord = [3.0, 3.0]
 
         //adding left face of cube vertices 
         vertices.push(vertex25);
@@ -150,17 +146,17 @@ class Cube extends Geometry {
 
         //Right
         var vertex31 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
-        // vertex31.texCoord = [0.0,0.0]
+        vertex31.texCoord = [0.0,0.0]
         var vertex32 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        // vertex32.texCoord = [1.0, 1.0] 
+        vertex32.texCoord = [2.0, 2.0] 
         var vertex33 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
-        // vertex33.texCoord = [0.0, 1.0]
+        vertex33.texCoord = [0.0, 2.0]
         var vertex34 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
-        // vertex34.texCoord = [0.0,0.0]
+        vertex34.texCoord = [0.0,0.0]
         var vertex35 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
-        // vertex35.texCoord = [1.0, 0.0]
+        vertex35.texCoord = [2.0, 0.0]
         var vertex36 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        // vertex36.texCoord = [1.0, 1.0]
+        vertex36.texCoord = [2.0, 2.0]
 
         //adding right face of vertices
         vertices.push(vertex31);
@@ -173,18 +169,18 @@ class Cube extends Geometry {
         return vertices;
     }
 
-    // render() {
-    //     this.rot = (this.rot + 2) % 360;
+    render() {
+        this.rot = (this.rot + 2) % 360;
         
-    //     this.rotationMatrix.setRotate(this.rot,1,0,0);
-    //     var permRotMatrix = new Matrix4();
-    //     permRotMatrix.setRotate(45, 1, 1, 0);
+        this.rotationMatrix.setRotate(this.rot,1,1,1);
+        var permRotMatrix = new Matrix4();
+        permRotMatrix.setRotate(45, 1, 1, 1);
 
-    //     var tMatrix = new Matrix4();
-    //     tMatrix.set(this.modelMatrix);
-    //     tMatrix.multiply(permRotMatrix);
-    //     tMatrix.multiply(this.rotationMatrix);
+        var tMatrix = new Matrix4();
+        tMatrix.set(this.modelMatrix);
+        tMatrix.multiply(permRotMatrix);
+        tMatrix.multiply(this.rotationMatrix);
         
-    //     this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
-    // }
+        this.shader.setUniform("u_ModelMatrix", tMatrix.elements);
+    }
 }
