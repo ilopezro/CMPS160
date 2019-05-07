@@ -10,6 +10,7 @@ class Vertex {
       var red = null
       var green = null
       var blue = null
+      
       var name = document.getElementById('changeColors').value
       if(name === "🔴Solid Color🔴"){
         var redCol = (document.getElementById("redColor").value); 

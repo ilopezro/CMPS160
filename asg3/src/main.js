@@ -56,8 +56,8 @@ function main() {
 
   const middle = [0, 0]
   var image = new Image()
-  image.src = 'objs/'
-  var initCube = new Cube(shader, middle, size)
+  image.src = 'objs/minion.jpg'
+  var initCube = new Cube(shader2, middle, size, image)
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, null);
