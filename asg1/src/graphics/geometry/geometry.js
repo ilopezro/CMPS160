@@ -20,7 +20,24 @@ class Geometry {
    * A callback used to modify a geometry every frame (60 typically).
    */
   render() {
-    return
+    const times = [];
+    var fps;
+  
+    function refreshLoop() {
+      requestAnimationFrame(() => {
+        const now = performance.now();
+        while (times.length > 0 && times[0] <= now - 1000) {
+          times.shift();
+        }
+        times.push(now);
+        fps = times.length;
+        document.getElementById('fps').innerHTML=fps
+        console.log(fps)
+        refreshLoop();
+      });
+    }
+    refreshLoop();
+    // return
   }
 
   /**
