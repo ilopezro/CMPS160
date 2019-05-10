@@ -21,13 +21,6 @@ class Cube extends Geometry {
 
         this.x = g_points[0]
         this.y = g_points[1]
-
-        this.modelMatrix = new Matrix4()
-        this.rotationMatrix = new Matrix4()
-        this.translationMatrix = new Matrix4()
-        this.translationMatrix.setTranslate(this.x, this.y, 0)
-        this.rotationMatrix.setRotate(1, 1, 0, 0)
-        this.count = 0
     
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
@@ -129,15 +122,15 @@ class Cube extends Geometry {
         vertices.push(vertex24);
 
         //left facing cube 
-        var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
         vertex25.texCoord = [0.0, 0.0]
         var vertex26 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
         vertex26.texCoord = [3.0, 3.0]
         var vertex27 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
         vertex27.texCoord = [0.0, 3.0]
-        var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
         vertex28.texCoord = [0.0, 0.0]
-        var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
         vertex29.texCoord = [3.0, 0.0]
         var vertex30 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
         vertex30.texCoord = [3.0, 3.0]
@@ -174,31 +167,4 @@ class Cube extends Geometry {
 
         return vertices;
     }
-
-    // render() {
-    //     if (this.count == 0) {
-
-    //         this.translationMatrix.setTranslate(this.x,this.y,0);
-    //         this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
-      
-    //         this.rotationMatrix.setRotate(45,1,0,0);
-    //         this.modelMatrix = this.modelMatrix.multiply(this.rotationMatrix);
-      
-    //         this.translationMatrix.setTranslate(-this.x, -this.y, 0)
-    //         this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
-      
-    //         this.count++
-    //       }
-      
-    //       this.translationMatrix.setTranslate(this.x,this.y,0);
-    //       this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
-      
-    //       this.rotationMatrix.setRotate(1,1,1,1);
-    //       this.modelMatrix = this.modelMatrix.multiply(this.rotationMatrix);
-      
-    //       this.translationMatrix.setTranslate(-this.x, -this.y, 0)
-    //       this.modelMatrix = this.modelMatrix.multiply(this.translationMatrix);
-      
-    //       this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);
-    // }
 }
