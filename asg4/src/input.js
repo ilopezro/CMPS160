@@ -39,17 +39,22 @@ class InputHandler {
         console.log("movementX", movementX);
 
         var movementY = ev.movementY;
-        console.log("movementY", movementY);
+        
         if(movementY > 0){
             this.camera.tilt(1)
         }else if(movementY < 0){
             this.camera.tilt(-1)
         }
+
+        if(movementX > 0 ){
+            this.camera.pan(1)
+        }else if(movementX < 0){
+            this.camera.pan(-1)
+        }
     }
 
     keyDown(ev) {
-        var keyName = event.key;
-        // console.log("key down", keyName);
+        var keyName = event.key
 
         if(keyName == "a" || keyName == "ArrowLeft") {
             this.camera.truck(1);
