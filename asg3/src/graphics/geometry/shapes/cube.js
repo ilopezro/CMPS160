@@ -181,7 +181,7 @@ class Cube extends Geometry {
             this.translationMatrix.setTranslate(this.x,this.y,0);
             this.modelMatrix.multiply(this.translationMatrix);
       
-            this.rotationMatrix.setRotate(45,1,0,0);
+            this.rotationMatrix.setRotate(45,1,1,1);
             this.modelMatrix.multiply(this.rotationMatrix);
       
             this.translationMatrix.setTranslate(-this.x, -this.y, 0)
