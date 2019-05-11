@@ -36,6 +36,17 @@ function main() {
       scene.addGeometry(shape);
   })
 
+  // Initialize shader
+  shader2 = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
+
+  // Add attibutes
+  shader2.addAttribute("a_Position");
+  shader2.addAttribute("a_Color");
+
+  //create square and add it 
+  var square = new Square(shader)
+  scene.addGeometry(square)
+
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, camera);
   renderer.start();

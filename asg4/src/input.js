@@ -58,13 +58,14 @@ class InputHandler {
 
         if(keyName == "a" || keyName == "ArrowLeft") {
             this.camera.truck(1);
-        }
-        else if(keyName == "d" || keyName == "ArrowRight") {
+        }else if(keyName == "d" || keyName == "ArrowRight") {
             this.camera.truck(-1);
         }else if(keyName == "w" || keyName == "ArrowUp"){
             this.camera.dolly(1)
         }else if(keyName == "s" || keyName == "ArrowDown"){
             this.camera.dolly(-1)
+        }else{
+            
         }
     }
 
