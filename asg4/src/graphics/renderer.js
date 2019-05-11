@@ -62,6 +62,11 @@ class Renderer {
                     // Create a texture object and store id using its path as key
                     this.textures[geometry.image.src] = this.gl.createTexture();
                     this.loadTexture(this.textures[geometry.image.src], geometry.image);
+                }else {
+                  // Enable texture unit0
+                  this.gl.activeTexture(this.gl.TEXTURE0);
+                  // Bind the texture object to the target
+                  this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[geometry.image.src]);
                 }
             }
 
