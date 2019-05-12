@@ -31,21 +31,16 @@ function main() {
 
   // Load texture and add triangle to the scene with that texture.
   inputHandler.readTexture("objs/minion.jpg", function(image) {
-      var points = [0,0]
-      var shape = new Cube(shader, points, .25, image);
+      var points = [-.875, -.875]
+      var shape = new Cube(shader, points, .125, image);
       scene.addGeometry(shape);
   })
 
-  // Initialize shader
-  shader2 = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
-
-  // Add attibutes
-  shader2.addAttribute("a_Position");
-  shader2.addAttribute("a_Color");
-
   //create square and add it 
-  var square = new Square(shader)
-  scene.addGeometry(square)
+  inputHandler.readTexture("objs/grass.png", function(image) {
+    var square = new Square(shader, image)
+    scene.addGeometry(square)
+  })
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, camera);
