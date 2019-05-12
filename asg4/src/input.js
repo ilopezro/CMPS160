@@ -64,8 +64,8 @@ class InputHandler {
             this.camera.dolly(1)
         }else if(keyName == "s" || keyName == "ArrowDown"){
             this.camera.dolly(-1)
-        }else{
-            
+        }else if(keyName =='z'){
+            this.camera.setDistance();
         }
     }
 
