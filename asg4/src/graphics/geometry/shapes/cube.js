@@ -21,6 +21,7 @@ class Cube extends Geometry {
 
         this.x = g_points[0]
         this.y = g_points[1]
+
     
         this.vertices = this.generateCubeVertices(g_points, size);
         this.faces = {0: this.vertices};
@@ -32,18 +33,18 @@ class Cube extends Geometry {
     generateCubeVertices(g_points, size){
         var vertices = []
 
-        //front face of cube 
-        var vertex1 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
+        //front face of cube with full texture
+        var vertex1 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0);
         vertex1.texCoord = [0.0, 0.0]
-        var vertex2 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
+        var vertex2 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), 0);
         vertex2.texCoord = [1.0, 1.0]
-        var vertex3 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
+        var vertex3 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), 0);
         vertex3.texCoord = [0.0, 1.0]
-        var vertex4 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
+        var vertex4 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0);
         vertex4.texCoord = [0.0, 0.0]
-        var vertex5 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), Number(size));
+        var vertex5 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0);
         vertex5.texCoord = [1.0, 0.0]
-        var vertex6 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
+        var vertex6 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), 0);
         vertex6.texCoord = [1.0, 1.0]
         
 
@@ -55,19 +56,19 @@ class Cube extends Geometry {
         vertices.push(vertex5);
         vertices.push(vertex6);
 
-        //top face of cube
-        var vertex7  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        vertex7.texCoord = [0.0, 0.5]
-        var vertex8  = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex8.texCoord = [1.0, 1.0]
-        var vertex9  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        vertex9.texCoord = [0.0, 1.0]
-        var vertex10 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        vertex10.texCoord = [0.0, 0.5]
-        var vertex11 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
-        vertex11.texCoord = [1.0, 0.5]
-        var vertex12 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex12.texCoord = [1.0, 1.0]
+        //top face of cube with the bottom half of the texture 
+        var vertex7  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), 0);
+        vertex7.texCoord = [0.0, 0.0]
+        var vertex8  = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size)*2);
+        vertex8.texCoord = [1.0, 0.5]
+        var vertex9  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size)*2);
+        vertex9.texCoord = [0.0, 0.5]
+        var vertex10 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), 0);
+        vertex10.texCoord = [0.0, 0.0]
+        var vertex11 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), 0);
+        vertex11.texCoord = [1.0, 0.0]
+        var vertex12 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size)*2);
+        vertex12.texCoord = [1.0, 0.5]
 
         //adding top face of cube vertices
         vertices.push(vertex7);
@@ -77,18 +78,18 @@ class Cube extends Geometry {
         vertices.push(vertex11);
         vertices.push(vertex12);
 
-        //back face of cube
-        var vertex13 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
+        //back face of cube with the two images 
+        var vertex13 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size)*2);
         vertex13.texCoord = [0.0, 0.0]
-        var vertex14 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex14 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size)*2);
         vertex14.texCoord = [2.0, 1.0]
-        var vertex15 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex15 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size)*2);
         vertex15.texCoord = [0.0, 1.0]
-        var vertex16 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
+        var vertex16 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size)*2);
         vertex16.texCoord = [0.0, 0.0]
-        var vertex17 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size));
+        var vertex17 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size)*2);
         vertex17.texCoord = [2.0, 0.0]
-        var vertex18 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex18 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size)*2);
         vertex18.texCoord = [2.0, 1.0]
 
         //adding back face of cube vertices
@@ -99,19 +100,19 @@ class Cube extends Geometry {
         vertices.push(vertex17);
         vertices.push(vertex18);
 
-        //bottom face of vertices
-        var vertex19 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
-        vertex19.texCoord = [0.0, 0.0]
-        var vertex20 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size));
+        //bottom face of vertices with half the image on the cube
+        var vertex19 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0);
+        vertex19.texCoord = [0.0, 0.5]
+        var vertex20 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0);
         vertex20.texCoord = [1.0, 0.5]
-        var vertex21 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
-        vertex21.texCoord = [0.0, 0.5]
-        var vertex22 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
-        vertex22.texCoord = [0.0, 0.0]
-        var vertex23 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), Number(size));
-        vertex23.texCoord = [1.0, 0.0]
-        var vertex24 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size));
-        vertex24.texCoord = [1.0, 0.5]
+        var vertex21 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size)*2);
+        vertex21.texCoord = [0.0, 1.0]
+        var vertex22 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size)*2);
+        vertex22.texCoord = [0.0, 1.0]
+        var vertex23 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0);
+        vertex23.texCoord = [1.0, 0.5]
+        var vertex24 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size)*2);
+        vertex24.texCoord = [1.0, 1.0]
 
         //bottom face of cube vertices being added
         vertices.push(vertex19);
@@ -121,18 +122,18 @@ class Cube extends Geometry {
         vertices.push(vertex23);
         vertices.push(vertex24);
 
-        //left facing cube 
-        var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
+        //left facing cube has the image three times in a 3x3 table
+        var vertex25 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0);
         vertex25.texCoord = [0.0, 0.0]
-        var vertex26 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
-        vertex26.texCoord = [3.0, 3.0]
-        var vertex27 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), Number(size));
-        vertex27.texCoord = [0.0, 3.0]
-        var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), Number(size));
+        var vertex26 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), 0);
+        vertex26.texCoord = [0.0, 3.0]
+        var vertex27 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size)*2);
+        vertex27.texCoord = [3.0, 3.0]
+        var vertex28 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), 0);
         vertex28.texCoord = [0.0, 0.0]
-        var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size));
+        var vertex29 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), -Number(size)*2);
         vertex29.texCoord = [3.0, 0.0]
-        var vertex30 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex30 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), -Number(size)*2);
         vertex30.texCoord = [3.0, 3.0]
 
         //adding left face of cube vertices 
@@ -143,18 +144,18 @@ class Cube extends Geometry {
         vertices.push(vertex29);
         vertices.push(vertex30);
 
-        //Right
-        var vertex31 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
+        //Right face has 4 faces on it a 2x2 table
+        var vertex31 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0);
         vertex31.texCoord = [0.0,0.0]
-        var vertex32 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
-        vertex32.texCoord = [2.0, 2.0] 
-        var vertex33 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), Number(size));
-        vertex33.texCoord = [0.0, 2.0]
-        var vertex34 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), Number(size));
+        var vertex32 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), 0);
+        vertex32.texCoord = [0.0, 2.0] 
+        var vertex33 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size)*2);
+        vertex33.texCoord = [2.0, 2.0]
+        var vertex34 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), 0);
         vertex34.texCoord = [0.0,0.0]
-        var vertex35 = new Vertex(g_points[0]+Number(size), g_points[1]+-Number(size), -Number(size));
+        var vertex35 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), -Number(size)*2);
         vertex35.texCoord = [2.0, 0.0]
-        var vertex36 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size));
+        var vertex36 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), -Number(size)*2);
         vertex36.texCoord = [2.0, 2.0]
 
         //adding right face of vertices

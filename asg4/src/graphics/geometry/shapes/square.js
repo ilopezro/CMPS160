@@ -12,10 +12,10 @@ class Square extends Geometry {
      * @param {Shader} shader Shading object used to shade geometry
      * @returns {Square} Square created
      */
-    constructor(shader) {
+    constructor(shader, image) {
         super(shader);
 
-        this.modelMatrix = new Matrix4(); 
+        this.image = image
   
         this.vertices = this.generateSquareVertices()
         this.faces = {0: this.vertices};
@@ -33,6 +33,13 @@ class Square extends Geometry {
         var vertex4 = new Vertex(-8, -1, -8)
         var vertex5 = new Vertex(-8, -1, 8)
         var vertex6 = new Vertex(8, -1, 8)
+
+        vertex1.texCoord = [0.0, 0.0]
+        vertex2.texCoord = [1.0, 0.0]
+        vertex3.texCoord = [1.0, 1.0]
+        vertex4.texCoord = [0.0, 0.0]
+        vertex5.texCoord = [0.0, 1.0]
+        vertex6.texCoord = [1.0, 1.0] 
   
         vertices.push(vertex1);
         vertices.push(vertex2);
