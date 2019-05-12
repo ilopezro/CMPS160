@@ -18,7 +18,7 @@ class Camera {
         this.eye     = new Vector3([0, 0, 1]);
         this.center  = new Vector3([0, 0,-1]);
         this.up      = new Vector3([0, 1, 0]);
-        
+
         //counter for ortho/persepctive 
         this.counter = 0; 
 
@@ -116,7 +116,6 @@ class Camera {
         //rotate about u axis 
         var transformMatrix = new Matrix4()
         transformMatrix.setRotate(dir, u.elements[0], u.elements[1], u.elements[2])
-        console.log(transformMatrix)
 
         //rotate center point 
         newCenter = transformMatrix.multiplyVector3(newCenter)

@@ -36,8 +36,6 @@ class InputHandler {
 
     mouseMove(ev) {
         var movementX = ev.movementX;
-        console.log("movementX", movementX);
-
         var movementY = ev.movementY;
         
         if(movementY > 0){
