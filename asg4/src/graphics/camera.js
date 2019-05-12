@@ -17,11 +17,15 @@ class Camera {
         // Camera view attributes
         this.eye     = new Vector3([0, 0, 1]);
         this.center  = new Vector3([0, 0,-1]);
-        this.up      = new Vector3([0, 1, 1]);
+        this.up      = new Vector3([0, 1, 0]);
+        
+        //counter for ortho/persepctive 
+        this.counter = 0; 
 
         this.viewMatrix = new Matrix4();
         this.updateView();
         this.projectionMatrix = new Matrix4();
+        this.projectionMatrix.setOrtho(-1, 1, -1, 1, 1, 10)
     }
 
 
@@ -60,6 +64,39 @@ class Camera {
     }
 
     pan(dir) {
+        // Calculate the n camera axis
+        var n = this.eye.sub(this.center);
+        n = n.normalize()
+
+        // Calculate the u camera axis
+        var u = this.up.cross(n);
+        u = u.normalize();
+
+        var v = u.cross(n)
+
+        //calculate new center point 
+        var newCenter = new Vector3([0,0,0])
+        newCenter = this.center.sub(this.eye)
+
+        //rotate about u axis 
+        var transformMatrix = new Matrix4()
+        transformMatrix.setRotate(dir, v.elements[0], v.elements[1], v.elements[2])
+        console.log(transformMatrix)
+
+        //rotate center point 
+        newCenter = transformMatrix.multiplyVector3(newCenter)
+
+        //update center 
+        this.center = newCenter.add(this.eye)
+
+        // If the angle between the line-of-sight and the "up vector" is less
+        // than 10 degrees or greater than 170 degrees, then rotate the
+        // "up_vector" about the u axis.
+        if(Math.abs(n.mul(this.up)) >= .985){
+            this.up = transformMatrix.multiplyVector3(this.up)
+        }
+
+        this.updateView()
 
     }
 
@@ -73,8 +110,8 @@ class Camera {
         u = u.normalize();
 
         //calculate new center point 
-        var d = new Vector3([0,0,0])
-        var d = this.center.sub(this.eye)
+        var newCenter = new Vector3([0,0,0])
+        newCenter = this.center.sub(this.eye)
 
         //rotate about u axis 
         var transformMatrix = new Matrix4()
@@ -82,10 +119,10 @@ class Camera {
         console.log(transformMatrix)
 
         //rotate center point 
-        d = transformMatrix.multiplyVector3(d)
+        newCenter = transformMatrix.multiplyVector3(newCenter)
 
         //update center 
-        this.center = d.add(this.eye)
+        this.center = newCenter.add(this.eye)
 
         // If the angle between the line-of-sight and the "up vector" is less
         // than 10 degrees or greater than 170 degrees, then rotate the
@@ -95,7 +132,17 @@ class Camera {
         }
 
         this.updateView()
+    }
+
+    setDistance() {
+        var canvas = document.getElementById("webgl");
+        this.counter++
         
+        if(this.counter %2 == 1){
+            this.projectionMatrix.setPerspective(30, canvas.width/canvas.height, 1, 100)
+        }else{
+            this.projectionMatrix.setOrtho(-1, 1, -1, 1, 1, 10)
+        }
     }
 
     updateView() {
