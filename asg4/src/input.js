@@ -27,12 +27,6 @@ class InputHandler {
 
       // Keyboard Events
       document.addEventListener('keydown', function(ev) { _inputHandler.keyDown(ev); }, false);
-
-      // Button Events
-      document.getElementById('fileLoad').onclick = function() { _inputHandler.readSelectedFile() };
-
-      // HTML Slider Events
-      document.getElementById('exampleSlider').addEventListener('mouseup', function() { console.log(this.value); });
     }
 
     mouseMove(ev) {
@@ -52,11 +46,13 @@ class InputHandler {
         }
     }
 
-    mouseZoom(ev){
-        
-        var moveY = ev.deltaY; 
-        console.log(moveY)
-
+    mouseZoom(ev){ 
+        var moveY = ev.deltaY;
+        if(moveY > 0){
+            this.camera.setZoom(1)
+        }else if(moveY < 0){
+            this.camera.setZoom(-1)
+        }
     }
 
     keyDown(ev) {

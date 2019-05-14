@@ -29,15 +29,34 @@ function main() {
   shader.addUniform("u_ViewMatrix", "mat4", new Matrix4().elements);
   shader.addUniform("u_ProjectionMatrix", "mat4", new Matrix4().elements);
 
+  camera.setDistance()
+
   // Load texture and add triangle to the scene with that texture.
   inputHandler.readTexture("objs/brick.jpg", function(image) {
-      var points = [0, -.85, 0]
-      var shape = new Cube(shader, points, .15, image);
-      scene.addGeometry(shape);
+    for (i = 0; i < 1;i = i +.25){
+      for (j = 0; j < 1;j = j +.25){
+        var shape = new Cube(shader,[i, j-.875, 0], .125, image)
+        scene.addGeometry(shape)
+      }
+    }
+
+    for (i = 0; i < 1;i = i +.25){
+      for (j = 0; j < 1;j = j +.25){
+        var shape = new Cube(shader,[-1, i-.875, j], .125, image)
+        scene.addGeometry(shape)
+      }
+    }
+
+    for (i = 0; i < 1;i = i +.25){
+      for (j = 0; j < 1;j = j +.25){
+        var shape = new Cube(shader,[1, i-.875, j], .125, image)
+        scene.addGeometry(shape)
+      }
+    }
   })
 
   //create square and add it 
-  inputHandler.readTexture("objs/turf.jpg", function(image) {
+  inputHandler.readTexture("objs/snow.jpg", function(image) {
     var square = new Square(shader, image)
     scene.addGeometry(square)
   })
