@@ -27,12 +27,12 @@ class Square extends Geometry {
     generateSquareVertices() {
         var vertices = []
   
-        var vertex1 = new Vertex(-8, -1, -8)
-        var vertex2 = new Vertex(8, -1, -8)
-        var vertex3 = new Vertex(8, -1, 8) 
-        var vertex4 = new Vertex(-8, -1, -8)
-        var vertex5 = new Vertex(-8, -1, 8)
-        var vertex6 = new Vertex(8, -1, 8)
+        var vertex1 = new Vertex(-16, -1, -16)
+        var vertex2 = new Vertex(16, -1, -16)
+        var vertex3 = new Vertex(16, -1, 16) 
+        var vertex4 = new Vertex(-16, -1, -16)
+        var vertex5 = new Vertex(-16, -1, 16)
+        var vertex6 = new Vertex(16, -1, 16)
 
         vertex1.texCoord = [0.0, 0.0]
         vertex2.texCoord = [1.0, 0.0]
