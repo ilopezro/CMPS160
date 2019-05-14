@@ -81,7 +81,6 @@ class Camera {
         //rotate about u axis 
         var transformMatrix = new Matrix4()
         transformMatrix.setRotate(dir, v.elements[0], v.elements[1], v.elements[2])
-        console.log(transformMatrix)
 
         //rotate center point 
         newCenter = transformMatrix.multiplyVector3(newCenter)
