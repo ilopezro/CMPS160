@@ -61,6 +61,11 @@ function main() {
     scene.addGeometry(square)
   })
 
+  inputHandler.readTexture("objs/blue.jpg", function(image) {
+    var shape = new Cube(shader,[0, -1, 8], 5, image)
+    scene.addGeometry(shape)
+})
+
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, camera);
   renderer.start();
