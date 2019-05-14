@@ -25,7 +25,18 @@ class Camera {
         this.viewMatrix = new Matrix4();
         this.updateView();
         this.projectionMatrix = new Matrix4();
-        this.projectionMatrix.setOrtho(-1, 1, -1, 1, 1, 10)
+        //variables for ortho 
+        this.left = -1
+        this.right = 1
+        this.bottom = -1 
+        this.top = 1
+
+        //variable for perspective 
+        this.pers = 30; 
+
+        this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, 1, 10)
+
+        this.isOrtho = true; 
     }
 
 
@@ -132,14 +143,65 @@ class Camera {
         this.updateView()
     }
 
+    setZoom(dir){
+        const change = .01; 
+
+        if(this.isOrtho){
+            console.log(this.bottom + ", " + this.top)
+            if(Math.abs(this.left) > .5 && Math.abs(this.top) < 1.5 ){
+                if(dir == -1){
+                    this.left += change
+                    this.right -= change
+                    this.bottom += change
+                    this.top -= change
+                }else if(dir == 1){
+                    this.left -= change
+                    this.right += change
+                    this.bottom -= change
+                    this.top += change
+                }
+            }else if(Math.abs(this.left) < .5){
+                if(dir == 1){
+                    this.left -= change
+                    this.right += change
+                    this.bottom -= change
+                    this.top += change
+                }
+            }else if(Math.abs(this.top) > 1.5){
+                if(dir == -1){
+                    this.left += change
+                    this.right -= change
+                    this.bottom += change
+                    this.top -= change
+                }
+            }
+            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, 1, 10)
+        }else if(!this.isOrtho){
+            if(this.pers > 5 && this.pers < 120){
+                this.pers += dir
+            }else if(this.pers == 5){
+                if(dir == 1){
+                    this.pers += dir
+                }
+            }else if(this.pers == 120){
+                if(dir == -1){
+                    this.pers += dir
+                }
+            }
+            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, 1, 100)
+        }
+    }
+
     setDistance() {
         var canvas = document.getElementById("webgl");
         this.counter++
         
         if(this.counter %2 == 1){
-            this.projectionMatrix.setPerspective(30, canvas.width/canvas.height, 1, 100)
+            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, 1, 100)
+            this.isOrtho = false; 
         }else{
-            this.projectionMatrix.setOrtho(-1, 1, -1, 1, 1, 10)
+            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, 1, 10)
+            this.isOrtho = true; 
         }
     }
 
