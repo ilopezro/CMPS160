@@ -71,24 +71,6 @@ class InputHandler {
         }
     }
 
-    /**
-     * Function called to read a selected file.
-     */
-    readSelectedFile() {
-        var fileReader = new FileReader();
-        var objFile = document.getElementById("fileInput").files[0];
-
-        if (!objFile) {
-            alert("OBJ file not set!");
-            return;
-        }
-
-        fileReader.readAsText(objFile);
-        fileReader.onloadend = function() {
-            alert(fileReader.result);
-        }
-    }
-
     readTexture(src, onTexLoad) {
         // Create the image object
         var image = new Image();
