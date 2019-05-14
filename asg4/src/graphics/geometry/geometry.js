@@ -15,13 +15,25 @@ class Geometry {
   constructor(shader) {
       this.vertices = [];
       this.shader = shader;
+      this.time = performance.now()
+      this.counter = 0; 
+      this.new; 
   }
 
   /**
    * A callback used to modify a geometry every frame (60 typically).
    */
   render() {
-      return
+    this.counter++; 
+    if(this.counter == 60){
+      var newTime = performance.now()
+      var deltaTime = newTime - this.time; 
+      var FPS = (this.counter / deltaTime) * 1000; 
+      this.time = performance.now()
+      this.counter = 0; 
+      document.getElementById('fps').innerHTML = FPS
+    }
+    return
   }
 
   /**
