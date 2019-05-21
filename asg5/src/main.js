@@ -11,7 +11,7 @@ function main() {
     return;
   }
 
-  var light = new Light(0, 1, 0);
+  var light = new Light(0, 10, 0);
 
   // Initialize the scene
   var scene = new Scene();
@@ -40,7 +40,7 @@ function main() {
              [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
-             [4,0,0,0,1,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
+             [4,0,0,0,1,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,2,1,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
@@ -86,12 +86,11 @@ function main() {
     scene.addGeometry(square)
   })
 
+  //creates the sky
   inputHandler.readTexture("objs/sky.jpg", function(image) {
     var shape = new Sky(shader, image)
     scene.addGeometry(shape)
   })
-
-
 
  // Initialize shader
  shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
@@ -103,16 +102,18 @@ function main() {
 
  shader2.addUniform("u_ModelMatrix", "mat4", new Matrix4().elements);
  shader2.addUniform("u_NormalMatrix", "mat4", new Matrix4().elements);
+ shader2.addUniform("u_ViewMatrix", "mat4", new Matrix4().elements);
+ shader2.addUniform("u_ProjectionMatrix", "mat4", new Matrix4().elements);
 
  shader2.addUniform("u_LightPos", "vec3", new Vector3().elements);
  shader2.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
  shader2.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
 
-  // var shape = new Sphere(shader2, 13, [1,1,1]);
-  // scene.addGeometry(shape);
+  var shape = new Sphere(shader2, 13, [1,1,1]);
+  scene.addGeometry(shape);
 
-  // var shape = new Sphere(shader2, 13, [-1,-1,-1]);
-  // scene.addGeometry(shape)
+  var shape = new Sphere(shader2, 13, [-1,-1,-1]);
+  scene.addGeometry(shape)
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, camera);
