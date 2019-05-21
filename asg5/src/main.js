@@ -97,6 +97,9 @@ function main() {
     scene.addGeometry(shape)
 })
 
+  var shape = new Sphere(shader, 7);
+  scene.addGeometry(shape);
+
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, camera);
   renderer.start();

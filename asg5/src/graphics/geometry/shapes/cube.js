@@ -62,7 +62,7 @@ class Cube extends Geometry {
         var vertex8  = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), g_points[2]-Number(size)*2);
         vertex8.texCoord = [1.0, 1.0]
         var vertex9  = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), g_points[2]-Number(size)*2);
-        vertex9.texCoord = [0.0, 0.0]
+        vertex9.texCoord = [0.0, 1.0]
         var vertex10 = new Vertex(g_points[0]-Number(size), g_points[1]+Number(size), g_points[2]);
         vertex10.texCoord = [0.0, 0.0]
         var vertex11 = new Vertex(g_points[0]+Number(size), g_points[1]+Number(size), g_points[2]);
