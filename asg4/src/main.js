@@ -29,7 +29,30 @@ function main() {
   shader.addUniform("u_ViewMatrix", "mat4", new Matrix4().elements);
   shader.addUniform("u_ProjectionMatrix", "mat4", new Matrix4().elements);
 
+  //sets the view
   camera.setDistance()
+
+  //draws the map
+  var map = [[4,4,4,4,4,4,4,4],
+             [4,0,0,0,0,0,0,4],
+             [4,0,0,0,0,0,0,4],
+             [4,0,0,0,0,0,0,4],
+             [4,0,0,0,0,0,0,4],
+             [4,0,0,0,0,0,0,4],
+             [4,0,0,0,0,0,0,4],
+             [4,4,4,4,4,4,4,4]
+  ]
+
+  // for(var i = 0; i < map.length; i++){
+  //   for(var j = 0; j < map[i].length; j++){
+  //     if(map[i][j]!=0){
+  //       inputHandler.readTexture("objs/brick.jpg", function(image){
+  //         var shape = new Cube(shader)
+  //       })
+  //     }
+  //   }
+  // }
+
 
   // Load texture and add triangle to the scene with that texture.
   inputHandler.readTexture("objs/brick.jpg", function(image) {
