@@ -97,16 +97,20 @@ function main() {
     scene.addGeometry(shape)
 })
 
-// Initialize shader
-shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
+ // Initialize shader
+ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
 
-// Add attibutes
-shader2.addAttribute("a_Position");
-shader2.addAttribute("a_Color");
-shader2.addAttribute("a_Normal");
+ // Add attibutes
+ shader2.addAttribute("a_Position");
+ shader2.addAttribute("a_Color");
+ shader2.addAttribute("a_Normal");
 
-shader2.addUniform("u_ModelMatrix", "mat4", new Matrix4().elements);
-shader2.addUniform("u_NormalMatrix", "mat4", new Matrix4().elements);
+ shader2.addUniform("u_ModelMatrix", "mat4", new Matrix4().elements);
+ shader2.addUniform("u_NormalMatrix", "mat4", new Matrix4().elements);
+
+ shader2.addUniform("u_LightPos", "vec3", new Vector3().elements);
+ shader2.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
+ shader2.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
 
   var shape = new Sphere(shader2, 13);
   scene.addGeometry(shape);
