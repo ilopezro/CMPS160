@@ -172,7 +172,7 @@ class Camera {
                     this.top -= change
                 }
             }
-            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, .1, 10)
+            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, .1, 100)
         }else if(!this.isOrtho){
             if(this.pers > 5 && this.pers < 120){
                 this.pers += dir
@@ -185,7 +185,7 @@ class Camera {
                     this.pers += dir
                 }
             }
-            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, .1, 10)
+            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, .1, 100)
         }
     }
 
@@ -194,10 +194,10 @@ class Camera {
         this.counter++
         
         if(this.counter %2 == 1){
-            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, .1, 10)
+            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, .1, 100)
             this.isOrtho = false; 
         }else{
-            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, .1, 10)
+            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, .1, 100)
             this.isOrtho = true; 
         }
     }

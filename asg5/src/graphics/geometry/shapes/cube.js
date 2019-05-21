@@ -15,7 +15,7 @@ class Cube extends Geometry {
      * @returns {Cube} Circle created
      */
     constructor(shader, g_points, size, image) {
-        super(shader, g_points[0], g_points[1]);
+        super(shader);
 
         this.image = image
 
