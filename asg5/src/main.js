@@ -97,6 +97,8 @@ function main() {
     scene.addGeometry(shape)
 })
 
+
+
  // Initialize shader
  shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
 
