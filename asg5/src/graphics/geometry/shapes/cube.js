@@ -102,17 +102,17 @@ class Cube extends Geometry {
 
         //bottom face of vertices with half the image on the cube
         var vertex19 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), g_points[2]);
-        vertex19.texCoord = [0.0, 0.0]
+        vertex19.texCoord = [0.0, 1.0]
         var vertex20 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), g_points[2]);
         vertex20.texCoord = [1.0, 1.0]
         var vertex21 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), g_points[2]-Number(size)*2);
-        vertex21.texCoord = [0.0, 1.0]
+        vertex21.texCoord = [0.0, 0.0]
         var vertex22 = new Vertex(g_points[0]-Number(size), g_points[1]-Number(size), g_points[2]-Number(size)*2);
-        vertex22.texCoord = [0.0, 1.0]
+        vertex22.texCoord = [0.0, 0.0]
         var vertex23 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), g_points[2]);
         vertex23.texCoord = [1.0, 1.0]
         var vertex24 = new Vertex(g_points[0]+Number(size), g_points[1]-Number(size), g_points[2]-Number(size)*2);
-        vertex24.texCoord = [1.0, 1.0]
+        vertex24.texCoord = [1.0, 0.0]
 
         //bottom face of cube vertices being added
         vertices.push(vertex19);

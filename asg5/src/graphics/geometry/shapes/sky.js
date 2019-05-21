@@ -98,17 +98,17 @@ class Sky extends Geometry {
 
         // bottom face of vertices with half the image on the Sky
         var vertex19 = new Vertex(-16,-16, 16);
-        vertex19.texCoord = [0.0, 0.0]
+        vertex19.texCoord = [0.0, 1.0]
         var vertex20 = new Vertex(16, -16, 16);
         vertex20.texCoord = [1.0, 1.0]
         var vertex21 = new Vertex(-16, -16, -16);
-        vertex21.texCoord = [0.0, 1.0]
+        vertex21.texCoord = [0.0, 0.0]
         var vertex22 = new Vertex(-16, -16, -16);
-        vertex22.texCoord = [0.0, 1.0]
+        vertex22.texCoord = [0.0, 0.0]
         var vertex23 = new Vertex(16, -16, 16);
         vertex23.texCoord = [1.0, 1.0]
         var vertex24 = new Vertex(16, -16, -16);
-        vertex24.texCoord = [1.0, 1.0]
+        vertex24.texCoord = [1.0, 0.0]
 
         //bottom face of Sky vertices being added
         vertices.push(vertex19);
