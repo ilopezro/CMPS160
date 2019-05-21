@@ -11,9 +11,12 @@ function main() {
     return;
   }
 
+  var light = new Light(0, 1, 0);
+
   // Initialize the scene
   var scene = new Scene();
   var camera = new Camera();
+  scene.setLight(light);
 
   var inputHandler = new InputHandler(canvas, scene, camera);
 
@@ -114,8 +117,11 @@ function main() {
  shader2.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
  shader2.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
 
-  var shape = new Sphere(shader2, 13);
+  var shape = new Sphere(shader2, 13, [1,1,1]);
   scene.addGeometry(shape);
+
+  var shape = new Sphere(shader2, 13, [-1,-1,-1]);
+  scene.addGeometry(shape)
 
   // Initialize renderer with scene and camera
   renderer = new Renderer(gl, scene, camera);
