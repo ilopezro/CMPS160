@@ -54,6 +54,12 @@ class Renderer {
             this.gl.useProgram(geometry.shader.program)
             this.gl.program = geometry.shader.program
 
+            if(this.scene.light != null) {
+              geometry.shader.setUniform("u_LightPos", this.scene.light.pos.elements);
+              geometry.shader.setUniform("u_AmbientColor", this.scene.light.ambient);
+              geometry.shader.setUniform("u_DiffuseColor", this.scene.light.diffuse);
+          }
+
             geometry.shader.setUniform("u_ViewMatrix", this.camera.viewMatrix.elements);
             geometry.shader.setUniform("u_ProjectionMatrix", this.camera.projectionMatrix.elements);
 
