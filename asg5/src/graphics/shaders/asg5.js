@@ -1,5 +1,5 @@
 // Vertex Shader
-var ASG1_VSHADER =
+var ASG5_VSHADER =
   `precision mediump float;
   attribute vec4 a_Position;
   varying vec3 v_Position;
@@ -19,7 +19,7 @@ var ASG1_VSHADER =
   }`;
 
 // Fragment Shader
-var ASG1_FSHADER =
+var ASG5_FSHADER =
   `precision mediump float;
   varying vec4 v_Color;
   varying vec3 v_Normal;

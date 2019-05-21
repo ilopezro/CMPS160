@@ -97,7 +97,18 @@ function main() {
     scene.addGeometry(shape)
 })
 
-  var shape = new Sphere(shader, 7);
+// Initialize shader
+shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
+
+// Add attibutes
+shader2.addAttribute("a_Position");
+shader2.addAttribute("a_Color");
+shader2.addAttribute("a_Normal");
+
+shader2.addUniform("u_ModelMatrix", "mat4", new Matrix4().elements);
+shader2.addUniform("u_NormalMatrix", "mat4", new Matrix4().elements);
+
+  var shape = new Sphere(shader2, 13);
   scene.addGeometry(shape);
 
   // Initialize renderer with scene and camera

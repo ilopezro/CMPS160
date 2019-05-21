@@ -145,7 +145,6 @@ class Camera {
         const change = .01; 
 
         if(this.isOrtho){
-            console.log(this.bottom + ", " + this.top)
             if(Math.abs(this.left) > .5 && Math.abs(this.top) < 1.5 ){
                 if(dir == -1){
                     this.left += change
