@@ -36,11 +36,11 @@ function main() {
   camera.setDistance()
 
   //draws the map
-  const map = [
+  var map = [
              [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
-             [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
+             [4,0,0,0,1,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
              [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4],
@@ -73,50 +73,12 @@ function main() {
   for(var i = 0; i < map.length; i++){
     for(var j = 0; j < map[i].length; j++){
       if(map[i][j]!=0){
-        inputHandler.readTexture("objs/dirt.jpg", function(image){
-          var shape = new Cube(shader,[-16+i, -.875, -16+j], map[i][j], .125, image)
-          scene.addGeometry(shape)
-        })
+        var image = document.getElementById('dirt')
+        var shape = new Cube(shader, [-16+i, -1, -16+j], map[i][j], .5, image)
+        scene.addGeometry(shape)
       }
     }
   }
-
-  // Load texture and add triangle to the scene with that texture.
-  // inputHandler.readTexture("objs/dirt.jpg", function(image) {
-  //   for (i = 0; i < 1;i = i +.25){
-  //     var shape = new Cube(shader,[i, -.875, 0], 4, .125, image)
-  //     scene.addGeometry(shape)
-  // }
-  // for (i = .25; i < 1;i = i +.25){
-  //     var shape = new Cube(shader,[i, -.625, 0], .125, image)
-  //     scene.addGeometry(shape)
-  // }
-  // for (i = .5; i < 1;i = i +.25){
-  //     var shape = new Cube(shader,[i, -.375, 0], .125, image)
-  //     scene.addGeometry(shape)
-  // }
-  // var shape = new Cube(shader,[.75, -.125, 0], .125, image)
-  // scene.addGeometry(shape)
-
-  // for (i = 0; i < 1;i = i +.25){
-  //   for (j = 0; j < 1;j = j +.25){
-  //     var shape = new Cube(shader,[-1, i-.875, j], .125, image)
-  //     scene.addGeometry(shape)
-  //   }
-  // }
-
-  // for (i = 0; i < 1;i = i +.25){
-  //   for (j = 0; j < 1;j = j +.25){
-  //     var shape = new Cube(shader,[1, i-.875, j], .125, image)
-  //     scene.addGeometry(shape)
-  //   }
-  // }
-  // })
-
-  inputHandler.readTexture("objs/dirt.jpg", function(image) {
-    var shape = new Cube(shader,[1, -.875, 0], 1, .5, image)
-    scene.addGeometry(shape)
-  })
 
   //create square and add it 
   inputHandler.readTexture("objs/snow.jpg", function(image) {
@@ -127,7 +89,7 @@ function main() {
   inputHandler.readTexture("objs/sky.jpg", function(image) {
     var shape = new Sky(shader, image)
     scene.addGeometry(shape)
-})
+  })
 
 
 
