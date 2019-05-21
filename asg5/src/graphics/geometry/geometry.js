@@ -18,12 +18,23 @@ class Geometry {
       this.time = performance.now()
       this.counter = 0; 
       this.new; 
+
+      this.modelMatrix = new Matrix4();
+      this.normalMatrix = new Matrix4();
   }
 
   /**
    * A callback used to modify a geometry every frame (60 typically).
    */
   render() {
+
+    // Transform geometry here!
+    this.normalMatrix.setInverseOf(this.modelMatrix);
+    this.normalMatrix.transpose();
+
+    this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);
+    this.shader.setUniform("u_NormalMatrix", this.normalMatrix.elements);
+    
     this.counter++; 
     if(this.counter == 60){
       var newTime = performance.now()
