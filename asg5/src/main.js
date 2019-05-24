@@ -11,7 +11,7 @@ function main() {
     return;
   }
 
-  var light = new Light(0, 10, 0);
+  var light = new Light(0,10,0);
 
   // Initialize the scene
   var scene = new Scene();
@@ -48,9 +48,15 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
  shader2.addUniform("u_ViewMatrix", "mat4", new Matrix4().elements);
  shader2.addUniform("u_ProjectionMatrix", "mat4", new Matrix4().elements);
 
- shader2.addUniform("u_LightPos", "vec3", new Vector3().elements);
- shader2.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
- shader2.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
+ shader2.addUniform("u_LightPosition", "vec3", new Vector3().elements);
+ shader2.addUniform("u_AmbientColor", "vec3", light.ambient);
+ shader2.addUniform("u_DiffuseColor", "vec3", light.diffuse);
+ shader2.addUniform("u_SpecularColor", "vec3", light.specular);
+
+ shader2.addUniform("Ka", "float", 1.0)
+ shader2.addUniform("Kd", "float", 1.0)
+ shader2.addUniform("Ks", "float", 1.0)
+ shader2.addUniform("shininessVal", "float", 1.0)
 
   drawWorld(scene, inputHandler, shader, shader2)
 
