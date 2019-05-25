@@ -58,6 +58,7 @@ class Renderer {
               geometry.shader.setUniform("u_LightPos", this.scene.light.pos.elements);
               geometry.shader.setUniform("u_AmbientColor", this.scene.light.ambient);
               geometry.shader.setUniform("u_DiffuseColor", this.scene.light.diffuse);
+              geometry.shader.setUniform("u_SpecularColor", this.scene.light.specular);
           }
 
             geometry.shader.setUniform("u_ViewMatrix", this.camera.viewMatrix.elements);

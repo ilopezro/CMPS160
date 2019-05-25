@@ -11,7 +11,7 @@ function main() {
     return;
   }
 
-  var light = new Light(0,10,0);
+  var light = new Light(1,1,1);
 
   // Initialize the scene
   var scene = new Scene();
@@ -25,15 +25,27 @@ function main() {
 
   // Add attibutes
   shader.addAttribute("a_Position");
-  shader.addAttribute("a_Color");
+  shader.addAttribute("a_Normal");
   shader.addAttribute("a_TexCoord");
 
   shader.addUniform("u_Sampler", "sampler2D", new Matrix4().elements);
   shader.addUniform("u_ViewMatrix", "mat4", new Matrix4().elements);
   shader.addUniform("u_ProjectionMatrix", "mat4", new Matrix4().elements);
+  shader.addUniform("u_ModelMatrix", "mat4", new Matrix4().elements);
+  shader.addUniform("u_NormalMatrix", "mat4", new Matrix4().elements);
 
-  //sets the view
-  camera.setDistance()
+  shader.addUniform("u_LightPosition", "vec3", new Vector3().elements);
+  shader.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
+  shader.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
+  shader.addUniform("u_SpecularColor", "vec3", new Vector3().elements);
+
+  shader.addUniform("Ka", "float", 1.0)
+  shader.addUniform("Kd", "float", 1.0)
+  shader.addUniform("Ks", "float", 1.0)
+  shader.addUniform("shininessVal", "float", 1.0)
+
+//sets the view
+camera.setDistance()
 
 // Initialize shader
 shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
@@ -49,20 +61,20 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
  shader2.addUniform("u_ProjectionMatrix", "mat4", new Matrix4().elements);
 
  shader2.addUniform("u_LightPosition", "vec3", new Vector3().elements);
- shader2.addUniform("u_AmbientColor", "vec3", light.ambient);
- shader2.addUniform("u_DiffuseColor", "vec3", light.diffuse);
- shader2.addUniform("u_SpecularColor", "vec3", light.specular);
+ shader2.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
+ shader2.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
+ shader2.addUniform("u_SpecularColor", "vec3", new Vector3().elements);
 
  shader2.addUniform("Ka", "float", 1.0)
  shader2.addUniform("Kd", "float", 1.0)
  shader2.addUniform("Ks", "float", 1.0)
- shader2.addUniform("shininessVal", "float", 1.0)
+ shader2.addUniform("shininessVal", "float", 80.0)
 
-  drawWorld(scene, inputHandler, shader, shader2)
+drawWorld(scene, inputHandler, shader, shader2)
 
-  // Initialize renderer with scene and camera
-  renderer = new Renderer(gl, scene, camera);
-  renderer.start();
+// Initialize renderer with scene and camera
+renderer = new Renderer(gl, scene, camera);
+renderer.start();
 }
 
 function drawWorld(scene, inputHandler, shader, shader2){
