@@ -1,23 +1,24 @@
 <html lang="en">
   <head>
       <meta charset="utf-8"/>
-      <title> CMPS160 Asg 4 </title>
+      <title> Final Project </title>
       <img id="dirt" src="objs/dirt.jpg" width="0"height="0"></img>
   </head>
 
   <body onload = "main()">
     <a href="../index.html">Home</a>
+    <a href="driver.html">Game</a>
+    <a href="./documentation.html">Documentation</a>
     <br>
-    <canvas id="webgl" width="400" height="400">
+
+    <canvas id="webgl" width="400" height="400" style = "position: absolute; z-index: 0">
       Please use a browser that supports "canvas"
     </canvas>
 
+    <canvas id="hud" width="400" height="400" style = "position: absolute; z-index: 1"></canvas>
+
     <!-- Buttons to load and print file content -->
     <br><br>
-
-    <!-- FPS -->
-    <p>FPS:</p>
-    <p id="fps"></p>
 
     <!-- Include external libs -->
     <script src = "lib/webgl-utils.js"></script>
