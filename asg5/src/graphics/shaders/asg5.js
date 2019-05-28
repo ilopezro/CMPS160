@@ -57,5 +57,5 @@ var ASG5_FSHADER =
       specular = pow(specAngle, shininessVal);
     }
 
-    gl_FragColor = vec4(Ka * u_AmbientColor + Kd * lambertian * u_DiffuseColor + Ks * specular * u_SpecularColor, 1.0);
+    gl_FragColor = vec4((Ka * u_AmbientColor * v_Color.rgb) + (Kd * lambertian * u_DiffuseColor * v_Color.rgb) + (Ks * specular * u_SpecularColor * v_Color.rgb), 1.0);
   }`;

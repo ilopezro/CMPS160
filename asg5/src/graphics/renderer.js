@@ -55,7 +55,7 @@ class Renderer {
             this.gl.program = geometry.shader.program
 
             if(this.scene.light != null) {
-              geometry.shader.setUniform("u_LightPos", this.scene.light.pos.elements);
+              geometry.shader.setUniform("u_LightPosition", this.scene.light.pos.elements);
               geometry.shader.setUniform("u_AmbientColor", this.scene.light.ambient);
               geometry.shader.setUniform("u_DiffuseColor", this.scene.light.diffuse);
               geometry.shader.setUniform("u_SpecularColor", this.scene.light.specular);

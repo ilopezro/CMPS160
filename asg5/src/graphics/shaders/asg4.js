@@ -44,6 +44,7 @@ var ASG4_FSHADER =
   uniform sampler2D u_Sampler;
 
   void main() {
+    vec4 v_Color = texture2D(u_Sampler, v_TexCoord);
     vec3 N = normalize(v_Normal);
     vec3 L = normalize(u_LightPosition - v_Position);
 
@@ -59,5 +60,5 @@ var ASG4_FSHADER =
       specular = pow(specAngle, shininessVal);
     }
 
-    gl_FragColor = texture2D(u_Sampler, v_TexCoord);
+    gl_FragColor = vec4((Ka * u_AmbientColor * v_Color.rgb) + (Kd * lambertian * u_DiffuseColor * v_Color.rgb) + (Ks * specular * u_SpecularColor * v_Color.rgb), 1.0);
   }`;

@@ -11,7 +11,7 @@ function main() {
     return;
   }
 
-  var light = new Light(1,1,1);
+  var light = new Light(16,0,-16);
 
   // Initialize the scene
   var scene = new Scene();
@@ -42,7 +42,7 @@ function main() {
   shader.addUniform("Ka", "float", 1.0)
   shader.addUniform("Kd", "float", 1.0)
   shader.addUniform("Ks", "float", 1.0)
-  shader.addUniform("shininessVal", "float", 1.0)
+  shader.addUniform("shininessVal", "float", 80.0)
 
 //sets the view
 camera.setDistance()
@@ -135,9 +135,9 @@ function drawWorld(scene, inputHandler, shader, shader2){
     scene.addGeometry(shape)
   })
 
-  var shape = new Sphere(shader2, 13, [1,1,1]);
+  var shape = new Sphere(shader2, 13, [16,1,16]);
   scene.addGeometry(shape);
 
-  var shape = new Sphere(shader2, 13, [-1,-1,-1]);
+  var shape = new Sphere(shader2, 13, [-16,-1,-16]);
   scene.addGeometry(shape)
 }

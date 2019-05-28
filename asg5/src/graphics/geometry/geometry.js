@@ -21,6 +21,7 @@ class Geometry {
 
       this.modelMatrix = new Matrix4();
       this.normalMatrix = new Matrix4();
+
   }
 
   /**
@@ -32,9 +33,9 @@ class Geometry {
     this.normalMatrix.setInverseOf(this.modelMatrix);
     this.normalMatrix.transpose();
 
-    this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);
+    // this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);
     this.shader.setUniform("u_NormalMatrix", this.normalMatrix.elements);
-    
+
     this.counter++; 
     if(this.counter == 60){
       var newTime = performance.now()
