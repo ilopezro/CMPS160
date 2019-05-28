@@ -35,16 +35,6 @@ class Geometry {
 
     // this.shader.setUniform("u_ModelMatrix", this.modelMatrix.elements);
     this.shader.setUniform("u_NormalMatrix", this.normalMatrix.elements);
-
-    this.counter++; 
-    if(this.counter == 60){
-      var newTime = performance.now()
-      var deltaTime = newTime - this.time; 
-      var FPS = (this.counter / deltaTime) * 1000; 
-      this.time = performance.now()
-      this.counter = 0; 
-      document.getElementById('fps').innerHTML = FPS
-    }
     return
   }
 
