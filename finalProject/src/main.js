@@ -11,6 +11,8 @@ function main() {
     return;
   }
 
+  hud = document.getElementById("hud")
+
   var light = new Light(60,1,60);
 
   // Initialize the scene
@@ -18,7 +20,7 @@ function main() {
   var camera = new Camera();
   scene.setLight(light);
 
-  var inputHandler = new InputHandler(canvas, scene, camera);
+  var inputHandler = new InputHandler(canvas, scene, camera, hud);
 
   // Initialize shader
   shader = new Shader(gl, ASG4_VSHADER, ASG4_FSHADER);
