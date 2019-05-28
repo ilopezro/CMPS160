@@ -11,7 +11,7 @@ function main() {
     return;
   }
 
-  var light = new Light(16,0,-16);
+  var light = new Light(60,1,60);
 
   // Initialize the scene
   var scene = new Scene();

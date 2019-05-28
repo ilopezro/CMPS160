@@ -21,6 +21,9 @@ class Renderer {
 
         this.textures = {};
 
+        this.rotationMatrix = new Matrix4()
+        this.rotationMatrix.setRotate(.001,1,1,0)
+
         this.initGLSLBuffers();
 
         // Setting canvas' clear color
@@ -55,6 +58,8 @@ class Renderer {
             this.gl.program = geometry.shader.program
 
             if(this.scene.light != null) {
+              this.scene.light.pos = this.rotationMatrix.multiplyVector3(this.scene.light.pos)
+              document.getElementById("lightPos").innerHTML = this.scene.light.pos.elements
               geometry.shader.setUniform("u_LightPosition", this.scene.light.pos.elements);
               geometry.shader.setUniform("u_AmbientColor", this.scene.light.ambient);
               geometry.shader.setUniform("u_DiffuseColor", this.scene.light.diffuse);
