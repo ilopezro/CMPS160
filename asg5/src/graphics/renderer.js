@@ -59,7 +59,6 @@ class Renderer {
 
             if(this.scene.light != null) {
               this.scene.light.pos = this.rotationMatrix.multiplyVector3(this.scene.light.pos)
-              document.getElementById("lightPos").innerHTML = this.scene.light.pos.elements
               geometry.shader.setUniform("u_LightPosition", this.scene.light.pos.elements);
               geometry.shader.setUniform("u_AmbientColor", this.scene.light.ambient);
               geometry.shader.setUniform("u_DiffuseColor", this.scene.light.diffuse);
