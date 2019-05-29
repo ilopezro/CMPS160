@@ -15,7 +15,6 @@ class InputHandler {
       this.scene  = scene;
       this.camera = camera;
       this.hud = hud
-
       this.isClicked = false; 
 
       _inputHandler = this;
@@ -27,26 +26,39 @@ class InputHandler {
 
       this.ctx = hud.getContext('2d');
 
-      this.ctx.beginPath()
+      this.ctx.beginPath();
       this.ctx.font = "20px Arial";
       this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
       this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
-      this.ctx.closePath()
+      this.ctx.closePath();
 
       //creates the lavendar layer at the top of the hud
-      this.ctx.beginPath()
+      this.ctx.beginPath();
       this.ctx.rect(0, 0, 400, 400);
-      this.ctx.fillStyle = "lavender";
+      this.ctx.fillStyle = 'lavender';
       this.ctx.fill();
-      this.ctx.closePath()
+      this.ctx.closePath();
+
+        //The Maze Game
+        this.ctx.beginPath();
+        this.ctx.font = "20pt Georgina";
+        this.ctx.fillStyle = 'red';
+        this.ctx.strokeStyle = 'black';
+ 
+         this.ctx.font = '20pt Verdana'; 
+         this.ctx.fillText('The Maze Game', 75, 50);
+         this.ctx.strokeText('The Maze Game', 75, 50);
+         this.ctx.fill(); 
+         this.ctx.stroke(); 
+         this.ctx.closePath();
 
       //this is play button
-      this.ctx.beginPath()
-      this.ctx.rect(150, 300, 75, 25);
-      this.ctx.fillText("Play!!", 150, 300)
-      this.ctx.fillStyle = "red";
-      this.ctx.fill();
-      this.ctx.closePath()
+      this.ctx.beginPath();
+      this.ctx.font = "20px Comic Sans MS";
+      this.ctx.fillStyle = 'black';
+      this.ctx.fillText("Play!!", 160, 350);
+      this.ctx.closePath();
+    
 
     this.timer = null
 
@@ -67,7 +79,7 @@ class InputHandler {
         var x = ev.clientX
         var y = ev.clientY
 
-        if(x > 150 && x < 225 && y > 300 && y < 350){
+        if(x > 165 && x < 220 && y > 360 && y < 380){
             this.isClicked = true
             this.ctx.beginPath()
             this.ctx.clearRect(0,0,400,400)
@@ -76,6 +88,7 @@ class InputHandler {
             this.ctx.closePath()
             _inputHandler.startTimer()
         }
+
     }
 
     mouseMove(ev) {
