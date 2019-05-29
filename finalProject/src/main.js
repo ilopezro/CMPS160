@@ -118,7 +118,7 @@ function drawWorld(scene, inputHandler, shader, shader2){
   for(var i = 0; i < map.length; i++){
     for(var j = 0; j < map[i].length; j++){
       if(map[i][j]!=0){
-        var image = document.getElementById('dirt')
+        var image = document.getElementById('ice')
         var shape = new Cube(shader, [-16+i, -1, -16+j], map[i][j], .5, image)
         scene.addGeometry(shape)
       }

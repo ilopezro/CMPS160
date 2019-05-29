@@ -2,7 +2,7 @@
   <head>
       <meta charset="utf-8"/>
       <title> Final Project </title>
-      <img id="dirt" src="objs/dirt.jpg" width="0"height="0"></img>
+      <img id="ice" src="objs/ice.png" width="0"height="0"></img>
   </head>
 
   <body onload = "main()">
@@ -18,7 +18,18 @@
     <canvas id="hud" width="400" height="400" style = "position: absolute; z-index: 1"></canvas>
 
     <!-- Buttons to load and print file content -->
-    <br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <br>
+    <p id="camera"></p>
+    <br>
+    <h2>How To Play</h2>
+    <ol>
+      <li>Press Play Button</li>
+      <li>Use WASD Keys to Move</li>
+      <li>Use Mouse to look up and down</li>
+      <li>Find your way across our maze!</li>
+    </ol> 
 
     <!-- Include external libs -->
     <script src = "lib/webgl-utils.js"></script>
@@ -41,6 +52,7 @@
     <script src = "src/graphics/geometry/shapes/square.js"></script>
      <script src = "src/graphics/geometry/shapes/sphere.js"></script>
     <script src = "src/graphics/renderer.js"></script>
+    <script src = "src/graphics/world.js"></script>
      <script src = "src/graphics/light.js"></script>
     <script src = "src/graphics/scene.js"></script>
     <script src = "src/graphics/camera.js"></script>

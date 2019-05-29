@@ -10,12 +10,13 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, camera, hud) {
+    constructor(canvas, scene, camera, hud, world) {
       this.canvas = canvas;
       this.scene  = scene;
       this.camera = camera;
       this.hud = hud
       this.isClicked = false; 
+      this.world = world
 
       _inputHandler = this;
 
