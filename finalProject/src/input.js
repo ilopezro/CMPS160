@@ -53,6 +53,62 @@ class InputHandler {
          this.ctx.stroke(); 
          this.ctx.closePath();
 
+        //this is Difficulty text
+      this.ctx.beginPath();
+      this.ctx.font = "20px Comic Sans MS";
+      this.ctx.fillStyle = 'Blue';
+      this.ctx.fillText("Difficulty", 50, 150);
+      this.ctx.closePath();
+
+       //this is Difficulty text
+       this.ctx.beginPath();
+       this.ctx.font = "18px Comic Sans MS";
+       this.ctx.fillStyle = 'Blue';
+       this.ctx.fillText("Easy", 75, 175);
+       this.ctx.closePath();
+
+        //this is Difficulty text
+        this.ctx.beginPath();
+        this.ctx.font = "18px Comic Sans MS";
+        this.ctx.fillStyle = 'Blue';
+        this.ctx.fillText("Medium", 63, 200);
+        this.ctx.closePath();
+
+        //this is Difficulty text
+        this.ctx.beginPath();
+        this.ctx.font = "18px Comic Sans MS";
+        this.ctx.fillStyle = 'Blue';
+        this.ctx.fillText("Hard", 75, 225);
+        this.ctx.closePath();
+
+       //this is play button
+      this.ctx.beginPath();
+      this.ctx.font = "20px Comic Sans MS";
+      this.ctx.fillStyle = 'Blue';
+      this.ctx.fillText("World Setting", 215, 150);
+      this.ctx.closePath();
+
+      //this is Difficulty text
+      this.ctx.beginPath();
+      this.ctx.font = "18px Comic Sans MS";
+      this.ctx.fillStyle = 'Blue';
+      this.ctx.fillText("Snow", 250, 175);
+      this.ctx.closePath();
+
+       //this is Difficulty text
+       this.ctx.beginPath();
+       this.ctx.font = "18px Comic Sans MS";
+       this.ctx.fillStyle = 'Blue';
+       this.ctx.fillText("Forest", 250, 200);
+       this.ctx.closePath();
+
+       //this is Difficulty text
+       this.ctx.beginPath();
+       this.ctx.font = "18px Comic Sans MS";
+       this.ctx.fillStyle = 'Blue';
+       this.ctx.fillText("House", 250, 225);
+       this.ctx.closePath();
+
       //this is play button
       this.ctx.beginPath();
       this.ctx.font = "20px Comic Sans MS";
