@@ -27,7 +27,22 @@ class InputHandler {
 
       this.ctx = hud.getContext('2d');
 
-      this.ctx.beginPath();
+      this.createFrontPage()    
+
+    this.timer = null
+
+      // Mouse Events
+      this.hud.onmousedown = function(ev) { this.isMoving = true; _inputHandler.mouseClick(ev)};
+      this.hud.onmouseup = function() {this.isMoving = false; }
+      this.hud.onmousemove = function(ev) {if(this.isMoving) _inputHandler.mouseMove(ev) };
+      this.hud.addEventListener('wheel', function(ev) { _inputHandler.mouseZoom(ev)}, false)
+
+      // Keyboard Events
+      document.addEventListener('keydown', function(ev) { _inputHandler.keyDown(ev); }, false);
+    }
+
+    createFrontPage(){
+        this.ctx.beginPath();
       this.ctx.font = "20px Arial";
       this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
       this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
@@ -115,21 +130,6 @@ class InputHandler {
       this.ctx.fillStyle = 'black';
       this.ctx.fillText("Play!!", 160, 350);
       this.ctx.closePath();
-    
-
-    this.timer = null
-
-      // Mouse Events
-      this.hud.onmousedown = function(ev) { this.isMoving = true; _inputHandler.mouseClick(ev)};
-      this.hud.onmouseup = function() {this.isMoving = false; }
-      this.hud.onmousemove = function(ev) {if(this.isMoving) _inputHandler.mouseMove(ev) };
-      this.hud.addEventListener('wheel', function(ev) { _inputHandler.mouseZoom(ev)}, false)
-
-      // Keyboard Events
-      document.addEventListener('keydown', function(ev) { 
-            _inputHandler.keyDown(ev); 
-        }, 
-        false);
     }
 
     mouseClick(ev){
