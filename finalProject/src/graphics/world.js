@@ -16,6 +16,9 @@ class World {
    this.inputHandler = inputHandler
    this.texShader = texShader
    this.colorShader = colorShader
+   this.worldSetting = null; 
+   this.cubes = null; 
+   this.ground = null; 
   }
 
   drawWorld(){
@@ -57,7 +60,7 @@ class World {
     for(var i = 0; i < map.length; i++){
       for(var j = 0; j < map[i].length; j++){
         if(map[i][j]!=0){
-          var image = document.getElementById('ice')
+          var image = document.getElementById(this.cubes)
           var shape = new Cube(this.texShader, [-16+i, -1, -16+j], map[i][j], .5, image)
           this.scene.addGeometry(shape)
         }
@@ -65,21 +68,32 @@ class World {
     }
   
     //create square and add it 
-    this.inputHandler.readTexture("../objs/snow.jpg", function(image) {
-      var square = new Square(this.texShader, image)
-      this.scene.addGeometry(square)
-    })
+    var image = document.getElementById(this.ground)
+    var square = new Square(this.texShader, image)
+    this.scene.addGeometry(square)
   
-    //creates the sky
-    this.inputHandler.readTexture("../objs/sky.jpg", function(image) {
-      var shape = new Sky(this.texShader, image)
-      this.scene.addGeometry(shape)
-    })
+    var image = document.getElementById('sky')
+    var shape = new Sky(this.texShader, image)
+    this.scene.addGeometry(shape)
   
     var shape = new Sphere(this.colorShader, 13, [16,1,16]);
     this.scene.addGeometry(shape);
   
     var shape = new Sphere(this.colorShader, 13, [-16,-1,-16]);
     this.scene.addGeometry(shape)
+  }
+
+  setSetting(setting){
+    this.worldSetting = setting
+    if(this.worldSetting == "Snow"){
+      this.cubes = 'ice'
+      this.ground = 'snow'
+   }else if(this.worldSetting == "Forest"){
+      this.cubes = "treewood"
+      this.ground = 'grass'
+   }else if(this.worldSetting == "Desert"){
+     this.cubes = "cactus"
+     this.ground = "sand"
+   }
   }
 }

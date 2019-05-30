@@ -20,8 +20,6 @@ function main() {
   var camera = new Camera();
   scene.setLight(light);
 
-  var inputHandler = new InputHandler(canvas, scene, camera, hud);
-
   // Initialize shader
   shader = new Shader(gl, ASG4_VSHADER, ASG4_FSHADER);
 
@@ -72,7 +70,10 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
  shader2.addUniform("Ks", "float", 1.0)
  shader2.addUniform("shininessVal", "float", 80.0)
 
-drawWorld(scene, inputHandler, shader, shader2)
+var world = new World(scene, inputHandler, shader, shader2)
+var inputHandler = new InputHandler(canvas, scene, camera, hud, world);
+
+// drawWorld(scene, inputHandler, shader, shader2)
 
 // Initialize renderer with scene and camera
 renderer = new Renderer(gl, scene, camera);

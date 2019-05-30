@@ -17,6 +17,10 @@ class InputHandler {
       this.hud = hud
       this.isClicked = false; 
       this.world = world
+      console.log(world)
+
+      this.difficulty = "easy"
+      this.worldSetting = "Snow"
 
       _inputHandler = this;
 
@@ -121,7 +125,7 @@ class InputHandler {
        this.ctx.beginPath();
        this.ctx.font = "18px Comic Sans MS";
        this.ctx.fillStyle = 'Blue';
-       this.ctx.fillText("House", 250, 225);
+       this.ctx.fillText("Desert", 250, 225);
        this.ctx.closePath();
 
       //this is play button
@@ -135,17 +139,44 @@ class InputHandler {
     mouseClick(ev){
         var x = ev.clientX
         var y = ev.clientY
-
-        if(x > 165 && x < 220 && y > 360 && y < 380){
-            this.isClicked = true
-            this.ctx.beginPath()
-            this.ctx.clearRect(0,0,400,400)
-            this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
-            this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
-            this.ctx.closePath()
-            _inputHandler.startTimer()
+        console.log(x + " " + y)
+        if(!this.isClicked){
+            if(x>260 && x <300 && y > 195 && y < 205){
+                this.worldSetting = "Snow"
+                document.getElementById('setting').innerHTML = "World: " + this.worldSetting
+            }
+            if(x>260 && x < 315 && y > 215 && y < 230){
+                this.worldSetting = "Forest"
+                document.getElementById('setting').innerHTML = "World: " + this.worldSetting
+            }
+            if(x>260 && x < 315 && y > 240 && y < 255){
+                this.worldSetting = "Desert"
+                document.getElementById('setting').innerHTML = "World: " + this.worldSetting
+            }
+            if(x>85 && x < 120 && y > 185 && y < 205){
+                this.difficulty = "Easy"
+                document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
+            }
+            if(x>70 && x < 140 && y > 210 && y < 230){
+                this.difficulty = "Medium"
+                document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
+            }
+            if(x>80 && x < 130 && y > 240 && y < 255){
+                this.difficulty = "Hard"
+                document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
+            }
+            if(x > 165 && x < 220 && y > 360 && y < 380){
+                this.isClicked = true
+                this.ctx.beginPath()
+                this.ctx.clearRect(0,0,400,400)
+                this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
+                this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
+                this.ctx.closePath()
+                this.world.setSetting(this.worldSetting)
+                this.world.drawWorld()
+                _inputHandler.startTimer()
+            }
         }
-
     }
 
     mouseMove(ev) {
