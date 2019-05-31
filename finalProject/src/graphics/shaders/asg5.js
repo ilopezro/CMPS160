@@ -15,12 +15,15 @@ var ASG5_VSHADER =
   uniform mat4 u_ViewMatrix;
   uniform mat4 u_ProjectionMatrix;
   uniform vec4 u_Eye; 
+
+  varying float v_Dist; 
   
 
   void main() {
     v_Color = a_Color;
     v_Position = vec3(u_ModelMatrix * a_Position);
     v_Normal = normalize(vec3(u_NormalMatrix * a_Normal));
+    v_Dist = distance(u_ModelMatrix * a_Position, u_Eye);
     gl_Position = u_ModelMatrix * u_ProjectionMatrix * u_ViewMatrix * a_Position;
   }`;
 
