@@ -1,8 +1,8 @@
 # CMPS160
 Introduction to Computer Graphics <br/> Professor James David
 
-1. Item 1
-1. Item 2
-1. Item 3
-   1. Item 3a
-   1. Item 3b
+1. Assignment #1
+1. Assignment #2
+1. Assignment #3
+1. Assignment #4
+1. Assignment #5
