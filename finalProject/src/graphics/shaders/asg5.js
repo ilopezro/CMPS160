@@ -37,6 +37,7 @@ var ASG5_FSHADER =
   uniform float shininessVal; // Shininess
 
   varying vec4 v_Color; 
+  varying float v_Dist; 
   varying vec3 v_Normal; //surface normal
   varying vec3 v_Position; //vertex position 
 
@@ -44,6 +45,9 @@ var ASG5_FSHADER =
   uniform vec3 u_AmbientColor;
   uniform vec3 u_LightPosition;
   uniform vec3 u_SpecularColor;
+
+  uniform vec3 u_FogColor;
+  uniform vec2 u_FogDist;
 
   void main() {
     vec3 N = normalize(v_Normal);
