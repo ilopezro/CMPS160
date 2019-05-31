@@ -14,7 +14,7 @@ function main() {
   hud = document.getElementById("hud")
 
   var light = new Light(60,1,60);
-  var fog = new Fog(0.5, 0.5, 0.5, 1, 5)
+  var fog = new Fog(0.5, 0.5, 0.5, 1, 50)
 
   // Initialize the scene
   var scene = new Scene();
