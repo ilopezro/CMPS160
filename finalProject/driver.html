@@ -12,9 +12,9 @@
   </head>
 
   <body onload = "main()">
-    <a href="../index.html">Home</a>
+    <a href="../../index.html">Home</a>
     <a href="driver.html">Game</a>
-    <a href="./documentation.html">Documentation</a>
+    <a href="documentation.html">Documentation</a>
     <br>   
     <canvas id="webgl" width="400" height="400" style = "position: absolute; z-index: 0">
       Please use a browser that supports "canvas"
@@ -23,7 +23,9 @@
     <canvas id="hud" width="400" height="400" style = "position: absolute; z-index: 1"></canvas>
 
     <!-- Buttons to load and print file content -->
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <button onclick="location.reload()">Restart Game</button>
 
     <p id="difficulty">Difficulty: Easy</p>
     <p id="setting">World: Snow</p>
@@ -56,10 +58,11 @@
     <script src = "src/graphics/geometry/shapes/sky.js"></script>
     <script src = "src/graphics/geometry/shapes/cube.js"></script>
     <script src = "src/graphics/geometry/shapes/square.js"></script>
-     <script src = "src/graphics/geometry/shapes/sphere.js"></script>
-    <script src = "src/graphics/renderer.js"></script>
+    <script src = "src/graphics/geometry/shapes/sphere.js"></script>
     <script src = "src/graphics/world.js"></script>
-     <script src = "src/graphics/light.js"></script>
+    <script src = "src/graphics/renderer.js"></script>
+    <script src = "src/graphics/fog.js"></script>
+    <script src = "src/graphics/light.js"></script>
     <script src = "src/graphics/scene.js"></script>
     <script src = "src/graphics/camera.js"></script>
     <script src = "src/main.js"></script>
