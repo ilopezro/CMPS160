@@ -14,11 +14,13 @@ function main() {
   hud = document.getElementById("hud")
 
   var light = new Light(60,1,60);
+  var fog = new Fog(0.5, 0.5, 0.5, 60, 80)
 
   // Initialize the scene
   var scene = new Scene();
   var camera = new Camera();
   scene.setLight(light);
+  scene.addFog(fog)
 
   // Initialize shader
   shader = new Shader(gl, ASG4_VSHADER, ASG4_FSHADER);
@@ -64,6 +66,7 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
  shader2.addUniform("u_AmbientColor", "vec3", new Vector3().elements);
  shader2.addUniform("u_DiffuseColor", "vec3", new Vector3().elements);
  shader2.addUniform("u_SpecularColor", "vec3", new Vector3().elements);
+ shader2.addUniform("u_Eye", "vec4", new Vector4().elements)
 
  shader2.addUniform("Ka", "float", 1.0)
  shader2.addUniform("Kd", "float", 1.0)

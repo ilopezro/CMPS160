@@ -14,6 +14,7 @@ var ASG5_VSHADER =
   uniform mat4 u_NormalMatrix;
   uniform mat4 u_ViewMatrix;
   uniform mat4 u_ProjectionMatrix;
+  uniform vec4 u_Eye; 
   
 
   void main() {

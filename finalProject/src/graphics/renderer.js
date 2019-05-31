@@ -27,7 +27,7 @@ class Renderer {
         this.initGLSLBuffers();
 
         // Setting canvas' clear color
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(0.5, 0.5, 0.5, 1.0);
 
         // Use the z-buffer when drawing
         this.gl.enable(gl.DEPTH_TEST);
@@ -63,6 +63,9 @@ class Renderer {
               geometry.shader.setUniform("u_AmbientColor", this.scene.light.ambient);
               geometry.shader.setUniform("u_DiffuseColor", this.scene.light.diffuse);
               geometry.shader.setUniform("u_SpecularColor", this.scene.light.specular);
+          }
+          if(this.scene.fog != null){
+            geometry.shader.setUniform("u_Eye", this.camera.eyeForFog.elements)
           }
 
             geometry.shader.setUniform("u_ViewMatrix", this.camera.viewMatrix.elements);
