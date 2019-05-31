@@ -17,7 +17,6 @@ class InputHandler {
       this.hud = hud
       this.isClicked = false; 
       this.world = world
-      console.log(world)
 
       this.difficulty = "easy"
       this.worldSetting = "Snow"
