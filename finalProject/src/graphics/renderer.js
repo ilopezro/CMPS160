@@ -66,7 +66,7 @@ class Renderer {
           }
           if(this.scene.fog != null){
             geometry.shader.setUniform("u_Eye", this.camera.eyeForFog.elements)
-            geometry.shader.setUniform("u_FogColor", this.scene.fog.color)
+            geometry.shader.setUniform("u_FogColor", this.scene.fog.color.elements)
             geometry.shader.setUniform("u_FogDist", this.scene.fog.distance)
           }
 
