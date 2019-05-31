@@ -213,8 +213,5 @@ class Camera {
             this.eyeForFog.elements[i] = this.eye.elements[i]
           }
           this.eyeForFog[3] = 1.0
-        document.getElementById('eye').innerHTML = this.eye.elements
-        document.getElementById('fogEye').innerHTML = this.eyeForFog.elements
-
     }
 }

@@ -27,7 +27,7 @@ class Renderer {
         this.initGLSLBuffers();
 
         // Setting canvas' clear color
-        this.gl.clearColor(0.5, 0.5, 0.5, 1.0);
+        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
         // Use the z-buffer when drawing
         this.gl.enable(gl.DEPTH_TEST);
