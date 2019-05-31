@@ -14,7 +14,7 @@ function main() {
   hud = document.getElementById("hud")
 
   var light = new Light(60,1,60);
-  var fog = new Fog(0.5, 0.5, 0.5, 60, 80)
+  var fog = new Fog(0.5, 0.5, 0.5, 2, 5)
 
   // Initialize the scene
   var scene = new Scene();
@@ -46,6 +46,10 @@ function main() {
   shader.addUniform("Ks", "float", 1.0)
   shader.addUniform("shininessVal", "float", 80.0)
 
+  shader.addUniform("u_Eye", "vec4", new Vector4().elements)
+  shader.addUniform("u_FogColor", "vec3", new Vector3().elements)
+  shader.addUniform("u_FogDist", "vec2", [1,1])
+
 //sets the view
 camera.setDistance()
 
@@ -69,7 +73,7 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
  shader2.addUniform("u_Eye", "vec4", new Vector4().elements)
 
  shader2.addUniform("u_FogColor", "vec3", new Vector3().elements)
- shader2.addUniform("u_FogDist", "vec3", [1,1])
+ shader2.addUniform("u_FogDist", "vec2", [1,1])
 
  shader2.addUniform("Ka", "float", 1.0)
  shader2.addUniform("Kd", "float", 1.0)

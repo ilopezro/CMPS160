@@ -65,5 +65,8 @@ var ASG5_FSHADER =
       specular = pow(specAngle, shininessVal);
     }
 
-    gl_FragColor = vec4((Ka * u_AmbientColor * v_Color.rgb) + (Kd * lambertian * u_DiffuseColor * v_Color.rgb) + (Ks * specular * u_SpecularColor * v_Color.rgb), 1.0);
+    float fogFactor = clamp((u_FogDist.y - v_Dist) / (u_FogDist.y - u_FogDist.x), 0.0, 1.0);
+    vec3 color = mix(u_FogColor, vec3((Ka * u_AmbientColor * v_Color.rgb) + (Kd * lambertian * u_DiffuseColor * v_Color.rgb) + (Ks * specular * u_SpecularColor * v_Color.rgb)), fogFactor);
+
+    gl_FragColor = vec4(color, 1.0);
   }`;

@@ -14,11 +14,15 @@ var ASG4_VSHADER =
   uniform mat4 u_ProjectionMatrix;
   uniform mat4 u_ModelMatrix;
   uniform mat4 u_NormalMatrix;
+  uniform vec4 u_Eye; 
+
+  varying float v_Dist; 
 
   void main() {
     v_TexCoord = a_TexCoord;
     v_Position = vec3(u_ModelMatrix * a_Position);
     v_Normal = normalize(vec3(u_NormalMatrix * a_Normal));
+    v_Dist = distance(u_ModelMatrix * a_Position, u_Eye);
     gl_Position = u_ProjectionMatrix * u_ViewMatrix * a_Position;
   }`;
 
@@ -34,12 +38,16 @@ var ASG4_FSHADER =
   uniform float shininessVal; // Shininess
 
   varying vec3 v_Normal; //surface normal
+  varying float v_Dist; 
   varying vec3 v_Position; //vertex position 
 
   uniform vec3 u_DiffuseColor;
   uniform vec3 u_AmbientColor;
   uniform vec3 u_LightPosition;
   uniform vec3 u_SpecularColor;
+
+  uniform vec3 u_FogColor;
+  uniform vec2 u_FogDist;
 
   uniform sampler2D u_Sampler;
 
@@ -60,5 +68,8 @@ var ASG4_FSHADER =
       specular = pow(specAngle, shininessVal);
     }
 
-    gl_FragColor = vec4((Ka * u_AmbientColor * v_Color.rgb) + (Kd * lambertian * u_DiffuseColor * v_Color.rgb) + (Ks * specular * u_SpecularColor * v_Color.rgb), 1.0);
+    float fogFactor = clamp((u_FogDist.y - v_Dist) / (u_FogDist.y - u_FogDist.x), 0.0, 1.0);
+    vec3 color = mix(u_FogColor, vec3((Ka * u_AmbientColor * v_Color.rgb) + (Kd * lambertian * u_DiffuseColor * v_Color.rgb) + (Ks * specular * u_SpecularColor * v_Color.rgb)), fogFactor);
+
+    gl_FragColor = vec4(color, 1.0);
   }`;
