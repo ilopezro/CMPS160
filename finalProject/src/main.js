@@ -83,8 +83,6 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
 var world = new World(scene, inputHandler, shader, shader2)
 var inputHandler = new InputHandler(canvas, scene, camera, hud, world);
 
-// drawWorld(scene, inputHandler, shader, shader2)
-
 // Initialize renderer with scene and camera
 renderer = new Renderer(gl, scene, camera);
 renderer.start();

@@ -143,60 +143,12 @@ class Camera {
         this.updateView()
     }
 
-    setZoom(dir){
-        const change = .01; 
-
-        if(this.isOrtho){
-            if(Math.abs(this.left) > .5 && Math.abs(this.top) < 1.5 ){
-                if(dir == -1){
-                    this.left += change
-                    this.right -= change
-                    this.bottom += change
-                    this.top -= change
-                }else if(dir == 1){
-                    this.left -= change
-                    this.right += change
-                    this.bottom -= change
-                    this.top += change
-                }
-            }else if(Math.abs(this.left) < .5){
-                if(dir == 1){
-                    this.left -= change
-                    this.right += change
-                    this.bottom -= change
-                    this.top += change
-                }
-            }else if(Math.abs(this.top) > 1.5){
-                if(dir == -1){
-                    this.left += change
-                    this.right -= change
-                    this.bottom += change
-                    this.top -= change
-                }
-            }
-            this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, .1, 100)
-        }else if(!this.isOrtho){
-            if(this.pers > 5 && this.pers < 120){
-                this.pers += dir
-            }else if(this.pers == 5){
-                if(dir == 1){
-                    this.pers += dir
-                }
-            }else if(this.pers == 120){
-                if(dir == -1){
-                    this.pers += dir
-                }
-            }
-            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, .1, 100)
-        }
-    }
-
     setDistance() {
         var canvas = document.getElementById("webgl");
         this.counter++
         
         if(this.counter %2 == 1){
-            this.projectionMatrix.setPerspective(this.pers, canvas.width/canvas.height, .1, 100)
+            this.projectionMatrix.setPerspective(125, canvas.width/canvas.height, .1, 100)
             this.isOrtho = false; 
         }else{
             this.projectionMatrix.setOrtho(this.left, this.right, this.bottom, this.top, .1, 100)

@@ -38,8 +38,7 @@ class InputHandler {
       this.hud.onmousedown = function(ev) { this.isMoving = true; _inputHandler.mouseClick(ev)};
       this.hud.onmouseup = function() {this.isMoving = false; }
       this.hud.onmousemove = function(ev) {if(this.isMoving) _inputHandler.mouseMove(ev) };
-      this.hud.addEventListener('wheel', function(ev) { _inputHandler.mouseZoom(ev)}, false)
-
+      
       // Keyboard Events
       document.addEventListener('keydown', function(ev) { _inputHandler.keyDown(ev); }, false);
     }
@@ -192,15 +191,6 @@ class InputHandler {
             this.camera.pan(1)
         }else if(movementX < 0){
             this.camera.pan(-1)
-        }
-    }
-
-    mouseZoom(ev){ 
-        var moveY = ev.deltaY;
-        if(moveY > 0){
-            this.camera.setZoom(1)
-        }else if(moveY < 0){
-            this.camera.setZoom(-1)
         }
     }
 
