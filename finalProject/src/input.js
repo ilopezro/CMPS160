@@ -138,7 +138,7 @@ class InputHandler {
     mouseClick(ev){
         var x = ev.clientX
         var y = ev.clientY
-        console.log(x + " " + y)
+
         if(!this.isClicked){
             if(x>260 && x <300 && y > 195 && y < 205){
                 this.worldSetting = "Snow"
