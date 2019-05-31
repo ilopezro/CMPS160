@@ -22,7 +22,7 @@ class Renderer {
         this.textures = {};
 
         this.rotationMatrix = new Matrix4()
-        this.rotationMatrix.setRotate(.001,1,1,0)
+        this.rotationMatrix.setRotate(.0001,1,1,0)
 
         this.initGLSLBuffers();
 
