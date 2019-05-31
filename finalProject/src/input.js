@@ -10,13 +10,14 @@ class InputHandler {
     /**
      * Initializes the event handeling functions within the program.
      */
-    constructor(canvas, scene, camera, hud, world) {
+    constructor(canvas, scene, camera, hud, world, fog) {
       this.canvas = canvas;
       this.scene  = scene;
       this.camera = camera;
       this.hud = hud
       this.isClicked = false; 
       this.world = world
+      this.fog = fog
 
       this.difficulty = "easy"
       this.worldSetting = "Snow"
@@ -154,14 +155,17 @@ class InputHandler {
             if(x>85 && x < 120 && y > 185 && y < 205){
                 this.difficulty = "Easy"
                 document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
+                this.scene.fog.distance = [1,50]
             }
             if(x>70 && x < 140 && y > 210 && y < 230){
                 this.difficulty = "Medium"
                 document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
+                this.scene.fog.distance = [1,15]
             }
             if(x>80 && x < 130 && y > 240 && y < 255){
                 this.difficulty = "Hard"
                 document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
+                this.scene.fog.distance = [1,5]
             }
             if(x > 165 && x < 220 && y > 360 && y < 380){
                 this.isClicked = true

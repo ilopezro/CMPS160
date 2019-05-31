@@ -14,7 +14,7 @@ function main() {
   hud = document.getElementById("hud")
 
   var light = new Light(60,1,60);
-  var fog = new Fog(0.5, 0.5, 0.5, 2, 5)
+  var fog = new Fog(0.5, 0.5, 0.5, 1, 5)
 
   // Initialize the scene
   var scene = new Scene();
@@ -81,7 +81,7 @@ shader2 = new Shader(gl, ASG5_VSHADER, ASG5_FSHADER);
  shader2.addUniform("shininessVal", "float", 80.0)
 
 var world = new World(scene, inputHandler, shader, shader2)
-var inputHandler = new InputHandler(canvas, scene, camera, hud, world);
+var inputHandler = new InputHandler(canvas, scene, camera, hud, world, fog);
 
 // Initialize renderer with scene and camera
 renderer = new Renderer(gl, scene, camera);
