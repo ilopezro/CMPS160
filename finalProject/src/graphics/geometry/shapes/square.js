@@ -35,11 +35,11 @@ class Square extends Geometry {
         var vertex6 = new Vertex(16, -1.5, 16)
 
         vertex1.texCoord = [0.0, 0.0]
-        vertex2.texCoord = [1.0, 0.0]
-        vertex3.texCoord = [1.0, 1.0]
+        vertex2.texCoord = [16.0, 0.0]
+        vertex3.texCoord = [16.0, 16.0]
         vertex4.texCoord = [0.0, 0.0]
-        vertex5.texCoord = [0.0, 1.0]
-        vertex6.texCoord = [1.0, 1.0] 
+        vertex5.texCoord = [0.0, 16.0]
+        vertex6.texCoord = [16.0, 16.0] 
   
         vertices.push(vertex1);
         vertices.push(vertex2);
