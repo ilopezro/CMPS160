@@ -113,19 +113,26 @@ class InputHandler {
       this.ctx.fillText("Snow", 250, 175);
       this.ctx.closePath();
 
-       //this is Difficulty text
+       //this is setting text
        this.ctx.beginPath();
        this.ctx.font = "18px Comic Sans MS";
        this.ctx.fillStyle = 'Blue';
        this.ctx.fillText("Forest", 250, 200);
        this.ctx.closePath();
 
-       //this is Difficulty text
+       //this is setting text
        this.ctx.beginPath();
        this.ctx.font = "18px Comic Sans MS";
        this.ctx.fillStyle = 'Blue';
        this.ctx.fillText("Desert", 250, 225);
        this.ctx.closePath();
+
+        //this is setting text
+        this.ctx.beginPath();
+        this.ctx.font = "18px Comic Sans MS";
+        this.ctx.fillStyle = 'Blue';
+        this.ctx.fillText("Custom", 250, 250);
+        this.ctx.closePath();
 
       //this is play button
       this.ctx.beginPath();
@@ -138,6 +145,10 @@ class InputHandler {
     mouseClick(ev){
         var x = ev.clientX
         var y = ev.clientY
+        var rect = ev.target.getBoundingClientRect();
+        // console.log(rect.left + " <= " + x + " <= " + rect.right)
+        // rect.top <= y && y < rect.bottom
+        // console.log(rect.top + " <= " + y + " < " + rect.bottom)
 
         if(!this.isClicked){
             if(x>260 && x <300 && y > 195 && y < 205){
@@ -150,6 +161,10 @@ class InputHandler {
             }
             if(x>260 && x < 315 && y > 240 && y < 255){
                 this.worldSetting = "Desert"
+                document.getElementById('setting').innerHTML = "World: " + this.worldSetting
+            }
+            if(x>260 && x < 320 && y > 260 && y < 280){
+                this.worldSetting = "Custom"
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
             if(x>85 && x < 120 && y > 185 && y < 205){
@@ -178,23 +193,35 @@ class InputHandler {
                 this.world.drawWorld()
                 _inputHandler.startTimer()
             }
+        }else if(this.isClicked){
+            if(ev.button == '2' && rect.left <= x && x < rect.right && rect.top <= y && y < rect.bottom) {
+                x = this.camera.eye.elements[0];
+                y = this.camera.eye.elements[1]
+                var z = this.camera.eye.elements[2] 
+                console.log(z)
+                var shape = new Sphere(this.scene.colorShader, 13, [x,1, z])
+                this.scene.addGeometry(shape)
+                console.log(shape)
+                console.log('drawing shape')
+            }
         }
     }
 
     mouseMove(ev) {
         var movementX = ev.movementX;
         var movementY = ev.movementY;
-        
-        if(movementY > 0){
-            this.camera.tilt(1)
-        }else if(movementY < 0){
-            this.camera.tilt(-1)
-        }
-
-        if(movementX > 0 ){
-            this.camera.pan(1)
-        }else if(movementX < 0){
-            this.camera.pan(-1)
+        if(ev.button == '0' || ev.button == '1'){
+            if(movementY > 0){
+                this.camera.tilt(1)
+            }else if(movementY < 0){
+                this.camera.tilt(-1)
+            }
+    
+            if(movementX > 0 ){
+                this.camera.pan(1)
+            }else if(movementX < 0){
+                this.camera.pan(-1)
+            }
         }
     }
 
