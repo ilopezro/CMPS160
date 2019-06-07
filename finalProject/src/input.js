@@ -44,11 +44,30 @@ class InputHandler {
       // Keyboard Events
       document.addEventListener('keydown', function(ev) { _inputHandler.keyDown(ev); }, false);
 
-      //RGB 
+      //grab table reference
+      this.RGBTable = document.getElementById('RGBTable')
+      
+      //RGB Sliders
+      this.c_r_Slider = document.getElementById("cubeRed")
+      this.c_g_Slider = document.getElementById("cubeGreen")
+      this.c_b_Slider = document.getElementById("cubeBlue")
+
+      this.f_r_Slider = document.getElementById("floorRed")
+      this.f_g_Slider = document.getElementById("floorGreen")
+      this.f_b_Slider = document.getElementById("floorBlue")
+
+      //add event listeners to onchange for these sliders
+      this.c_r_Slider.oninput = function(){ _inputHandler.updateCRSlider()}
+      this.c_g_Slider.oninput = function(){ _inputHandler.updateCGSlider()}
+      this.c_b_Slider.oninput = function(){ _inputHandler.updateCBSlider()}
+
+      this.f_r_Slider.oninput = function(){ _inputHandler.updateFRSlider()}
+      this.f_g_Slider.oninput = function(){ _inputHandler.updateFGSlider()}
+      this.f_b_Slider.oninput = function(){ _inputHandler.updateFBSlider()}
     }
 
     createFrontPage(){
-        this.ctx.beginPath();
+      this.ctx.beginPath();
       this.ctx.font = "20px Arial";
       this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
       this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
@@ -158,21 +177,25 @@ class InputHandler {
             if(x>270 && x <315 && y > 200 && y < 215){
                 this.worldSetting = "Snow"
                 this.customWorld = false; 
+                this.updateTable();
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
             if(x>270 && x < 325 && y > 225 && y < 240){
                 this.worldSetting = "Forest"
                 this.customWorld = false; 
+                this.updateTable()
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
             if(x>270 && x < 330 && y > 250 && y < 265){
                 this.worldSetting = "Desert"
-                this.customWorld = false; 
+                this.customWorld = false;
+                this.updateTable()
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
             if(x>270 && x < 330 && y > 275 && y < 290){
                 this.worldSetting = "Custom"
                 this.customWorld = true; 
+                this.updateTable()
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
             if(x>90 && x < 130 && y > 195 && y < 215){
@@ -201,7 +224,6 @@ class InputHandler {
                 this.world.drawWorld()
                 _inputHandler.startTimer()
             }
-            console.log("isCustom: " + this.customWorld)
         }
     }
 
@@ -272,5 +294,58 @@ class InputHandler {
 
       startTimer(){
         this.timer = setInterval(function(){_inputHandler.time--; _inputHandler.updateStep(); }, 1000);
+      }
+
+      updateTable(){
+          if(this.customWorld){
+              this.updateCRSlider()
+              this.updateCGSlider()
+              this.updateCBSlider()
+              this.updateFRSlider()
+              this.updateFGSlider()
+              this.updateFBSlider()
+          }else if(!this.customWorld){
+            for(var i = 1; i < 3; i++){
+                for(var j = 1; j < 4; j++){
+                    this.RGBTable.rows[i].cells[j].innerHTML = "N/A"
+                }
+              }
+          }
+      }
+
+      updateCRSlider(){
+          if(this.customWorld){
+            this.RGBTable.rows[1].cells[1].innerHTML = this.c_r_Slider.value
+          }
+      }
+      
+      updateCGSlider(){
+        if(this.customWorld){
+            this.RGBTable.rows[1].cells[2].innerHTML = this.c_g_Slider.value
+          }
+      }
+
+      updateCBSlider(){
+          if(this.customWorld){
+            this.RGBTable.rows[1].cells[3].innerHTML = this.c_b_Slider.value
+          }
+      }
+
+      updateFRSlider(){
+        if(this.customWorld){
+            this.RGBTable.rows[2].cells[1].innerHTML = this.f_r_Slider.value
+          }
+      }
+
+      updateFGSlider(){
+        if(this.customWorld){
+            this.RGBTable.rows[2].cells[2].innerHTML = this.f_g_Slider.value
+          }
+      }
+
+      updateFBSlider(){
+          if(this.customWorld){
+            this.RGBTable.rows[2].cells[3].innerHTML = this.f_b_Slider.value
+          }
       }
 }
