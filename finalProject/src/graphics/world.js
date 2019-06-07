@@ -75,6 +75,9 @@ class World {
     var image = document.getElementById('sky')
     var shape = new Sky(this.texShader, image)
     this.scene.addGeometry(shape)
+
+    var shape = new Sphere(this.colorShader, 13, [16,1,16])
+    this.scene.addGeometry(shape)
   }
 
   setSetting(setting){
