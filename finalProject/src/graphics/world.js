@@ -19,6 +19,12 @@ class World {
    this.worldSetting = null; 
    this.cubes = null; 
    this.ground = null; 
+   this.rCube = null; 
+   this.gCube = null; 
+   this.bCube = null; 
+   this.rFloor = null; 
+   this.gFloor = null; 
+   this.bFloor = null; 
   }
 
   drawWorld(){
@@ -92,5 +98,14 @@ class World {
      this.cubes = "cactus"
      this.ground = "sand"
    }
+  }
+
+  setColors(cr, cg, cb, fr, fg, fb){
+    this.rCube = cr; 
+    this.gCube = cg; 
+    this.bCube = cb; 
+    this.rFloor = fr; 
+    this.gFloor = fg; 
+    this.bFloor = fb; 
   }
 }

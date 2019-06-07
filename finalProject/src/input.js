@@ -64,6 +64,15 @@ class InputHandler {
       this.f_r_Slider.oninput = function(){ _inputHandler.updateFRSlider()}
       this.f_g_Slider.oninput = function(){ _inputHandler.updateFGSlider()}
       this.f_b_Slider.oninput = function(){ _inputHandler.updateFBSlider()}
+
+      //color values for sliders
+      this.cr = null
+      this.cg = null
+      this.cb = null
+      
+      this.fr = null
+      this.fg = null
+      this.fb = null
     }
 
     createFrontPage(){
@@ -220,7 +229,12 @@ class InputHandler {
                 this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
                 this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
                 this.ctx.closePath()
-                this.world.setSetting(this.worldSetting)
+                if(!this.customWorld){
+                    this.world.setSetting(this.worldSetting)
+                }else{
+                    this.world.setColors(this.cr, this.cg, this.cb,
+                                         this.fr, this.fg, this.fb)
+                }
                 this.world.drawWorld()
                 _inputHandler.startTimer()
             }
@@ -316,36 +330,42 @@ class InputHandler {
       updateCRSlider(){
           if(this.customWorld){
             this.RGBTable.rows[1].cells[1].innerHTML = this.c_r_Slider.value
+            this.cr = this.c_r_Slider.value
           }
       }
       
       updateCGSlider(){
         if(this.customWorld){
             this.RGBTable.rows[1].cells[2].innerHTML = this.c_g_Slider.value
+            this.cg = this.c_g_Slider.value
           }
       }
 
       updateCBSlider(){
           if(this.customWorld){
             this.RGBTable.rows[1].cells[3].innerHTML = this.c_b_Slider.value
+            this.cb = this.c_b_Slider.value
           }
       }
 
       updateFRSlider(){
         if(this.customWorld){
             this.RGBTable.rows[2].cells[1].innerHTML = this.f_r_Slider.value
+            this.fr = this.f_r_Slider.value
           }
       }
 
       updateFGSlider(){
         if(this.customWorld){
             this.RGBTable.rows[2].cells[2].innerHTML = this.f_g_Slider.value
+            this.fg = this.f_g_Slider.value
           }
       }
 
       updateFBSlider(){
           if(this.customWorld){
             this.RGBTable.rows[2].cells[3].innerHTML = this.f_b_Slider.value
+            this.fb = this.f_b_Slider.value
           }
       }
 }
