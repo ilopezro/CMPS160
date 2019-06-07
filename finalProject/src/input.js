@@ -18,6 +18,7 @@ class InputHandler {
       this.isClicked = false; 
       this.world = world
       this.fog = fog
+      this.customWorld = false; 
 
       this.difficulty = "easy"
       this.worldSetting = "Snow"
@@ -42,6 +43,8 @@ class InputHandler {
       
       // Keyboard Events
       document.addEventListener('keydown', function(ev) { _inputHandler.keyDown(ev); }, false);
+
+      //RGB 
     }
 
     createFrontPage(){
@@ -146,43 +149,48 @@ class InputHandler {
         var x = ev.clientX
         var y = ev.clientY
         var rect = ev.target.getBoundingClientRect();
+        console.log(x + " " + y)
         // console.log(rect.left + " <= " + x + " <= " + rect.right)
         // rect.top <= y && y < rect.bottom
         // console.log(rect.top + " <= " + y + " < " + rect.bottom)
 
         if(!this.isClicked){
-            if(x>260 && x <300 && y > 195 && y < 205){
+            if(x>270 && x <315 && y > 200 && y < 215){
                 this.worldSetting = "Snow"
+                this.customWorld = false; 
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
-            if(x>260 && x < 315 && y > 215 && y < 230){
+            if(x>270 && x < 325 && y > 225 && y < 240){
                 this.worldSetting = "Forest"
+                this.customWorld = false; 
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
-            if(x>260 && x < 315 && y > 240 && y < 255){
+            if(x>270 && x < 330 && y > 250 && y < 265){
                 this.worldSetting = "Desert"
+                this.customWorld = false; 
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
-            if(x>260 && x < 320 && y > 260 && y < 280){
+            if(x>270 && x < 330 && y > 275 && y < 290){
                 this.worldSetting = "Custom"
+                this.customWorld = true; 
                 document.getElementById('setting').innerHTML = "World: " + this.worldSetting
             }
-            if(x>85 && x < 120 && y > 185 && y < 205){
+            if(x>90 && x < 130 && y > 195 && y < 215){
                 this.difficulty = "Easy"
                 document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
                 this.scene.fog.distance = [1,50]
             }
-            if(x>70 && x < 140 && y > 210 && y < 230){
+            if(x>80 && x < 150 && y > 220 && y < 235){
                 this.difficulty = "Medium"
                 document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
                 this.scene.fog.distance = [1,15]
             }
-            if(x>80 && x < 130 && y > 240 && y < 255){
+            if(x>95 && x < 140 && y > 250 && y < 265){
                 this.difficulty = "Hard"
                 document.getElementById('difficulty').innerHTML = "Difficulty: " + this.difficulty
                 this.scene.fog.distance = [1,5]
             }
-            if(x > 165 && x < 220 && y > 360 && y < 380){
+            if(x > 180 && x < 225 && y > 370 && y < 390){
                 this.isClicked = true
                 this.ctx.beginPath()
                 this.ctx.clearRect(0,0,400,400)
@@ -193,30 +201,13 @@ class InputHandler {
                 this.world.drawWorld()
                 _inputHandler.startTimer()
             }
-        }else if(this.isClicked){
-            if(ev.button == '2' && rect.left <= x && x < rect.right && rect.top <= y && y < rect.bottom) {
-                x = this.camera.eye.elements[0];
-                y = this.camera.eye.elements[1]
-                var z = this.camera.eye.elements[2] 
-                console.log(z)
-                var shape = new Sphere(this.scene.colorShader, 13, [x,1, z])
-                this.scene.addGeometry(shape)
-                console.log(shape)
-                console.log('drawing shape')
-            }
+            console.log("isCustom: " + this.customWorld)
         }
     }
 
     mouseMove(ev) {
         var movementX = ev.movementX;
-        var movementY = ev.movementY;
-        if(ev.button == '0' || ev.button == '1'){
-            if(movementY > 0){
-                this.camera.tilt(1)
-            }else if(movementY < 0){
-                this.camera.tilt(-1)
-            }
-    
+        if(ev.button == '0' || ev.button == '1'){    
             if(movementX > 0 ){
                 this.camera.pan(1)
             }else if(movementX < 0){
