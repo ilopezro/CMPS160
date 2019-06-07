@@ -20,7 +20,7 @@ class InputHandler {
       this.fog = fog
       this.customWorld = false; 
 
-      this.difficulty = "easy"
+      this.difficulty = "Easy"
       this.worldSetting = "Snow"
 
       _inputHandler = this;
@@ -230,7 +230,7 @@ class InputHandler {
                 this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
                 this.ctx.closePath()
                 if(!this.customWorld){
-                    this.world.setSetting(this.worldSetting)
+                    this.world.setSetting(this.worldSetting, this.difficulty)
                 }else{
                     this.world.setColors(this.cr, this.cg, this.cb,
                                          this.fr, this.fg, this.fb)
