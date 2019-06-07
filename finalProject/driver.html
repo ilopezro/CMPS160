@@ -9,35 +9,109 @@
       <img id="treewood" src="objs/treewood.jpg" width="0"height="0"></img>
       <img id="cactus" src="objs/cactus.png" width="0"height="0"></img>
       <img id="sand" src="objs/sand(1).png" width="0"height="0"></img>
+      <style>
+          .column {
+            float: left;
+            width: 45%;
+            padding: 10px;
+          }
+          
+          /* Clear floats after the columns */
+          .row:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+
+          .RGBColumn{
+            float: left;
+            width: 20%;
+            padding: 10px;
+          }
+          </style>
   </head>
 
   <body onload = "main()">
     <a href="../../index.html">Home</a>
     <a href="driver.html">Game</a>
     <a href="documentation.html">Documentation</a>
-    <br>   
-    <canvas id="webgl" width="400" height="400" style = "position: absolute; z-index: 0">
-      Please use a browser that supports "canvas"
-     </canvas>
-        
-    <canvas id="hud" width="400" height="400" style = "position: absolute; z-index: 1"></canvas>
+    <br> 
+    <div class="row">
+      <div class="column">
+          <canvas id="webgl" width="400" height="400" style = "position: absolute; z-index: 0">
+              Please use a browser that supports "canvas"
+             </canvas>
+                
+            <canvas id="hud" width="400" height="400" style = "position: absolute; z-index: 1"></canvas>
+      </div>
+      <div class="column">
+        <div class="row">
+            <h2>How To Play</h2>
+            <ol>
+              <li>Choose your difficulty and world</li>
+              <li>If you'd like, choose the color of <br> your cubes and floor with the RBG sliders <br></li>
+              <li>Press Play Button</li>
+              <li>Use WASD Keys to Move</li>
+              <li>Use Mouse to look up and down</li>
+              <li>Find your way across our maze!</li>
+              <strong><i>Note:</i></strong> <i>To restart game, just press restart button</i>
+            </ol> 
+        </div>
+        <div class="row" style="text-align:center">
+          <div class="column">
+            <h4>Settings</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+              <p id="difficulty">Difficulty: Easy</p>
+          </div>
+          <div class="column">
+              <p id="setting">World: Snow</p>
+          </div>
+        </div>
+        <div class="row">
+            <table style="width:30%">
+                <tr>
+                  <th></th>
+                  <th>R</th>
+                  <th>G</th>
+                  <th>B</th>
+                </tr>
+                <tr>
+                  <td>Cube</td>
+                  <td>Jill</td>
+                  <td>Smith</td>
+                  <td>50</td>
+                </tr>
+                <tr>
+                  <td>Floor</td>
+                  <td>Eve</td>
+                  <td>Jackson</td>
+                  <td>94</td>
+                </tr>
+              </table> 
+        </div>
+        </div>
+    </div>
 
     <!-- Buttons to load and print file content -->
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   <br><br>
 
     <button onclick="location.reload()">Restart Game</button>
-
-    <p id="difficulty">Difficulty: Easy</p>
-    <p id="setting">World: Snow</p>
-
-    <h2>How To Play</h2>
-    <ol>
-      <li>Choose your difficulty and world</li>
-      <li>Press Play Button</li>
-      <li>Use WASD Keys to Move</li>
-      <li>Use Mouse to look up and down</li>
-      <li>Find your way across our maze!</li>
-    </ol> 
+    <br><br>
+    
+    <!-- Sliders for RGB -->
+    <strong>Cube Color</strong><br>
+    Red  <input type="range" min="0" max="255" class="slider" id="cubeRed">
+    Green  <input type="range" min="0" max="255" class="slider" id="cubeGreen">
+    Blue  <input type="range" min="0" max="255" class="slider" id="cubeBlue">
+    <br>
+    <br>
+    <strong>Floor Color</strong><br>
+    Red  <input type="range" min="0" max="255" class="slider" id="floorRed">
+    Green  <input type="range" min="0" max="255" class="slider" id="floorGreen">
+    Blue  <input type="range" min="0" max="255" class="slider" id="floorBlue">
 
     <!-- Include external libs -->
     <script src = "lib/webgl-utils.js"></script>
