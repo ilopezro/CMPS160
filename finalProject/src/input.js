@@ -20,6 +20,7 @@ class InputHandler {
       this.fog = fog
       this.customWorld = false; 
       this.hasWon = false
+      this.hasLost = false
       this.winningTime = null
 
       this.difficulty = "Easy"
@@ -186,6 +187,7 @@ class InputHandler {
     mouseClick(ev){
         var x = ev.clientX
         var y = ev.clientY
+        console.log(x + " " + y)
 
         if(!this.isClicked){
             if(x>270 && x <315 && y > 200 && y < 215){
@@ -233,6 +235,7 @@ class InputHandler {
                 this.ctx.clearRect(0,0,400,400)
                 this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
                 this.ctx.fillText("You have taken up " + this.time + " seconds.", 50, 75);
+                this.ctx.fillText("Give up", 300, 375)
                 this.ctx.closePath()
                 if(!this.customWorld){
                     this.world.setSetting(this.worldSetting, this.difficulty)
@@ -243,6 +246,10 @@ class InputHandler {
                 }
                 this.world.drawWorld()
                 _inputHandler.startTimer()
+            }
+        }else if(this.isClicked){
+            if(320 < x && x < 380 && 395 < y && y <415){
+                this.loseScreen()
             }
         }
     }
@@ -308,16 +315,18 @@ class InputHandler {
     }
 
     updateStep() {
-        this.ctx.clearRect(0,0,400,400)
-        this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
-
-        this.ctx.fillText("You have taken up " + this.time + " seconds.", 50, 75);
-        
+        if(!this.hasLost){
+            this.ctx.clearRect(0,0,400,400)
+            this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
+    
+            this.ctx.fillText("You have taken up " + this.time + " seconds.", 50, 75);
+            this.ctx.fillText("Give up", 300, 375)
+        }
         this.winScreen()
       }
 
       startTimer(){
-          if(!this.hasWon){
+          if(!this.hasWon || this.hasLost){
             this.timer = setInterval(function(){_inputHandler.time++; _inputHandler.updateStep(); }, 1000);
           }else {
               return; 
@@ -472,6 +481,7 @@ class InputHandler {
    }
 
    loseScreen(){
+    this.hasLost = true
     this.ctx.clearRect(0,0,400,400)
     this.ctx.beginPath();
     this.ctx.rect(0, 0, 400, 400);
@@ -480,13 +490,13 @@ class InputHandler {
     this.ctx.closePath();
 
     this.ctx.beginPath();
-    this.ctx.font = "20pt Georgina";
+    this.ctx.font = "16pt Georgina";
     this.ctx.fillStyle = 'red';
     this.ctx.strokeStyle = 'black';
 
-    this.ctx.font = '20pt Verdana';
-    this.ctx.fillText('You lose! Better luck next time!', 75, 100);
-    this.ctx.strokeText('You lose! Better luck next time!', 75, 100);
+    this.ctx.font = '16pt Verdana';
+    this.ctx.fillText('You lose! Better luck next time!', 25, 100);
+    this.ctx.strokeText('You lose! Better luck next time!', 25, 100);
     this.ctx.fill();
     this.ctx.stroke();
     this.ctx.closePath();
