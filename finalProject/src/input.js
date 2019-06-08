@@ -234,6 +234,7 @@ class InputHandler {
                 }else{
                     this.world.setColors(this.cr, this.cg, this.cb,
                                          this.fr, this.fg, this.fb)
+                    this.world.setDifficulty(this.difficulty)
                 }
                 this.world.drawWorld()
                 _inputHandler.startTimer()
