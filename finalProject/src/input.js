@@ -333,6 +333,13 @@ class InputHandler {
                     this.RGBTable.rows[i].cells[j].innerHTML = "N/A"
                 }
               }
+            
+            //fills canvases with white as they are not being used 
+            this.colorCTX.fillStyle = "#ffffff"
+            this.colorCTX.fillRect(0,0,this.colorCanvas.width,this.colorCanvas.height)
+
+            this.floorCTX.fillStyle = "#ffffff"
+            this.floorCTX.fillRect(0,0,this.floorCanvas.width,this.floorCanvas.height)
           }
       }
 
