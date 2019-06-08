@@ -60,7 +60,7 @@ class World {
       var shape = new Sky(this.texShader, image)
       this.scene.addGeometry(shape)
   
-      var shape = new Sphere(this.colorShader, 13, [16,1,16])
+      var shape = new Sphere(this.colorShader, 13, [16,1,16], 1, 0,0)
       this.scene.addGeometry(shape)
     }else if(this.rCube != null){ //if there are only purely colors
       for(var i = 0; i < this.map.length; i++){
@@ -80,7 +80,7 @@ class World {
       var shape = new Sky(this.texShader, image)
       this.scene.addGeometry(shape)
   
-      var shape = new Sphere(this.colorShader, 13, [16,1,16])
+      var shape = new Sphere(this.colorShader, 13, [16,1,16], 1, 0,0)
       this.scene.addGeometry(shape)
       console.log("colored world created")
     }

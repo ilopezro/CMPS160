@@ -6,20 +6,20 @@ class Sphere extends Geometry {
      * @param {Shader} shader Shading object used to shade geometry
      * @returns {Sphere} Sphere created
      */
-    constructor(shader, segments, g_points) {
+    constructor(shader, segments, g_points, r, g, b) {
         super(shader);
 
         this.g_points = g_points
 
         this.modelMatrix = new Matrix4()
   
-        this.vertices = this.generateSphereVertices(segments, this.g_points);
+        this.vertices = this.generateSphereVertices(segments, this.g_points, r, g, b);
   
         // CALL THIS AT THE END OF ANY SHAPE CONSTRUCTOR
         this.interleaveVertices();
     }
   
-    generateSphereVertices(segments, g_points) {
+    generateSphereVertices(segments, g_points, r, g, b) {
         var outerVerts = [];
   
         // Generate coordinates
@@ -52,18 +52,21 @@ class Sphere extends Geometry {
             vertex0.normal.elements[1] = outerVerts[p1].y;
             vertex0.normal.elements[2] = outerVerts[p1].z;
             vertex0.texCoord = null; 
+            vertex0.color = [r, g, b, 1.0]
   
             var vertex1 = new Vertex((outerVerts[p2].x+x)/2, (outerVerts[p2].y+y)/2, (outerVerts[p2].z+z)/2);
             vertex1.normal.elements[0] = outerVerts[p2].x;
             vertex1.normal.elements[1] = outerVerts[p2].y;
             vertex1.normal.elements[2] = outerVerts[p2].z;
             vertex1.texCoord = null
+            vertex1.color = [r,g,b,1.0]
   
             var vertex2 = new Vertex((outerVerts[p1 + 1].x+x)/2, (outerVerts[p1 + 1].y+y)/2, (outerVerts[p1 + 1].z+z)/2);
             vertex2.normal.elements[0] = outerVerts[p1 + 1].x;
             vertex2.normal.elements[1] = outerVerts[p1 + 1].y;
             vertex2.normal.elements[2] = outerVerts[p1 + 1].z;
             vertex2.texCoord = null
+            vertex2.color = [r,g,b,1.0]
   
             vertices.push(vertex0, vertex1, vertex2);
   
@@ -72,18 +75,21 @@ class Sphere extends Geometry {
             vertex3.normal.elements[1] = outerVerts[p1 + 1].y;
             vertex3.normal.elements[2] = outerVerts[p1 + 1].z;
             vertex3.texCoord = null
+            vertex3.color = [r,g,b,1.0]
   
             var vertex4 = new Vertex((outerVerts[p2].x+x)/2, (outerVerts[p2].y+y)/2, (outerVerts[p2].z+z)/2);
             vertex4.normal.elements[0] = outerVerts[p2].x;
             vertex4.normal.elements[1] = outerVerts[p2].y;
             vertex4.normal.elements[2] = outerVerts[p2].z;
             vertex4.texCoord = null
+            vertex4.color = [r,g,b,1.0]
   
             var vertex5 = new Vertex((outerVerts[p2 + 1].x+x)/2, (outerVerts[p2 + 1].y+y)/2, (outerVerts[p2 + 1].z+z)/2);
             vertex5.normal.elements[0] = outerVerts[p2 + 1].x;
             vertex5.normal.elements[1] = outerVerts[p2 + 1].y;
             vertex5.normal.elements[2] = outerVerts[p2 + 1].z;
             vertex5.texCoord = null
+            vertex5.color = [r,g,b,1.0]
   
             vertices.push(vertex3, vertex4, vertex5);
           }
