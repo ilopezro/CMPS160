@@ -47,7 +47,7 @@
               <li>Press Play Button</li>
               <li>Use WASD or Arrow Keys to Move</li>
               <li>Use Mouse to look side to side</li>
-              <li>Right click to leave markers if needed</li>
+              <li>Press the 'z' key to leave <span style="color:orange">spheres</span> if needed</li>
               <li>Find the hidden <b><span style="color:red">Red</span></b> sphere!</li>
               Good luck!<br>
               <strong><i>Note:</i></strong> <i>To restart game, just press restart button</i>
@@ -71,9 +71,9 @@
             <table id="RGBTable" style="width:40%">
                 <tr>
                   <th></th>
-                  <th>R</th>
-                  <th>G</th>
-                  <th>B</th>
+                  <th style="color:red">R</th>
+                  <th style="color:green">G</th>
+                  <th style="color:blue">B</th>
                 </tr>
                 <tr>
                   <td>Cube</td>
@@ -110,15 +110,15 @@
     
     <!-- Sliders for RGB -->
     <strong>Cube Color</strong><br>
-    Red  <input type="range" min="0" max="255" class="slider" id="cubeRed">
-    Green  <input type="range" min="0" max="255" class="slider" id="cubeGreen">
-    Blue  <input type="range" min="0" max="255" class="slider" id="cubeBlue">
+    <span style="color: red">Red</span>  <input type="range" min="0" max="255" class="slider" id="cubeRed">
+    <span style="color:green">Green</span>  <input type="range" min="0" max="255" class="slider" id="cubeGreen">
+    <span style="color: blue">Blue</span>  <input type="range" min="0" max="255" class="slider" id="cubeBlue">
     <br>
     <br>
     <strong>Floor Color</strong><br>
-    Red  <input type="range" min="0" max="255" class="slider" id="floorRed">
-    Green  <input type="range" min="0" max="255" class="slider" id="floorGreen">
-    Blue  <input type="range" min="0" max="255" class="slider" id="floorBlue">
+    <span style="color: red">Red</span>  <input type="range" min="0" max="255" class="slider" id="floorRed">
+    <span style="color:green">Green</span>  <input type="range" min="0" max="255" class="slider" id="floorGreen">
+    <span style="color: blue">Blue</span>  <input type="range" min="0" max="255" class="slider" id="floorBlue">
 
     <!-- Include external libs -->
     <script src = "lib/webgl-utils.js"></script>

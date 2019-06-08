@@ -20,6 +20,7 @@ class InputHandler {
       this.fog = fog
       this.customWorld = false; 
       this.hasWon = false
+      this.winningTime = null
 
       this.difficulty = "Easy"
       this.worldSetting = "Snow"
@@ -29,7 +30,7 @@ class InputHandler {
       this.isMoving = false; 
 
       this.stepsTaken = 0;
-      this.time = 30;
+      this.time = 0;
 
       this.ctx = hud.getContext('2d');
 
@@ -231,7 +232,7 @@ class InputHandler {
                 this.ctx.beginPath()
                 this.ctx.clearRect(0,0,400,400)
                 this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
-                this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
+                this.ctx.fillText("You have taken up " + this.time + " seconds.", 50, 75);
                 this.ctx.closePath()
                 if(!this.customWorld){
                     this.world.setSetting(this.worldSetting, this.difficulty)
@@ -309,17 +310,18 @@ class InputHandler {
     updateStep() {
         this.ctx.clearRect(0,0,400,400)
         this.ctx.fillText("You have taken " + this.stepsTaken + " steps.", 50, 50);
-  
-        if (this.time >0)
-          this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
-        else
-          this.ctx.fillText("You have lost.", 50, 75)
+
+        this.ctx.fillText("You have taken up " + this.time + " seconds.", 50, 75);
         
         this.winScreen()
       }
 
       startTimer(){
-        this.timer = setInterval(function(){_inputHandler.time--; _inputHandler.updateStep(); }, 1000);
+          if(!this.hasWon){
+            this.timer = setInterval(function(){_inputHandler.time++; _inputHandler.updateStep(); }, 1000);
+          }else {
+              return; 
+          }
       }
 
       updateTable(){
@@ -407,12 +409,40 @@ class InputHandler {
       }
 
     winScreen() {
-        if (this.camera.center.elements[0] < 9 && this.camera.center.elements[0] > 6.5 && this.camera.center.elements[1] == 0 && this.camera.center.elements[2] < 10 && this.camera.center.elements[2] > 6.5 ) {
+        if(!this.hasWon){
+            if (this.camera.center.elements[0] < 9 && this.camera.center.elements[0] > 6.5 && this.camera.center.elements[1] == 0 && this.camera.center.elements[2] < 10 && this.camera.center.elements[2] > 6.5 ) {
+                this.hasWon = true
+                this.winningTime = this.time
+            }
+        }else if(this.hasWon){
             this.ctx.clearRect(0,0,400,400)
             this.ctx.beginPath();
             this.ctx.rect(0, 0, 400, 400);
             this.ctx.fillStyle = 'lavender';
             this.ctx.fill();
+            this.ctx.closePath();
+    
+            this.ctx.beginPath();
+            this.ctx.font = "20pt Georgina";
+            this.ctx.fillStyle = 'red';
+            this.ctx.strokeStyle = 'black';
+    
+            this.ctx.font = '20pt Verdana';
+            this.ctx.fillText('You have won!!!', 75, 100);
+            this.ctx.strokeText('You have won!!!', 75, 100);
+            this.ctx.fill();
+            this.ctx.stroke();
+            this.ctx.closePath();
+   
+            this.ctx.beginPath();
+            this.ctx.font = "20pt Georgina";
+            this.ctx.fillStyle = 'red';
+            this.ctx.strokeStyle = 'black';
+            this.ctx.font = '20pt Verdana';
+            this.ctx.fillText("You took " + this.winningTime + " seconds to win!!!", 25, 150);
+            this.ctx.strokeText("You took " + this.winningTime + " seconds to win!!!", 25, 150);
+            this.ctx.fill();
+            this.ctx.stroke();
             this.ctx.closePath();
 
             this.ctx.beginPath();
@@ -421,13 +451,44 @@ class InputHandler {
             this.ctx.strokeStyle = 'black';
 
             this.ctx.font = '20pt Verdana';
-            this.ctx.fillText('You have won!!!', 75, 100);
-            this.ctx.strokeText('You have won!!!', 75, 100);
+            this.ctx.fillText("You took " + this.stepsTaken + " steps to win!!!", 25, 200);
+            this.ctx.strokeText("You took " + this.stepsTaken + " steps to win!!!", 25, 200);
             this.ctx.fill();
             this.ctx.stroke();
             this.ctx.closePath();
 
-            this.hasWon = true
+            this.ctx.beginPath();
+            this.ctx.font = "16pt Georgina";
+            this.ctx.fillStyle = 'red';
+            this.ctx.strokeStyle = 'black';
+
+            this.ctx.font = '16pt Verdana';
+            this.ctx.fillText("To play again, press restart button", 25, 300);
+            this.ctx.strokeText("To play again, press restart button", 25, 300);
+            this.ctx.fill();
+            this.ctx.stroke();
+            this.ctx.closePath();
         }
+   }
+
+   loseScreen(){
+    this.ctx.clearRect(0,0,400,400)
+    this.ctx.beginPath();
+    this.ctx.rect(0, 0, 400, 400);
+    this.ctx.fillStyle = 'lavender';
+    this.ctx.fill();
+    this.ctx.closePath();
+
+    this.ctx.beginPath();
+    this.ctx.font = "20pt Georgina";
+    this.ctx.fillStyle = 'red';
+    this.ctx.strokeStyle = 'black';
+
+    this.ctx.font = '20pt Verdana';
+    this.ctx.fillText('You lose! Better luck next time!', 75, 100);
+    this.ctx.strokeText('You lose! Better luck next time!', 75, 100);
+    this.ctx.fill();
+    this.ctx.stroke();
+    this.ctx.closePath();
    }
 }
