@@ -19,6 +19,7 @@ class InputHandler {
       this.world = world
       this.fog = fog
       this.customWorld = false; 
+      this.hasWon = false
 
       this.difficulty = "Easy"
       this.worldSetting = "Snow"
@@ -184,11 +185,6 @@ class InputHandler {
     mouseClick(ev){
         var x = ev.clientX
         var y = ev.clientY
-        var rect = ev.target.getBoundingClientRect();
-        console.log(x + " " + y)
-        // console.log(rect.left + " <= " + x + " <= " + rect.right)
-        // rect.top <= y && y < rect.bottom
-        // console.log(rect.top + " <= " + y + " < " + rect.bottom)
 
         if(!this.isClicked){
             if(x>270 && x <315 && y > 200 && y < 215){
@@ -247,17 +243,12 @@ class InputHandler {
                 this.world.drawWorld()
                 _inputHandler.startTimer()
             }
-        }else {
-            if(ev.button == '2'){
-            var shape = new Sphere(shader2, 13, [(2 * this.camera.center.elements[0]), 3 , (2 * this.camera.center.elements[2])], 1.0, 165/255, 0);
-            this.scene.addGeometry(shape);
-            }
         }
     }
 
     mouseMove(ev) {
         var movementX = ev.movementX;
-        if(ev.button == '0' || ev.button == '1'){    
+        if(!this.hasWon){    
             if(movementX > 0 ){
                 this.camera.pan(1)
             }else if(movementX < 0){
@@ -271,22 +262,27 @@ class InputHandler {
         if(!this.isClicked){
             return; 
         }else{
-            if(keyName == "a" || keyName == "ArrowLeft") {
-                this.camera.truck(-1);
-                this.stepsTaken++
-                _inputHandler.updateStep(); 
-            }else if(keyName == "d" || keyName == "ArrowRight") {
-                this.camera.truck(1);
-                this.stepsTaken++
-                _inputHandler.updateStep(); 
-            }else if(keyName == "w" || keyName == "ArrowUp"){
-                this.camera.dolly(-1)
-                this.stepsTaken++
-                _inputHandler.updateStep(); 
-            }else if(keyName == "s" || keyName == "ArrowDown"){
-                this.camera.dolly(1)
-                this.stepsTaken++
-                _inputHandler.updateStep(); 
+            if(!this.hasWon){
+                if(keyName == "a" || keyName == "ArrowLeft") {
+                    this.camera.truck(-1);
+                    this.stepsTaken++
+                    _inputHandler.updateStep(); 
+                }else if(keyName == "d" || keyName == "ArrowRight") {
+                    this.camera.truck(1);
+                    this.stepsTaken++
+                    _inputHandler.updateStep(); 
+                }else if(keyName == "w" || keyName == "ArrowUp"){
+                    this.camera.dolly(-1)
+                    this.stepsTaken++
+                    _inputHandler.updateStep(); 
+                }else if(keyName == "s" || keyName == "ArrowDown"){
+                    this.camera.dolly(1)
+                    this.stepsTaken++
+                    _inputHandler.updateStep(); 
+                }else if(keyName == 'z'){
+                    var shape = new Sphere(shader2, 13, [(2 * this.camera.center.elements[0]), 3 , (2 * this.camera.center.elements[2])], 1.0, 165/255, 0);
+                    this.scene.addGeometry(shape);
+                }
             }
         }
     }
@@ -411,7 +407,7 @@ class InputHandler {
       }
 
     winScreen() {
-        if (this.camera.center.elements[0] < 9 && this.camera.center.elements[0] > 8 && this.camera.center.elements[1] == 0 && this.camera.center.elements[2] < 10 && this.camera.center.elements[2] > 9 ) {
+        if (this.camera.center.elements[0] < 9 && this.camera.center.elements[0] > 6.5 && this.camera.center.elements[1] == 0 && this.camera.center.elements[2] < 10 && this.camera.center.elements[2] > 6.5 ) {
             this.ctx.clearRect(0,0,400,400)
             this.ctx.beginPath();
             this.ctx.rect(0, 0, 400, 400);
@@ -430,6 +426,8 @@ class InputHandler {
             this.ctx.fill();
             this.ctx.stroke();
             this.ctx.closePath();
+
+            this.hasWon = true
         }
    }
 }
