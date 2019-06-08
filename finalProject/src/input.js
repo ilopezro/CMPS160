@@ -32,7 +32,15 @@ class InputHandler {
 
       this.ctx = hud.getContext('2d');
 
-      this.createFrontPage()    
+      this.createFrontPage()   
+      
+      //canvas for cube color 
+      this.colorCanvas = document.getElementById("cubeColorCanvas")
+      this.colorCTX = this.colorCanvas.getContext('2d')
+
+      //canvas for floor color
+      this.floorCanvas = document.getElementById("floorColorCanvas")
+      this.floorCTX = this.floorCanvas.getContext('2d')
 
     this.timer = null
 
@@ -66,13 +74,13 @@ class InputHandler {
       this.f_b_Slider.oninput = function(){ _inputHandler.updateFBSlider()}
 
       //color values for sliders
-      this.cr = null
-      this.cg = null
-      this.cb = null
+      this.cr = this.c_r_Slider.value
+      this.cg = this.c_g_Slider.value
+      this.cb = this.c_b_Slider.value
       
-      this.fr = null
-      this.fg = null
-      this.fb = null
+      this.fr = this.f_r_Slider.value
+      this.fg = this.f_g_Slider.value
+      this.fb = this.f_b_Slider.value
     }
 
     createFrontPage(){
@@ -332,6 +340,9 @@ class InputHandler {
           if(this.customWorld){
             this.RGBTable.rows[1].cells[1].innerHTML = this.c_r_Slider.value
             this.cr = this.c_r_Slider.value
+            //"rgb(r,g,b)"
+            this.colorCTX.fillStyle = "rgb(" + this.cr + "," + this.cg + "," + this.cb + ")"
+            this.colorCTX.fillRect(0, 0, 300, 300);
           }
       }
       
@@ -339,6 +350,9 @@ class InputHandler {
         if(this.customWorld){
             this.RGBTable.rows[1].cells[2].innerHTML = this.c_g_Slider.value
             this.cg = this.c_g_Slider.value
+            //"rgb(r,g,b)"
+            this.colorCTX.fillStyle = "rgb(" + this.cr + "," + this.cg + "," + this.cb + ")"
+            this.colorCTX.fillRect(0, 0, 300, 300);
           }
       }
 
@@ -346,6 +360,9 @@ class InputHandler {
           if(this.customWorld){
             this.RGBTable.rows[1].cells[3].innerHTML = this.c_b_Slider.value
             this.cb = this.c_b_Slider.value
+            //"rgb(r,g,b)"
+            this.colorCTX.fillStyle = "rgb(" + this.cr + "," + this.cg + "," + this.cb + ")"
+            this.colorCTX.fillRect(0, 0, 300, 300);
           }
       }
 
@@ -353,6 +370,9 @@ class InputHandler {
         if(this.customWorld){
             this.RGBTable.rows[2].cells[1].innerHTML = this.f_r_Slider.value
             this.fr = this.f_r_Slider.value
+           //"rgb(r,g,b)"
+           this.floorCTX.fillStyle = "rgb(" + this.fr + "," + this.fg + "," + this.fb + ")"
+           this.floorCTX.fillRect(0, 0, 300, 300);
           }
       }
 
@@ -360,6 +380,9 @@ class InputHandler {
         if(this.customWorld){
             this.RGBTable.rows[2].cells[2].innerHTML = this.f_g_Slider.value
             this.fg = this.f_g_Slider.value
+            //"rgb(r,g,b)"
+            this.floorCTX.fillStyle = "rgb(" + this.fr + "," + this.fg + "," + this.fb + ")"
+            this.floorCTX.fillRect(0, 0, 300, 300);
           }
       }
 
@@ -367,6 +390,9 @@ class InputHandler {
           if(this.customWorld){
             this.RGBTable.rows[2].cells[3].innerHTML = this.f_b_Slider.value
             this.fb = this.f_b_Slider.value
+            //"rgb(r,g,b)"
+            this.floorCTX.fillStyle = "rgb(" + this.fr + "," + this.fg + "," + this.fb + ")"
+            this.floorCTX.fillRect(0, 0, 300, 300);
           }
       }
 }
