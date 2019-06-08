@@ -247,6 +247,11 @@ class InputHandler {
                 this.world.drawWorld()
                 _inputHandler.startTimer()
             }
+        }else {
+            if(ev.button == '2'){
+            var shape = new Sphere(shader2, 13, [(2 * this.camera.center.elements[0]), 3 , (2 * this.camera.center.elements[2])], 1.0, 165/255, 0);
+            this.scene.addGeometry(shape);
+            }
         }
     }
 
@@ -313,6 +318,8 @@ class InputHandler {
           this.ctx.fillText("You have " + this.time + " seconds left.", 50, 75);
         else
           this.ctx.fillText("You have lost.", 50, 75)
+        
+        this.winScreen()
       }
 
       startTimer(){
@@ -402,4 +409,27 @@ class InputHandler {
             this.floorCTX.fillRect(0, 0, 300, 300);
           }
       }
+
+    winScreen() {
+        if (this.camera.center.elements[0] < 9 && this.camera.center.elements[0] > 8 && this.camera.center.elements[1] == 0 && this.camera.center.elements[2] < 10 && this.camera.center.elements[2] > 9 ) {
+            this.ctx.clearRect(0,0,400,400)
+            this.ctx.beginPath();
+            this.ctx.rect(0, 0, 400, 400);
+            this.ctx.fillStyle = 'lavender';
+            this.ctx.fill();
+            this.ctx.closePath();
+
+            this.ctx.beginPath();
+            this.ctx.font = "20pt Georgina";
+            this.ctx.fillStyle = 'red';
+            this.ctx.strokeStyle = 'black';
+
+            this.ctx.font = '20pt Verdana';
+            this.ctx.fillText('You have won!!!', 75, 100);
+            this.ctx.strokeText('You have won!!!', 75, 100);
+            this.ctx.fill();
+            this.ctx.stroke();
+            this.ctx.closePath();
+        }
+   }
 }
